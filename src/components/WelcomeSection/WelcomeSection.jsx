@@ -6,13 +6,16 @@ const WelcomeSection = () => {
   return (
     <div className={s.container}>
       <Logo />
-      <h2>Record daily water intake and track</h2>
-      <h1>Water consumption tracker</h1>
+      <div className={s.container_2}>
+        <div className={s.text}>
+          <p className={s.first_text}>Record daily water intake and track</p>
+          <h1 className={s.title}>Water consumption tracker</h1>
+        </div>
       <div className={s.container_link}>
         <NavLink
           to="/signup"
           className={({ isActive }) =>
-            isActive ? `${s.link} ${s.active}` : s.link
+            isActive ? `${s.link} ${s.active} ${s.link_2}` : s.link_2
           }
         >
           Try tracker
@@ -25,7 +28,8 @@ const WelcomeSection = () => {
         >
           Sign In
         </NavLink>
-      </div>
+        </div>
+        </div>
     </div>
   );
 };

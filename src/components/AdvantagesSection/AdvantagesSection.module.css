@@ -1,0 +1,9 @@
+.info_container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.info_blocks {
+  display: flex;
+  flex-wrap: wrap;
+}

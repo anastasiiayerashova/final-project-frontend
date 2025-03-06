@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 375px;
+  padding-top: 16px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    min-width: 768px;
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .main {
+    min-width: 1440px;
+    max-width: 1440px;
+    flex-direction: row;
+    gap: 32px;
+  }
+}
