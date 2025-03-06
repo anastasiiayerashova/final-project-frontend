@@ -4,11 +4,11 @@ import s from './WelcomeSection.module.css';
 
 const WelcomeSection = () => {
   return (
-    <div>
+    <div className={s.container}>
       <Logo />
       <h2>Record daily water intake and track</h2>
       <h1>Water consumption tracker</h1>
-      <div>
+      <div className={s.container_link}>
         <NavLink
           to="/signup"
           className={({ isActive }) =>
