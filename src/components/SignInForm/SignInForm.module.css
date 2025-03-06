@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--grey);
+  border-radius: 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 375px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  color: var(--light-black);
+  margin-right: auto;
+  margin-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* margin-bottom: 32px; */
+}
+
+.inputGroup:first-child {
+  margin-bottom: 16px;
+}
+
+.inputGroup label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.inputGroup input {
+  padding: 16px;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  outline: none;
+  width: 100%;
+}
+
+.button {
+  padding: 16px;
+  background-color: var(--green);
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.button:hover {
+  background-color: var(--green-hover);
+}
+
+.wrapperUp {
+  display: flex;
+}
+
+.account {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.5);
+}
+
+.signup {
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 450px;
+  }
+}

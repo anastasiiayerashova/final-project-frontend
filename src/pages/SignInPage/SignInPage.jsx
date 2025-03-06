@@ -1,7 +1,12 @@
-function SignInPage() {
-    return (
-        <p>sign in page</p>
-    )
-}
+import React from 'react';
+import SignInForm from '../../components/SignInForm/SignInForm';
 
-export default SignInPage
+const SignInPage = () => {
+  return (
+    <div>
+      <SignInForm />
+    </div>
+  );
+};
+
+export default SignInPage;
