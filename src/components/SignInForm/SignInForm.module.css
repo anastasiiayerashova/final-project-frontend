@@ -6,8 +6,6 @@
 
 .container {
   max-width: 375px;
-  width: 100%;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,6 +13,11 @@
   background-color: var(--grey);
   border-radius: 30px;
   height: 90vh;
+}
+
+.menu_container {
+  width: 100%;
+  padding: 16px;
 }
 
 .title {
@@ -82,6 +85,8 @@
 
 .wrapperUp {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .account {
@@ -98,23 +103,44 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon input {
+  width: 100%;
+  padding-right: 40px; /* Робимо відступ для іконки */
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+@media (max-width: 767px) {
+  .eyeIcon {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    width: 100%;
-    padding: 32px;
   }
+
+  .menu_container {
+    width: 100%;
+    padding: 134px;
+  }
+
   .title {
     font-size: 36px;
     line-height: 1.06;
     letter-spacing: -0.01em;
   }
-  .menu_container {
-    flex-shrink: 0;
-    width: 436px;
-    height: 398px;
-  }
+
   .inputGroup label {
     font-weight: bold;
     font-size: 16px;
@@ -125,6 +151,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
+
   .button {
     font-size: 16px;
     line-height: 1.5;
@@ -132,5 +159,11 @@
   .account {
     font-size: 16px;
     line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 672px;
   }
 }

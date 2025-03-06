@@ -1,4 +1,5 @@
 import React from 'react';
+import { LuEyeOff } from 'react-icons/lu';
 // import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // import * as yup from 'yup';
@@ -40,7 +41,10 @@ const SignInForm = () => {
 
             <div className={s.inputGroup}>
               <label>Password</label>
-              <input type="password" placeholder="Enter your password" />
+              <div className={s.icon}>
+                <input type="password" placeholder="Enter your password" />
+                <LuEyeOff className={s.eyeIcon} />
+              </div>
             </div>
 
             <button type="submit" className={s.button}>
