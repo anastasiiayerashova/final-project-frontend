@@ -29,7 +29,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .inputGroup {
@@ -44,11 +43,19 @@
 
 .inputGroup label {
   font-weight: bold;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
   margin-bottom: 8px;
 }
 
 .inputGroup input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
   padding: 16px;
+  background-color: inherit;
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
   outline: none;
@@ -56,11 +63,14 @@
 }
 
 .button {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
   padding: 16px;
   background-color: var(--green);
   border-radius: 30px;
   cursor: pointer;
-  font-size: 16px;
   width: 100%;
   margin-top: 32px;
   margin-bottom: 16px;
@@ -94,5 +104,33 @@
     max-width: 768px;
     width: 100%;
     padding: 32px;
+  }
+  .title {
+    font-size: 36px;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+  }
+  .menu_container {
+    flex-shrink: 0;
+    width: 436px;
+    height: 398px;
+  }
+  .inputGroup label {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .inputGroup input {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .account {
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
