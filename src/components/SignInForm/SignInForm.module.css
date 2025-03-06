@@ -165,5 +165,19 @@
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 672px;
+    height: 736px;
+    padding: 118px;
+  }
+
+  .menu_container {
+    width: 100%;
+    padding: 0;
+  }
+  .form {
+    width: 100%;
+  }
+
+  .inputGroup:first-child {
+    margin-bottom: 20px;
   }
 }
