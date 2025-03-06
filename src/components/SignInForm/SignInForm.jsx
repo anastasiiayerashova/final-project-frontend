@@ -30,28 +30,30 @@ const SignInForm = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
-        <h3 className={s.title}>Sign In</h3>
-        <form className={s.form}>
-          <div className={s.inputGroup}>
-            <label>Email</label>
-            <input type="text" placeholder="Enter your email" />
+        <div className={s.menu_container}>
+          <h3 className={s.title}>Sign In</h3>
+          <form className={s.form}>
+            <div className={s.inputGroup}>
+              <label>Email</label>
+              <input type="text" placeholder="Enter your email" />
+            </div>
+
+            <div className={s.inputGroup}>
+              <label>Password</label>
+              <input type="password" placeholder="Enter your password" />
+            </div>
+
+            <button type="submit" className={s.button}>
+              Sign In
+            </button>
+          </form>
+
+          <div className={s.wrapperUp}>
+            <p className={s.account}>Don’t have an account?&nbsp;</p>
+            <a href="" className={s.signup}>
+              Sign Up
+            </a>
           </div>
-
-          <div className={s.inputGroup}>
-            <label>Password</label>
-            <input type="password" placeholder="Enter your password" />
-          </div>
-
-          <button type="submit" className={s.button}>
-            Sign In
-          </button>
-        </form>
-
-        <div className={s.wrapperUp}>
-          <p className={s.account}>Don’t have an account?&nbsp;</p>
-          <a href="" className={s.signup}>
-            Sign Up
-          </a>
         </div>
       </div>
     </div>
