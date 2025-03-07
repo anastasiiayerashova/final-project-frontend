@@ -1,7 +1,4 @@
 .wrapper {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .container {
@@ -39,9 +36,11 @@
 }
 
 .inputGroup {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 75px;
 }
 
 .inputGroup:nth-child(1) {
@@ -120,7 +119,7 @@
 
 .icon input {
   width: 100%;
-  padding-right: 40px; /* Робимо відступ для іконки */
+  padding-right: 40px;
 }
 
 .eyeIcon {
@@ -128,6 +127,25 @@
   right: 10px;
   cursor: pointer;
 }
+
+.error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--error);
+  margin-top: 8px;
+  white-space: normal;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.inputError {
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
 @media (max-width: 767px) {
   .eyeIcon {
     display: none;
