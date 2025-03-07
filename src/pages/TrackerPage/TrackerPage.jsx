@@ -1,11 +1,12 @@
-import UserPanel from '../../components/UserPanel/UserPanel';
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 
 function TrackerPage() {
   return (
-    <div>
-      <p>TrackerPage</p>
+    <>
       <UserPanel />
-    </div>
+      {/* <WaterMainInfo /> */}
+      <WaterDetailedInfo />
+    </>
   );
 }
 
