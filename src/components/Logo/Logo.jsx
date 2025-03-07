@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import s from './Logo.module.css';
 
 const Logo = () => {
   return (
-    <div>
-      <p className={s.logo}>AquaTrack</p>
-    </div>
+    <Link to="/">
+      <strong className={s.logo}>AQUATRACK</strong>
+    </Link>
   );
 };
 
