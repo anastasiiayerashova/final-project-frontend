@@ -1,7 +1,12 @@
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
+
 function TrackerPage() {
-    return (
-        <p>TrackerPage</p>
-    )
+  return (
+    <>
+      {/* <WaterMainInfo /> */}
+      <WaterDetailedInfo />
+    </>
+  );
 }
 
-export default TrackerPage
+export default TrackerPage;
