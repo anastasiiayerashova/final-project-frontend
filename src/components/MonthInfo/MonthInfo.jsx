@@ -1,9 +1,9 @@
-import React from 'react';
+import s from './MonthInfo.module.css';
 
 const MonthInfo = () => {
   return (
     <div>
-      <h2>MonthInfo</h2>
+      <h3 className={s.title}>Month</h3>
     </div>
   );
 };
