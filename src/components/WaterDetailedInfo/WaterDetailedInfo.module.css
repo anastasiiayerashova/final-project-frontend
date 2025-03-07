@@ -1,0 +1,12 @@
+.WaterDetailedInfo {
+  border-radius: 30px;
+  background: var(--grey);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 32px;
+  }
+}
