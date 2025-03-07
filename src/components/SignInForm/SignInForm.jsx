@@ -4,6 +4,7 @@ import { LuEyeOff } from 'react-icons/lu';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // import * as yup from 'yup';
 import s from './SignInForm.module.css';
+import Logo from '../Logo/Logo.jsx';
 
 // const schema = yup.object().shape({
 //   email: yup
@@ -29,10 +30,14 @@ const SignInForm = () => {
   //   };
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.container}>
+    
+          <div className={s.container}>
+              <div className={s.logo_container}>
+                  <Logo/>
+              </div>
+              
         <div className={s.menu_container}>
-          <h3 className={s.title}>Sign In</h3>
+          <h2 className={s.title}>Sign In</h2>
           <form className={s.form}>
             <div className={s.inputGroup}>
               <label>Email</label>
@@ -54,13 +59,13 @@ const SignInForm = () => {
 
           <div className={s.wrapperUp}>
             <p className={s.account}>Don’t have an account?&nbsp;</p>
-            <a href="" className={s.signup}>
+            <a href="/signup" className={s.signup}>
               Sign Up
             </a>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
