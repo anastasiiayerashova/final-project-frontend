@@ -1,7 +1,12 @@
+import UserPanel from '../../components/UserPanel/UserPanel';
+
 function TrackerPage() {
-    return (
-        <p>TrackerPage</p>
-    )
+  return (
+    <div>
+      <p>TrackerPage</p>
+      <UserPanel />
+    </div>
+  );
 }
 
-export default TrackerPage
+export default TrackerPage;
