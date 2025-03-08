@@ -7,7 +7,7 @@ function HomePage() {
     <div className={s.wrapper}>
       <WelcomeSection />
       <AdvantagesSection />
-    </div>
+    </section>
   );
 }
 

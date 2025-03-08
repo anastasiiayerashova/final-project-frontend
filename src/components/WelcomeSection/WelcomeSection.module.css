@@ -19,7 +19,6 @@ h2 {
   line-height: 1.29;
   letter-spacing: 0.06em;
   color: #2f2f2f;
-  margin-top: 74px;
 }
 h1 {
   font-weight: 700;
@@ -27,13 +26,10 @@ h1 {
   line-height: 1;
   letter-spacing: -0.01em;
   color: #323f47;
-  margin-top: 16px;
 }
 .container_link {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: row;
+  justify-content: start;
   gap: 10px;
 }
 .link {
@@ -46,11 +42,26 @@ h1 {
   color: #323f47;
   font-weight: 700;
   font-size: 14px;
+  transition: color cubic-bezier(0.39, 0.575, 0.565, 1),
+    border cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.link_2 {
+  border-radius: 30px;
+  padding: 14px 19px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  font-weight: 700;
+  background-color: var(--green);
+  font-size: 14px;
 }
 .link:hover {
   background: #9be1a0;
   border-color: #9be1a0;
 }
+
 .active {
   background: #9be1a0;
 }
