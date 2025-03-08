@@ -40,6 +40,11 @@ export const getCurrentUserDataOperation = createAsyncThunk()
 
 export const updateUserOperation = createAsyncThunk()
 
+export const updateUserAvatarOperation = createAsyncThunk(
+    'user/updateAvatar',
+    async (file, thunkAPI) => {}
+)
+
 export const refreshUserOperation = createAsyncThunk()
 
 export const logoutUserOperation = createAsyncThunk()
