@@ -1,5 +1,5 @@
-import React from 'react';
-import { LuEyeOff } from 'react-icons/lu';
+import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -10,23 +10,46 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email address')
+    .min(3, 'Email must be at least 3 characters')
+    .max(50, 'Email cannot exceed 50 characters')
     .required('Email is required'),
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters')
+    .min(3, 'Password must be at least 3 characters')
+    .max(50, 'Password cannot exceed 50 characters')
     .required('Password is required'),
 });
 
 const SignInForm = () => {
+
+  const [showPassword, setShowPassword] = useState(false)
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword)
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    console.log(data);
-    alert('Form submitted successfully!');
+    toast.success(`Welcome, ${data.email}!`, {
+      style: {
+        backgroundColor: 'white',
+        color: 'green'
+      }
+    })
+    reset()
+  }
+
+  const onError = (errors) => {
+    toast.error('Please, try again', {
+      style: {
+         backgroundColor: 'white',
+         color: 'red',
+      },
+    });
   };
 
   return (
@@ -37,7 +60,7 @@ const SignInForm = () => {
 
       <div className={s.menu_container}>
         <h2 className={s.title}>Sign In</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+        <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
           <div className={s.inputGroup}>
             <label>Email</label>
             <input
@@ -54,7 +77,7 @@ const SignInForm = () => {
             <label>Password</label>
             <div className={s.icon}>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 {...register('password')}
                 placeholder="Enter your password"
                 className={errors.password ? `${s.inputError}` : ''}
@@ -62,7 +85,13 @@ const SignInForm = () => {
               {errors.password && (
                 <p className={s.error}>{errors.password.message}</p>
               )}
-              <LuEyeOff className={s.eyeIcon} />
+              <button className={s.eyeIcon} onClick={togglePasswordVisibility}> 
+                {showPassword ? <svg width="20" height="20">
+                  <use href='/sprite.svg#eye-off' />
+                </svg> : <svg width="20" height="20">
+                  <use href='/sprite.svg#chevron-left' />
+                </svg>}
+              </button>
             </div>
           </div>
 

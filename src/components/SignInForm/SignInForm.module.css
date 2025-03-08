@@ -8,7 +8,7 @@
   background-color: var(--grey);
   border-radius: 30px;
   height: 100vh;
-  padding-top: 16px;
+  padding-top: 24px;
 }
 
 .logo_container {
@@ -41,10 +41,12 @@
   flex-direction: column;
   width: 100%;
   min-height: 75px;
+  gap: 8px;
+  margin-bottom: 32px;
 }
 
 .inputGroup:nth-child(1) {
-  margin-bottom: 16px;
+  margin-bottom: 30px;
 }
 
 .inputGroup label {
@@ -52,7 +54,6 @@
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.01em;
-  margin-bottom: 8px;
 }
 
 .inputGroup input {
@@ -83,11 +84,11 @@
   border-radius: 30px;
   cursor: pointer;
   width: 100%;
-  margin-top: 32px;
   margin-bottom: 16px;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background-color: var(--green-hover);
 }
 
@@ -126,6 +127,8 @@
   position: absolute;
   right: 10px;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
 
 .error {
@@ -141,7 +144,7 @@
   left: 0;
 }
 
-.inputError {
+.inputGroup input.inputError {
   border: 1px solid var(--error);
   color: var(--error);
 }
@@ -152,11 +155,11 @@
   }
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .eyeIcon {
     display: none;
   }
-}
+} */
 
 @media screen and (min-width: 768px) {
   .container {
@@ -191,7 +194,7 @@
   }
 
   .inputGroup:nth-child(1) {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .button {
