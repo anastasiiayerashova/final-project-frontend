@@ -18,7 +18,7 @@ const Calendar = () => {
   const todayMonth = today.getMonth();
   const todayYear = today.getFullYear();
 
-  // TODO Стан обраного дня отримуємо зі store
+  // TODO Стан обраного дня отримуємо зі store (за замовчуванням null)
   const [selectedDay, setSelectedDay] = useState(null);
 
   // Відправляємо в store обрану дату
