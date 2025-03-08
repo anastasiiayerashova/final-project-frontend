@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://aquatrack-bd.onrender.com/api-docs/',
     withCredentials: true // для передачи cookies
 })
 

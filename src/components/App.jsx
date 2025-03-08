@@ -2,8 +2,8 @@ import s from './App.module.css';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout.jsx';
-import { RestrictedRoute } from './RestrictedRoute.jsx';
-import { PrivateRoute } from './PrivateRoute.jsx';
+import RestrictedRoute from './RestrictedRoute.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
 
 const HomePage = lazy(() => import('./../pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./../pages/SignUpPage/SignUpPage'));
@@ -47,7 +47,7 @@ export function App() {
             <Route
               path="/tracker"
               element={
-                <PrivateRoute component={<TrackerPage />} redirectTo="/" />
+                <PrivateRoute component={<TrackerPage />} redirectTo="/tracker" />
               }
             />
             <Route path="*" element={<NotFoundPage />} />
