@@ -1,15 +1,12 @@
-.backdrop {
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
-  /* transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-  width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(47, 47, 47, 0.6);
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
 }
 
@@ -18,30 +15,42 @@
   border-radius: 15px;
   padding: 40px 20px;
   background-color: white;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* box-sizing: border-box; */
-  overflow: auto;
-  width: 100%;
-  margin: 80px 16px;
+  top: 80px;
+  width: 100vw;
+  height: 100vh;
+  max-width: 90%;
 }
 
-.modal button {
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+}
+
+/* .modal button {
   border: 2px solid var(--main-text);
   cursor: pointer;
   position: absolute;
   top: 20px;
   right: 16px;
+} */
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.headerBlock {
+/* .headerBlock {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
-}
+  align-items: flex-start;
+  padding-bottom: 20px;
+} */
 
 .setting {
   font-family: var(--font-family);
@@ -52,4 +61,33 @@
   color: var(--main);
   position: relative;
   left: 0;
+  margin-bottom: 20px;
+}
+
+.blockPhoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.settingPhotoUpload {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.textUpload {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
 }

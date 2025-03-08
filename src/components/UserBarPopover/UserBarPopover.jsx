@@ -1,7 +1,12 @@
+import React from 'react';
+import Modal from 'react-modal';
 import UserSettingsModal from '../UserSettingsModal/UserSettingsModal';
 import LogOutModal from '../LogOutModal/LogOutModal';
 import s from './UserBarPopover.module.css';
 import { useState } from 'react';
+
+// Встановлюємо root-елемент для модального вікна (зазвичай це #root)
+Modal.setAppElement('#root');
 
 const UserBarPopover = () => {
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
@@ -16,7 +21,7 @@ const UserBarPopover = () => {
   return (
     <div className={s.barPopover}>
       <button className={s.barBtn} onClick={openSettingsModal}>
-        <svg className="comment-prev-btn" width="16" height="16">
+        <svg width="16" height="16">
           <use
             href="/sprite.svg#chevron-down"
             className="reviews-btn-svg"
@@ -24,11 +29,14 @@ const UserBarPopover = () => {
         </svg>
         <p className={s.setting}>Setting</p>
       </button>
-      {isSettingModalOpen && (
-        <UserSettingsModal closeModal={closeSettingsModal} />
-      )}
+
+      <UserSettingsModal
+        isOpen={isSettingModalOpen}
+        closeModal={closeSettingsModal}
+      />
+
       <button className={s.barBtn} onClick={openLogOutModal}>
-        <svg className="comment-prev-btn" width="16" height="16">
+        <svg width="16" height="16">
           <use
             href="/sprite.svg#chevron-down"
             className="reviews-btn-svg"
@@ -36,7 +44,7 @@ const UserBarPopover = () => {
         </svg>
         <p className={s.logOut}>Log out</p>
       </button>
-      {isLogOutModal && <LogOutModal closeModal={closeLogOutModal} />}
+      <LogOutModal isOpen={isLogOutModal} closeModal={closeLogOutModal} />
     </div>
   );
 };
