@@ -16,7 +16,7 @@ const AdvantagesSection = () => {
         <ul className={s.benefits_list}>
           <li className={s.benefits_item_one}>
             <svg width="8" height="8">
-              <use xlink:href="../../../public/sprite.svg#"></use>
+              <use href="../../../public/sprite.svg#"></use>
             </svg>
             Habit drive
           </li>
