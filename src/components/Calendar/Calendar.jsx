@@ -21,7 +21,7 @@ const Calendar = () => {
   // TODO Стан обраного дня отримуємо зі store
   const [selectedDay, setSelectedDay] = useState(null);
 
-  // выдправляэмо в store обрану дату
+  // Відправляємо в store обрану дату
   const handleSelectDay = (day) => {
     const selectedDate = new Date(year, month, day);
     // TODO Відправити dispatch в store щодо обраного дня (повна дата)
