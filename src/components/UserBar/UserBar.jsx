@@ -5,7 +5,7 @@ import s from './UserBar.module.css';
 const UserBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <div className={s.wrapper}>
       <button className={s.btn} onClick={() => setIsOpen((prev) => !prev)}>
         <p>User</p>
         <img

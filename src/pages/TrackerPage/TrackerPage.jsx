@@ -3,7 +3,6 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 function TrackerPage() {
   return (
     <>
-      <UserPanel />
       {/* <WaterMainInfo /> */}
       <WaterDetailedInfo />
     </>

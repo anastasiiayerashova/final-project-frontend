@@ -1,5 +1,4 @@
 import UserBar from '../UserBar/UserBar';
-import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import s from './UserPanel.module.css';
 // import { useSelector } from 'react-redux';
 // import { selectIsLoggedIn, selectUser } from '../../redux/user/selectors'; //перевірити селектори

@@ -1,3 +1,8 @@
+.wrapper {
+  position: relative; /* Робимо відносне позиціонування, щоб поповер прив’язувався до цього контейнера */
+  display: inline-block; /* Щоб контейнер займав лише необхідний розмір */
+}
+
 .btn {
   font-weight: 700;
   font-size: 14px;
@@ -13,5 +18,5 @@
   border: 1px solid rgba(251, 251, 251, 0.2);
   border-radius: 30px;
   padding: 6px 12px;
-  background-color: gray;
+  background-color: var(--light-black);
 }
