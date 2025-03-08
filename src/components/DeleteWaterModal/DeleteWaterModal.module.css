@@ -1,0 +1,116 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.modal-overlay.show {
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal z animacją pojawiania się i znikania */
+.delete-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -45%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.delete-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%);
+}
+
+.delete-modal.hide {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -55%);
+}
+
+/* Styl nagłówka i treści */
+.delete-modal-content {
+  padding-top: 24px;
+  font-size: 18px;
+}
+
+.delete-modal-title {
+  padding-top: 24px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.delete-modal-close {
+  position: fixed;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Przyciski */
+.delete-modal-actions {
+  padding-top: 34px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.delete-modal-btn {
+  padding: 18px 67px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  transition: background 0.3s ease;
+}
+
+.delete-modal-btn.confirm {
+  background-color: #b6e3be;
+  color: black;
+}
+
+.delete-modal-btn.confirm:hover {
+  background-color: #9ad2a8;
+}
+
+.delete-modal-btn.cancel {
+  background-color: #eaeaea;
+  color: #666;
+}
+
+.delete-modal-btn.cancel:hover {
+  background-color: #d6d6d6;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 375px) {
+  .delete-modal-actions {
+    flex-direction: column;
+    width: 304px;
+  }
+}
