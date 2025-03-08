@@ -8,7 +8,7 @@
   background-color: var(--grey);
   border-radius: 30px;
   height: 100vh;
-  padding-top: 24px;
+  padding-top: 16px;
 }
 
 .logo_container {
@@ -17,7 +17,7 @@
 
 .menu_container {
   width: 100%;
-  padding: 16px;
+  padding: 0px 16px;
   margin: auto 0;
 }
 
@@ -146,6 +146,12 @@
   color: var(--error);
 }
 
+@media screen and (min-width: 375px) {
+  .inputGroup {
+    min-width: 311px;
+  }
+}
+
 @media (max-width: 767px) {
   .eyeIcon {
     display: none;
@@ -165,7 +171,7 @@
 
   .menu_container {
     width: 100%;
-    padding: 134px;
+    padding: 0px 134px;
   }
 
   .title {
@@ -202,12 +208,15 @@
   .container {
     max-width: 672px;
     height: 736px;
-    padding: 118px;
   }
 
   .menu_container {
     width: 100%;
-    padding: 0;
+    padding: 0px 118px;
+  }
+
+  .inputGroup {
+    width: 436px;
   }
   .form {
     width: 100%;
