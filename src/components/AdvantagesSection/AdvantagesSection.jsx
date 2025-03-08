@@ -1,19 +1,27 @@
+import s from './AdvantagesSection.module.css';
+
 const AdvantagesSection = () => {
   return (
-    <div>
-      <div>
-        <div>
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-        </div>
-        <p>Our happy customers</p>
+    <div className={s.container}>
+      <div className={s.container_customers}>
+        <img className={s.customers_img_first} alt="first customer" />
+        <img className={s.customers_img_second} alt="second customer" />
+        <img className={s.customers_img_third} alt="third customer" />
+
+        <p className={s.customers_text}>
+          Our <span className={s.customers_text_happy}>happy</span> customers
+        </p>
       </div>
-      <div>
-        <ul>
-          <li>Habit drive</li>
-          <li>View statistics</li>
-          <li>Personal rate setting</li>
+      <div className={s.container_benefits}>
+        <ul className={s.benefits_list}>
+          <li className={s.benefits_item_one}>
+            <svg width="8" height="8">
+              <use xlink:href="../../../public/sprite.svg#"></use>
+            </svg>
+            Habit drive
+          </li>
+          <li className={s.benefits_item_two}>View statistics</li>
+          <li className={s.benefits_item_three}>Personal rate setting</li>
         </ul>
       </div>
     </div>
