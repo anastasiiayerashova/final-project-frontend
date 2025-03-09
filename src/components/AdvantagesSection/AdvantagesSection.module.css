@@ -3,13 +3,24 @@
     url('../../../public/water_women_images/water_woman_mob-min.png') 1x,
     url('../../../public/water_women_images/water_woman_mob@2x-min.png') 2x
   );
+  background-position: center;
   background-repeat: no-repeat;
   border-radius: 30px;
-  display: inline-flex;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-bottom: 32px;
+  display: flex;
+  padding: 32px 16px;
+  flex-shrink: 0;
+  width: 100%;
+  height: 353px;
+  align-items: end;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+}
+
 .container_customers {
   display: flex;
   align-items: center;
@@ -21,7 +32,6 @@
   height: 48px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: #fff;
-  margin-top: 209px;
 }
 
 .customers_img_first {
@@ -62,15 +72,14 @@
   color: #9be1a0;
 }
 .container_benefits {
-  margin-top: 265px;
-  margin-left: -7px;
   width: 168px;
   height: 56px;
+  display: flex;
+  align-self: flex-end;
 }
 .benefits_list {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
   justify-content: flex-start;
   flex-direction: row;
   gap: 4px;
@@ -104,13 +113,15 @@
     height: 446px;
     padding-left: 32px;
     padding-right: 32px;
-    gap: 161px;
+  }
+
+  .wrapper {
+    row-gap: unset;
   }
   .container_customers {
     max-width: 237px;
-    height: 67px;
+    height: 66px;
     padding: 10px 20px;
-    margin-top: 283px;
   }
   .customers_img_first {
     content: image-set(
@@ -146,7 +157,6 @@
     line-height: 1.49;
   }
   .container_benefits {
-    margin-top: 336px;
     margin-left: 0;
     width: 242px;
     height: 78px;
@@ -173,13 +183,12 @@
     );
     width: 672px;
     height: 736px;
-    gap: 129px;
     padding-bottom: 64px;
   }
-  .container_customers {
+  /* .container_customers {
     margin-top: 537px;
   }
   .container_benefits {
     margin-top: 594px;
-  }
+  } */
 }
