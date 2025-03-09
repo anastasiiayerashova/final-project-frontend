@@ -14,6 +14,10 @@
   align-items: end;
 }
 
+.ellipse_icon {
+  fill: var(--green);
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -92,6 +96,10 @@
   padding: 9px 12px;
   background: #323f47;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }
 .benefits_item_two {
   border-radius: 30px;
@@ -185,10 +193,4 @@
     height: 736px;
     padding-bottom: 64px;
   }
-  /* .container_customers {
-    margin-top: 537px;
-  }
-  .container_benefits {
-    margin-top: 594px;
-  } */
 }
