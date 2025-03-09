@@ -67,6 +67,10 @@
   width: 168px;
   height: 56px;
 }
+
+.ellipse_icon {
+  fill: var(--green);
+}
 .benefits_list {
   display: flex;
   flex-wrap: wrap;
@@ -83,6 +87,9 @@
   padding: 9px 12px;
   background: #323f47;
   color: #fff;
+  display: flex;
+  gap: 2px;
+  align-items: center;
 }
 .benefits_item_two {
   border-radius: 30px;

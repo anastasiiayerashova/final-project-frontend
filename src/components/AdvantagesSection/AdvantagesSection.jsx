@@ -15,8 +15,8 @@ const AdvantagesSection = () => {
       <div className={s.container_benefits}>
         <ul className={s.benefits_list}>
           <li className={s.benefits_item_one}>
-            <svg width="8" height="8">
-              <use href="../../../public/sprite.svg#"></use>
+            <svg width="8" height="8" className={s.ellipse_icon}>
+              <use href="/sprite.svg#Ellipse"></use>
             </svg>
             Habit drive
           </li>
