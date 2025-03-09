@@ -14,11 +14,8 @@ const UserBar = () => {
           width="38px"
           height="38px"
         />
-        <svg className="comment-prev-btn" width="16" height="16">
-          <use
-            href="/sprite.svg#chevron-down"
-            className="reviews-btn-svg"
-          ></use>
+        <svg width="16" height="16">
+          <use href="/sprite.svg#chevron-down"></use>
         </svg>
       </button>
       {isOpen && <UserBarPopover />};

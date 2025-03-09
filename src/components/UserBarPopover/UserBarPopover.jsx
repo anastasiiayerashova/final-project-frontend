@@ -24,7 +24,7 @@ const UserBarPopover = () => {
         <svg width="16" height="16">
           <use
             href="/sprite.svg#chevron-down"
-            className="reviews-btn-svg"
+            className={s.barPopoverIcon}
           ></use>
         </svg>
         <p className={s.setting}>Setting</p>
