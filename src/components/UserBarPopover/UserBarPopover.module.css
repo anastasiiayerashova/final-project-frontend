@@ -1,0 +1,62 @@
+.barPopover {
+  position: absolute; /* Випадає зверху, не займає місце */
+  top: calc(100% + 4px); /* З'являється під кнопкою */
+  transform: translateY(-14px); /* Відсунення поповера вниз */
+  z-index: 10; /* Щоб поповер був над іншими елементами */
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  height: 72px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: white;
+}
+
+.barBtn {
+  font-family: var(--font-family);
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.setting {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--main);
+}
+
+.logOut {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: rgba(50, 63, 71, 0.4);
+}
+
+.barPopoverIcon {
+  stroke: black !important;
+}
+
+@media (min-width: 768px) {
+  .setting {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .logOut {
+    font-size: 15px;
+    line-height: 149%;
+    color: rgba(50, 63, 71, 0.4);
+  }
+}
