@@ -11,10 +11,9 @@ const UserBar = () => {
         <img
           src="/btn_images/avatar_btn_hello_mob-min.png"
           alt="ellipse1"
-          width="38px"
-          height="38px"
+          className={s.avatar}
         />
-        <svg width="16" height="16">
+        <svg className={s.icon}>
           <use href="/sprite.svg#chevron-down"></use>
         </svg>
       </button>

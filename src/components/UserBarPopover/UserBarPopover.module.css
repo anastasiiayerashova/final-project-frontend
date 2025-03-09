@@ -13,7 +13,9 @@
   flex-direction: column;
   align-items: flex-start;
   border-radius: 15px;
-  padding: 14px 20px;
+  padding-left: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   background-color: white;
 }
 
@@ -44,4 +46,17 @@
 
 .barPopoverIcon {
   stroke: black !important;
+}
+
+@media (min-width: 768px) {
+  .setting {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .logOut {
+    font-size: 15px;
+    line-height: 149%;
+    color: rgba(50, 63, 71, 0.4);
+  }
 }
