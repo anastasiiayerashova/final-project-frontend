@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import s from './SignInForm.module.css';
 import Logo from '../Logo/Logo.jsx';
+import { registerUserOperation } from '../../redux/user/operations.js';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton.jsx';
 
 const schema = yup.object().shape({
   email: yup
@@ -22,6 +26,11 @@ const schema = yup.object().shape({
 
 const SignInForm = () => {
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const emailId = useId()
+  const pwdId = useId()
+
   const [showPassword, setShowPassword] = useState(false)
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword)
@@ -30,17 +39,38 @@ const SignInForm = () => {
     register,
     handleSubmit,
     reset,
+    trigger,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: { email: '', password: '' },
+    mode: 'onBlur'
+  });
 
-  const onSubmit = (data) => {
-    toast.success(`Welcome, ${data.email}!`, {
+  const onSubmit = (values) => {
+    dispatch(registerUserOperation({
+      email: values.email,
+      password: values.password
+    }))
+    .unwrap()
+      .then((res) => {
+      toast.success(`Welcome, ${values.email}!`, {
       style: {
         backgroundColor: 'white',
         color: 'green'
       }
     })
-    reset()
+        reset()
+        navigate('/tracker')
+      })
+      .catch((e) => {
+      toast.error('Please, try again', {
+      style: {
+         backgroundColor: 'white',
+         color: 'red',
+      },
+    });
+    })
   }
 
   const onError = (errors) => {
@@ -62,10 +92,12 @@ const SignInForm = () => {
         <h2 className={s.title}>Sign In</h2>
         <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
           <div className={s.inputGroup}>
-            <label>Email</label>
+            <label htmlFor={emailId}>Email</label>
             <input
+              id={emailId}
               type="text"
               {...register('email')}
+              onBlur={() => trigger('email')}
               placeholder="Enter your email"
               className={errors.email ? `${s.inputError}` : ''}
             />
@@ -74,11 +106,13 @@ const SignInForm = () => {
           </div>
 
           <div className={s.inputGroup}>
-            <label>Password</label>
+            <label htmlFor={pwdId}>Password</label>
             <div className={s.icon}>
               <input
+                id={pwdId}
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
+                onBlur={() => trigger('password')}
                 placeholder="Enter your password"
                 className={errors.password ? `${s.inputError}` : ''}
               />
@@ -98,14 +132,22 @@ const SignInForm = () => {
           <button type="submit" className={s.button}>
             Sign In
           </button>
+          <GoogleAuthButton/>
         </form>
-
+     <div className={s.helpersWrapper}>
         <div className={s.wrapperUp}>
           <p className={s.account}>Don’t have an account?&nbsp;</p>
           <a href="/signup" className={s.signup}>
             Sign Up
           </a>
         </div>
+        <div className={s.wrapperUp}>
+         <p className={s.account}>Need help?&nbsp;</p>
+          <a href="/reset-pwd-email" className={s.signup}>
+            Reset your password
+          </a>
+        </div>
+       </div>
       </div>
     </div>
   );

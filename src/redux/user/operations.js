@@ -48,3 +48,17 @@ export const updateUserAvatarOperation = createAsyncThunk(
 export const refreshUserOperation = createAsyncThunk()
 
 export const logoutUserOperation = createAsyncThunk()
+
+export const sendEmailOperation = createAsyncThunk(
+    'user/sendEmail',
+    async (cred, thunkAPI) => {
+        try {
+            const data = await api.post('/auth/request-reset-email', cred)
+
+            return data
+        }
+        catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
+        }
+    }
+)
