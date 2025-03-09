@@ -1,14 +1,1 @@
-.form {
-  width: 300px;
 
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.input {
-  width: 100%;
-  border: 1px solid rgba(47, 47, 47, 0.2);
-  border-radius: 15px;
-  padding: 16px 184px 16px 16px;
-  background-color: transparent;
-}
