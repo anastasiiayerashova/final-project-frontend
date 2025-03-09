@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
+import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import s from './SignUpForm.module.css';
 import Logo from '../Logo/Logo.jsx';
-import { GoogleLogin } from 'react-google-login';
+import { registerUserOperation } from '../../redux/user/operations.js';
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email address')
+    .min(3, 'Email must be at least 3 characters')
+    .max(50, 'Email cannot exceed 50 characters')
     .required('Email is required'),
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters')
+    .min(3, 'Password must be at least 3 characters')
+    .max(50, 'Password cannot exceed 50 characters')
     .required('Password is required'),
   repeatPassword: yup
     .string()
+    .min(3, 'Password must be at least 3 characters')
+    .max(50, 'Password cannot exceed 50 characters')
     .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Repeat Password is required'),
 });
 
 const SignUpForm = () => {
+  
+  const dispatch = useDispatch()
   const navigate = useNavigate();
+  const emailId = useId()
+  const pwdId = useId()
+  const repeatPwdId = useId()
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -33,33 +45,53 @@ const SignUpForm = () => {
   const {
     register,
     handleSubmit,
-    setError,
+    reset,
+    trigger,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    values: { email: '', password: '' },
+    mode: 'onBlur'
+  });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (values) => {
     setIsSubmitting(true);
-    try {
-      const response = await fetch('https://your-backend.com/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email, password: data.password }),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Registration failed');
+    dispatch(registerUserOperation({
+      email: values.email,
+      password: values.password
+    }))
+      .unwrap()
+      .then((res) => {
+      localStorage.setItem('token', res.token)
+      toast.success(`Welcome, ${values.email}!`, {
+      style: {
+        backgroundColor: 'white',
+        color: 'green'
       }
+      })
+        setIsSubmitting(false)
+        reset()
+        navigate('/tracker')
+      })
+      .catch((e) => {
+        console.log(e)
+        setIsSubmitting(false)
+      toast.error('Please, try again', {
+      style: {
+         backgroundColor: 'white',
+         color: 'red',
+      },
+    });
+    })
+  };
 
-      localStorage.setItem('token', result.token);
-      navigate('/tracker');
-    } catch (error) {
-      alert(error.message);
-      setError('email', { type: 'server', message: error.message });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const onError = (errors) => {
+    toast.error('Please, try again', {
+      style: {
+         backgroundColor: 'white',
+         color: 'red',
+      },
+    });
   };
 
   return (
@@ -70,12 +102,14 @@ const SignUpForm = () => {
 
       <div className={s.menu_container}>
         <h2 className={s.title}>Sign Up</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+        <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
           <div className={s.inputGroup}>
-            <label>Email</label>
+            <label htmlFor={emailId}>Email</label>
             <input
               type="text"
+              id={emailId}
               {...register('email')}
+              onBlur={() => trigger('email')}
               placeholder="Enter your email"
               className={errors.email ? s.inputError : ''}
             />
@@ -83,11 +117,13 @@ const SignUpForm = () => {
           </div>
 
           <div className={s.inputGroup}>
-            <label>Password</label>
+            <label htmlFor={pwdId}>Password</label>
             <div className={s.icon}>
               <input
+                id={pwdId}
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
+                onBlur={() => trigger('password')}
                 placeholder="Enter your password"
                 className={errors.password ? s.inputError : ''}
               />
@@ -113,9 +149,10 @@ const SignUpForm = () => {
           </div>
 
           <div className={s.inputGroup}>
-            <label>Repeat Password</label>
+            <label htmlFor={repeatPwdId}>Repeat Password</label>
             <div className={s.icon}>
               <input
+                id={repeatPwdId}
                 type={showRepeatPassword ? 'text' : 'password'}
                 {...register('repeatPassword')}
                 placeholder="Repeat your password"

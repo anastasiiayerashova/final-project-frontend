@@ -1,7 +1,7 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: center; */
   background-color: var(--grey);
   border-radius: 30px;
   height: 100vh;
@@ -14,8 +14,9 @@
 
 .menu_container {
   width: 100%;
-  padding: 0px 16px;
-  margin: auto 0;
+  /* padding: 0px 16px;
+  margin: auto 0; */
+  padding: 170px 16px;
 }
 
 .title {
@@ -165,7 +166,7 @@
 
   .menu_container {
     width: 100%;
-    padding: 0px 134px;
+    padding: 171px 134px;
   }
 
   .title {
@@ -206,7 +207,7 @@
 
   .menu_container {
     width: 100%;
-    padding: 0px 118px;
+    padding: 74px 118px;
   }
 
   .inputGroup {

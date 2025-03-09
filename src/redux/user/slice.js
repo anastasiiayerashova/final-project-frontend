@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from "redux-persist"
+import { registerUserOperation } from "./operations.js"
 
 const initialState = {
     user: {
@@ -20,9 +21,12 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {},
-    // extraReducers: (builder) =>
-    //     builder
-    // .addCase()
+    extraReducers: (builder) =>
+        builder
+    .addCase(registerUserOperation.fulfilled, (state, { payload }) => {
+                state.token = payload.accessToken
+                state.isLoggedId = true
+    })
 }
 )
 
