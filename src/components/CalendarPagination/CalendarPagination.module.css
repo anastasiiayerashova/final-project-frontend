@@ -1,0 +1,35 @@
+.CalendarPagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
+}
+
+.btnArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .svgIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.date {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

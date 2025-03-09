@@ -1,0 +1,68 @@
+.addWaterBtn {
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  .iconWrap {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease 0s;
+
+    .iconPlus {
+      height: 14px;
+      width: 14px;
+      position: relative;
+      display: block;
+      transition: ba 0.3s ease 0s;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        background-color: var(--light-black);
+        border-radius: 2px;
+        transition: background-color 0.3s ease 0s;
+      }
+
+      &::before {
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      &::after {
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .iconWrap {
+      background-color: var(--light-black);
+
+      .iconPlus {
+        &::before,
+        &::after {
+          background-color: var(--white);
+        }
+      }
+    }
+  }
+}
