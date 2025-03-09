@@ -23,7 +23,7 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) =>
         builder
-    .addCase(registerUserOperation.fulfilled, (state, { payload }) => {
+            .addCase(registerUserOperation.fulfilled, (state, { payload }) => {
                 state.token = payload.accessToken
                 state.isLoggedId = true
     })

@@ -4,12 +4,14 @@ import { lazy, Suspense } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout.jsx';
 import RestrictedRoute from './RestrictedRoute.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
+import ChangePasswordPage from '../pages/ChangePasswordPage/ChangePasswordPage.jsx';
 
 const HomePage = lazy(() => import('./../pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('./../pages/SignInPage/SignInPage'));
 const TrackerPage = lazy(() => import('./../pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./../pages/NotFoundPage/NotFoundPage'));
+const ResetPasswordPage = lazy(() => import('./../pages/ResetPasswordPage/ResetPasswordPage'));
 
 export function App() {
   return (
@@ -50,6 +52,24 @@ export function App() {
                 <PrivateRoute component={<TrackerPage />} redirectTo="/tracker" />
               }
             />
+            <Route
+              path="/reset-pwd-email"
+              element={
+                <RestrictedRoute
+                  component={<ResetPasswordPage />}
+                  redirectTo="/"
+                />
+              }
+            />
+            <Route 
+              path="/change-pwd"
+              element={
+                <RestrictedRoute
+                  component={<ChangePasswordPage />}
+                  redirectTo="/signin"
+                />
+              }
+            /> 
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
