@@ -85,11 +85,11 @@ const SignInForm = () => {
               {errors.password && (
                 <p className={s.error}>{errors.password.message}</p>
               )}
-              <button className={s.eyeIcon} onClick={togglePasswordVisibility}> 
+              <button className={s.eyeIcon} onClick={togglePasswordVisibility} type='button'> 
                 {showPassword ? <svg width="20" height="20">
                   <use href='/sprite.svg#eye-off' />
                 </svg> : <svg width="20" height="20">
-                  <use href='/sprite.svg#chevron-left' />
+                  <use href='/sprite.svg#eye' />
                 </svg>}
               </button>
             </div>
