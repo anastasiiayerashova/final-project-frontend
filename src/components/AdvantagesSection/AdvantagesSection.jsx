@@ -3,6 +3,7 @@ import s from './AdvantagesSection.module.css';
 const AdvantagesSection = () => {
   return (
     <div className={s.container}>
+      <div className={s.wrapper}>
       <div className={s.container_customers}>
         <img className={s.customers_img_first} alt="first customer" />
         <img className={s.customers_img_second} alt="second customer" />
@@ -23,9 +24,11 @@ const AdvantagesSection = () => {
           <li className={s.benefits_item_two}>View statistics</li>
           <li className={s.benefits_item_three}>Personal rate setting</li>
         </ul>
-      </div>
+        </div>
+        </div>
     </div>
   );
 };
+
 
 export default AdvantagesSection;

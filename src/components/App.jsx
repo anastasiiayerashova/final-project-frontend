@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout.jsx';
 import RestrictedRoute from './RestrictedRoute.jsx';
+import { PrivateRoute } from './PrivateRoute.jsx';
+import RestrictedRoute from './RestrictedRoute.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 
 const HomePage = lazy(() => import('./../pages/HomePage/HomePage'));
