@@ -5,26 +5,24 @@ import s from './WelcomeSection.module.css';
 const WelcomeSection = () => {
   return (
     <div className={s.container}>
-      <Logo />
+      <div className={s.logo_container}>
+        <Logo />
+      </div>
       <div className={s.container_without_logo}>
-        <div>
+        <div className={s.title_container}>
           <h2>Record daily water intake and track</h2>
           <h1>Water consumption tracker</h1>
         </div>
         <div className={s.container_link}>
           <NavLink
             to="/signup"
-            className={({ isActive }) =>
-              isActive ? `${s.link} ${s.active}` : s.link
-            }
+            className={s.link}
           >
             Try tracker
           </NavLink>
           <NavLink
             to="/signin"
-            className={({ isActive }) =>
-              isActive ? `${s.link} ${s.active}` : s.link
-            }
+            className={s.link_2}
           >
             Sign In
           </NavLink>
