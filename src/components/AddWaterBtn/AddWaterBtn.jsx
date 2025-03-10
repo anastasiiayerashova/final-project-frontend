@@ -1,25 +1,10 @@
-import s from './AddWaterBtn.module.css';
+import clsx from 'clsx';
+import s from './AddWaterBtn.module.css'
 
-const AddWaterBtn = () => {
-  const svgIcon = '/sprite.svg';
-
-  const handleOpenWaterModal = () => {
-    console.log('Show WaterModal');
-    // TODO Створити логіку відкриття модального вікна
-  };
-
-  return (
-    <button
-      type="button"
-      className={s.addWaterBtn}
-      onClick={handleOpenWaterModal}
-    >
-      <span className={s.iconWrap}>
-        <span className={s.iconPlus}></span>
-      </span>
-      Add water
-    </button>
-  );
-};
-
+const AddWaterBtn = ({ onClick, small }) => {
+ 
+    return(
+        <button className={clsx(small ? s.small : s.btn)} onClick={onClick}><span className={s.plus}></span>Add water</button>
+    )
+}
 export default AddWaterBtn;
