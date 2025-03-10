@@ -1,0 +1,9 @@
+export const selectName = state => state.user.user.name
+export const selectEmail = state => state.user.user.email
+export const selectGender = state => state.user.user.gender 
+export const selectWeight = state => state.user.user.weight
+export const selectDailySportTime = state => state.user.user.dailySportTime
+export const selectDailyWaterNorm = state => state.user.user.dailyWaterNorm
+export const selectAvatar = state => state.user.user.avatar 
+export const selectToken = state => state.user.token 
+export const selectIsLoggedIn = state => state.user.isLoggedIn 

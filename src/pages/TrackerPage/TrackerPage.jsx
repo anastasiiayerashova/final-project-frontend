@@ -7,8 +7,6 @@ import WaterModal from '../../components/WaterModal/WaterModal.jsx'
 
 function TrackerPage() {
 
- 
-
   const [isWaterModal, setIsWaterModal] = useState({
     isOpen: false,
     type: null
@@ -31,4 +29,4 @@ function TrackerPage() {
     )
 }
 
-export default TrackerPage
+export default TrackerPage;

@@ -81,7 +81,7 @@
             transform: translateX(-50%);
         }
     .plus::before {
-    width: 100%;
+        width: 100%;
         height: 2px;
         top: 50%;
         left: 0;
