@@ -1,17 +1,14 @@
-.container {
-  margin: 0 auto;
-  background-color: var(--grey);
-  padding: 24px 16px 170px;
-  border-radius: 30px;
-  height: 100vh;
-  min-width: 320px;
+.advantages_wrapper {
+  display: none;
 }
 
-.title {
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  margin-top: 126px;
-  margin-bottom: 32px;
+@media screen and (min-width: 1440px) {
+  .advantages_wrapper {
+    display: flex;
+  }
+
+  .main_wrapper {
+    display: flex;
+    gap: 32px;
+  }
 }
