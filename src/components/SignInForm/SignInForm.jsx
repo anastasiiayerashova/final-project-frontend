@@ -128,11 +128,12 @@ const SignInForm = () => {
               </button>
             </div>
           </div>
-
+        <div className={s.buttonWrapper}>
           <button type="submit" className={s.button}>
             Sign In
           </button>
-          <GoogleAuthButton/>
+            <GoogleAuthButton text={'Sign in with Google'} />
+          </div>
         </form>
      <div className={s.helpersWrapper}>
         <div className={s.wrapperUp}>

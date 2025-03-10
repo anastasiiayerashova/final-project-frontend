@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import s from './SignUpForm.module.css';
 import Logo from '../Logo/Logo.jsx';
 import { registerUserOperation } from '../../redux/user/operations.js';
+import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton.jsx';
 
 const schema = yup.object().shape({
   email: yup
@@ -39,6 +40,9 @@ const SignUpForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword)
+  const toggleRepeatPasswordVisibility = () => setShowRepeatPassword(!showRepeatPassword)
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -133,7 +137,7 @@ const SignUpForm = () => {
               <button
                 type="button"
                 className={s.eyeIcon}
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={togglePasswordVisibility}
               >
                 {showPassword ? (
                   <svg width="20" height="20">
@@ -165,9 +169,9 @@ const SignUpForm = () => {
               <button
                 type="button"
                 className={s.eyeIcon}
-                onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                onClick={toggleRepeatPasswordVisibility}
               >
-                {showPassword ? (
+                {showRepeatPassword ? (
                   <svg width="20" height="20">
                     <use href="../../../public/sprite.svg#eye" />
                   </svg>
@@ -179,10 +183,12 @@ const SignUpForm = () => {
               </button>
             </div>
           </div>
-
+         <div className={s.buttonWrapper}>
           <button type="submit" className={s.button} disabled={isSubmitting}>
             {isSubmitting ? 'Signing up...' : 'Sign Up'}
           </button>
+            <GoogleAuthButton text={'Sign up with Google'} />
+          </div>
         </form>
 
         <div className={s.wrapperUp}>
