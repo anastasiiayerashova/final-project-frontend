@@ -1,0 +1,236 @@
+.helpersWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--grey);
+  border-radius: 30px;
+  height: 100vh;
+  padding-top: 24px;
+}
+
+.logo_container {
+  padding-left: 16px;
+}
+
+.menu_container {
+  width: 100%;
+  padding: 0px 16px;
+  margin: auto 0;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+  margin-right: auto;
+  padding-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 75px;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.inputGroup:nth-child(1) {
+  margin-bottom: 30px;
+}
+
+.inputGroup label {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+}
+
+.inputGroup input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  padding: 16px;
+  background-color: inherit;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  outline: none;
+  width: 100%;
+}
+
+.inputGroup input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  color: var(--black);
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding-bottom: 16px;
+}
+
+.button {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  padding: 16px;
+  background-color: var(--green);
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--green-hover);
+}
+
+.wrapperUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.5);
+}
+
+.signup {
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--error);
+  margin-top: 8px;
+  white-space: normal;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.inputGroup input.inputError {
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+@media screen and (min-width: 375px) {
+  .inputGroup {
+    min-width: 311px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-top: 32px;
+    height: 100vh;
+  }
+
+  .logo_container {
+    padding-left: 32px;
+  }
+
+  .menu_container {
+    width: 100%;
+    padding: 0px 134px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+  }
+
+  .inputGroup label {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .inputGroup input {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .inputGroup:nth-child(1) {
+    margin-bottom: 30px;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .buttonWrapper {
+    flex-direction: row;
+    column-gap: 10px;
+  }
+
+  .account {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 672px;
+    height: 736px;
+  }
+
+  .menu_container {
+    width: 100%;
+    padding: 0px 118px;
+  }
+
+  .inputGroup {
+    width: 436px;
+  }
+  .form {
+    width: 100%;
+  }
+}
