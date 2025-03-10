@@ -1,0 +1,196 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(47, 47, 47, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal {
+    width: 343px;
+    height: 514px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+    position: relative;
+    overflow-y: auto;
+}
+.iconX {
+    width: 24px;
+    height: 24px;
+}
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    
+}
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    color: #323F47;
+    margin-bottom: 24px;
+}
+.subtitle {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    color: #323F47;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    gap: 8px;
+}
+.descrAmount, .timeLabel {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+    color: #323F47;
+    margin-bottom: 8px;
+}
+.iconMinus, .iconPlus {
+    width: 40px;
+    height: 40px;
+    
+}
+.input {
+    border-radius: 30px;
+    padding: 11px 20px;
+    width: 89px;
+    height: 40px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    background-color: #323F47;
+}
+.timeInput, .waterInput {
+    border: 1px solid rgba(47, 47, 47, 0.15);
+    border-radius: 15px;
+    padding: 14px 16px 14px 16px;
+    width: 303px;
+    height: 46px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+    color: #2F2F2F;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+.manualInput {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #323F47;
+}
+.saveBtn {
+    border-radius: 30px;
+    padding: 14px 40px;
+    width: 116px;
+    height: 46px;
+    background-color: #9BE1A0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #323F47;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .modal {
+        border-radius: 15px;
+        padding: 40px;
+        width: 518px;
+        height: 587px;
+        box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    }
+    .closeBtn {
+        width: 28px;
+        height: 28px;
+    }
+    .title {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 114%;
+        letter-spacing: -0.01em;
+        margin-bottom: 24px;
+    }
+    .subtitle {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 133%;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+    }
+    .iconPlus, .iconMinus {
+        width: 43px;
+        height: 43px;
+    }
+    .input {
+        border-radius: 30px;
+        padding: 11px 20px;
+        width: 92px;
+        height: 43px;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 149%;
+    }
+    .descrAmount, .timeLabel {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: -0.01em;
+    }
+    .timeInput, .waterInput {
+        border: 1px solid rgba(47, 47, 47, 0.15);
+        border-radius: 15px;
+        padding: 16px 16px 16px 16px;
+        width: 438px;
+        height: 56px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: -0.01em;
+    }
+    .manualInput {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 133%;
+        letter-spacing: -0.01em;
+        text-align: center;
+    }
+    .saveBtn {
+        border-radius: 30px;
+        padding: 18px 50px;
+        width: 141px;
+        height: 60px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: -0.01em;
+        text-align: center;
+    }
+}
+
