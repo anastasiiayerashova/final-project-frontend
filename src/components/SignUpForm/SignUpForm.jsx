@@ -14,6 +14,10 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email address')
+    .matches(
+      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.com$/, 
+      'Enter a valid email'
+    )
     .min(3, 'Email must be at least 3 characters')
     .max(50, 'Email cannot exceed 50 characters')
     .required('Email is required'),
