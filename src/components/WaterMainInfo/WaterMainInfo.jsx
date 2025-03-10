@@ -22,9 +22,9 @@ const WaterMainInfo = () => {
                 <div className={s.logo}><Logo /></div>
     
                 
-                <div className={s.daily}>
+                
                     <WaterDailyNorma/>
-            </div>
+            
             <div className={s.progress}>
                 <WaterProgressBar/>
             </div>

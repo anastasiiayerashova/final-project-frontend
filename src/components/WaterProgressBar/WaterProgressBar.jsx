@@ -7,7 +7,9 @@ const WaterProgressBar = () => {
 //   };
     return (
         <div className={s.container}>
-            <p>Today</p>
+        <div className={s.data}>
+          <p>Today</p>
+        </div>
             <div className={s.sliderContainer}>
             <input
                 type="range"
