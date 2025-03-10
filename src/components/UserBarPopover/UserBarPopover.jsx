@@ -1,7 +1,8 @@
 import React from 'react';
+import sprite from '../../../public/sprite.svg';
 import Modal from 'react-modal';
 // import UserSettingsModal from '../UserSettingsModal/UserSettingsModal';
-import LogOutModal from '../LogOutModal/LogOutModal';
+// import LogOutModal from '../LogOutModal/LogOutModal';
 import s from './UserBarPopover.module.css';
 import { useState } from 'react';
 
@@ -23,9 +24,8 @@ const UserBarPopover = () => {
       <button className={s.barBtn} onClick={openSettingsModal}>
         <svg width="16" height="16">
           <use
-            href="/sprite.svg#chevron-down"
-            // {isOpen ? "/sprite.svg#chevron-up" : "/sprite.svg#chevron-down"}
-            className={s.barPopoverIcon}
+            href={`${sprite}#settings`}
+            className={s.barPopoverIconSettings}
           ></use>
         </svg>
         <p className={s.setting}>Setting</p>
@@ -39,13 +39,13 @@ const UserBarPopover = () => {
       <button className={s.barBtn} onClick={openLogOutModal}>
         <svg width="16" height="16">
           <use
-            href="/sprite.svg#chevron-down"
-            className="reviews-btn-svg"
+            href={`${sprite}#log-out`}
+            className={s.barPopoverIconLogOut}
           ></use>
         </svg>
         <p className={s.logOut}>Log out</p>
       </button>
-      <LogOutModal isOpen={isLogOutModal} closeModal={closeLogOutModal} />
+      {/* <LogOutModal isOpen={isLogOutModal} closeModal={closeLogOutModal} /> */}
     </div>
   );
 };

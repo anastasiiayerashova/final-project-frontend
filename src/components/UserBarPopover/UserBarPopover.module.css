@@ -35,6 +35,9 @@
   line-height: 129%;
   color: var(--main);
 }
+.barPopoverIconSettings {
+  color: var(--main);
+}
 
 .logOut {
   font-family: var(--font-family);
@@ -45,7 +48,10 @@
 }
 
 .barPopoverIcon {
-  stroke: black !important;
+}
+
+.barPopoverIconLogOut {
+  color: rgba(50, 63, 71, 0.4);
 }
 
 @media (min-width: 768px) {
