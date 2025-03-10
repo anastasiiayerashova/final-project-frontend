@@ -27,22 +27,26 @@
     background-image: url('/public/bottle_images/bottle_for_water_mob@2x-min.png');
   }
 }
+
 .logo {
   position: absolute;
   top: 24px;
   left: 16px;
 }
+
 .btn {
   position: absolute;
   bottom: 32px;
   right: 16px;
 }
+
 .progress {
   position: absolute;
   left: 50%;
   bottom: 120px;
   transform: translate(-50%);
 }
+
 @media (min-width: 768px) {
   .waterContainer {
     width: 704px;
@@ -53,12 +57,14 @@
       url('public/bottle_images/bottle_for_water_tab-min.png')
     );
   }
+
   @media (min-resolution: 2dppx) {
     .waterContainer {
       background-size: 374px 477px;
       background-image: url('public/bottle_images/bottle_for_water_tab@2x-min.png');
     }
   }
+
   .logo {
     position: absolute;
     width: 155px;
@@ -66,11 +72,13 @@
     top: 32px;
     left: 32px;
   }
+
   .progress {
     bottom: 150px;
     left: 50%;
     transform: translate(-50%);
   }
+
   .btn {
     bottom: 64px;
     right: 32px;
@@ -87,16 +95,19 @@
       url('public/bottle_images/bottle_for_water_desk-min.png')
     );
   }
+
   @media (min-resolution: 2dppx) {
     .waterContainer {
       background-size: 472px 604px;
       background-image: url('public/bottle_images/bottle_for_water_desk@2x-min.png');
     }
   }
+
   .btn {
     bottom: 64px;
     right: 32px;
   }
+
   .progress {
     bottom: 180px;
   }
