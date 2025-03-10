@@ -48,7 +48,7 @@ const SignInForm = () => {
   });
 
   const onSubmit = (values) => {
-    dispatch(registerUserOperation({
+    dispatch(loginUserOperation({
       email: values.email,
       password: values.password
     }))
