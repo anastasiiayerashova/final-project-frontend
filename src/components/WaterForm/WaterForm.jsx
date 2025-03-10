@@ -92,13 +92,13 @@ const WaterForm = () => {
                         
                          <button className={s.minusButton} disabled type="button" onClick={() => handleStepChange(-50)}>
                              <svg className={s.iconMinus}>
-                                <use href='../../../public/sprite.svg#minus_plus'></use>
+                                <use href='../../../public/sprite.svg#minus-plus'></use>
                             </svg>
                         </button>
                     <input className={s.input} id="amount" value={`${amount} ml`} readOnly />
                         <button className={s.plusButton} type="button" onClick={() => handleStepChange(50)}>
                               <svg className={s.iconPlus}>
-                                <use href='../../../public/sprite.svg#plus_minuc'></use>
+                                <use href='../../../public/sprite.svg#plus-minus'></use>
                                 </svg>
                         </button>
                         </div>
