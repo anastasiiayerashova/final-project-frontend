@@ -11,7 +11,7 @@ const UserPanel = () => {
     <div className={s.userPanel}>
       <h2 className={s.greetings}>
         Hello,{' '}
-        <span className={s.user}>{!isLoggedIn ? 'USER' : nameUser} !</span>
+        <span className={s.user}>{!isLoggedIn ? 'USER' : nameUser}!</span>
       </h2>
       <UserBar />
     </div>

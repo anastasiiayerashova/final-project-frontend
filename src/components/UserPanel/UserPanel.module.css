@@ -6,8 +6,8 @@
   align-items: flex-start;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 40px;
-  font-family: 'Gilroy', sans-serif;
+  /* padding-top: 40px; */
+  /* font-family: 'Gilroy', sans-serif; */
 }
 
 .greetings {
@@ -15,7 +15,7 @@
   font-size: 32px;
   line-height: 100%;
   letter-spacing: -0.01em;
-  color: var(--main);
+  color: var(--light-black);
 }
 
 .user {

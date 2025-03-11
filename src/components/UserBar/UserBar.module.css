@@ -23,7 +23,7 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--white);
 }
 
 .avatar {
@@ -35,7 +35,7 @@
 .icon {
   width: 16px;
   height: 16px;
-  color: white;
+  color: var(--white);
 }
 
 @media (min-width: 768px) {
