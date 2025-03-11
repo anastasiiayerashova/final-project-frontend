@@ -6,7 +6,6 @@ import Modal from '../../components/Modal/Modal.jsx'
 import WaterModal from '../../components/WaterModal/WaterModal.jsx'
 import { useDispatch } from 'react-redux'
 import { getCurrentUserDataOperation } from '../../redux/user/operations.js'
-import Loader from '../../components/Loader/Loader.jsx'
 
 function TrackerPage() {
 
@@ -16,8 +15,13 @@ function TrackerPage() {
 
   useEffect(() => {
     async function fetchCurrentUserData() {
-      await dispatch(getCurrentUserDataOperation()).unwrap()
-      setIsLoading(false)
+      try {
+        await dispatch(getCurrentUserDataOperation()).unwrap()
+        setIsLoading(false)
+      }
+      catch (e) {
+        console.error('Error in tracker page during getting current user data', e)
+      }
     }
     fetchCurrentUserData()
   }, [dispatch])

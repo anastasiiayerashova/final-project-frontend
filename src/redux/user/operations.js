@@ -37,22 +37,48 @@ export const loginUserOperation = createAsyncThunk(
 )
 
 export const getCurrentUserDataOperation = createAsyncThunk(
-    'user/data', 
+  'user/data',
     async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+        
+      if (!state.user.token) {
+        throw new Error('No token available');
+      }
+
+      setAuthHeader(state.user.token);
+
+      const res = await api.get('/auth/data');
+      return res.data.data
+        
+    } catch (error) {
+
+      if (error.response?.status === 401) {
+        // пробуем обновить токен
         try {
-            const state = thunkAPI.getState()
+          const { accessToken } = await thunkAPI.dispatch(refreshUserOperation()).unwrap()
 
-            setAuthHeader(state.user.token)
+          setAuthHeader(accessToken)
 
-            const res = await api.get('/auth/data')
-
-            return res.data.data
+          // повторяем запрос с новым токеном
+          const res = await api.get('/auth/data')
+          return res.data.data
+            
         }
-        catch (e) {
-            return thunkAPI.rejectWithValue(e.response.data.message)
+        catch (refreshError) {
+
+          console.error('Ошибка во время обновления токена:', refreshError)
+            
+          thunkAPI.dispatch(logoutUser()) // логаут 
+            
+          return thunkAPI.rejectWithValue('Session expired, you need to login')
         }
     }
-)
+        
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error during getting current data')
+    }
+  }
+);
 
 export const updateUserOperation = createAsyncThunk()
 
@@ -61,7 +87,35 @@ export const updateUserAvatarOperation = createAsyncThunk(
     async (file, thunkAPI) => {}
 )
 
-export const refreshUserOperation = createAsyncThunk()
+export const refreshUserOperation = createAsyncThunk(
+  'user/refresh',
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.post("/auth/refresh")
+        
+      console.log('Ответ при обновлении токена:', response.data)
+
+      const accessToken = response.data?.data?.accessToken
+        
+      if (!accessToken) {
+        throw new Error('No access token in refresh response')
+      }
+
+      setAuthHeader(accessToken);
+
+      return { accessToken }
+    }
+    catch (error) {
+      console.error('Ошибка при обновлении токена:', error.response?.data || error.message)
+
+      clearAuthHeader()
+        
+      thunkAPI.dispatch(logoutUser()) // логаут
+
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Ошибка при обновлении токена')
+    }
+  }
+);
 
 export const logoutUserOperation = createAsyncThunk(
     'user/logout',
