@@ -18,7 +18,7 @@ const UserBar = () => {
   return (
     <div className={s.wrapper}>
       <button className={s.btn} onClick={() => setIsOpen((prev) => !prev)}>
-        <p>{isLoggedIn ? nameUser : 'User'}</p>
+        <p className={s.nameUser}>{isLoggedIn ? nameUser : 'User'}</p>
         {!isLoggedIn ? (
           <picture>
             <source
