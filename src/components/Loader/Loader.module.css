@@ -1,11 +1,10 @@
-
 .loader {
   width: 32px;
   height: 72px;
   display: inline-block;
   left: 5px;
   position: relative;
-  border: 2px solid #fff;
+  border: 2px solid #323f47;
   box-sizing: border-box;
   animation: animloader 2s linear infinite alternate;
   color: #9be1a0;
@@ -19,7 +18,7 @@
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
-  border: 1px solid #fff;
+  border: 1px solid #323f47;
   border-radius: 50%;
   width: 28px;
   height: 6px;
@@ -76,4 +75,3 @@
       15px -45px rgba(255, 255, 255, 0);
   }
 }
-
