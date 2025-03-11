@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import React, { useState, useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,13 +9,14 @@ import s from './SignUpForm.module.css';
 import Logo from '../Logo/Logo.jsx';
 import { registerUserOperation } from '../../redux/user/operations.js';
 import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton.jsx';
+import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email address')
     .matches(
-      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.com$/, 
+      /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i, 
       'Enter a valid email'
     )
     .min(3, 'Email must be at least 3 characters')
@@ -38,6 +39,7 @@ const SignUpForm = () => {
   
   const dispatch = useDispatch()
   const navigate = useNavigate();
+
   const emailId = useId()
   const pwdId = useId()
   const repeatPwdId = useId()
@@ -55,11 +57,13 @@ const SignUpForm = () => {
     handleSubmit,
     reset,
     trigger,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    values: { email: '', password: '' },
-    mode: 'onBlur'
+    values: { email: '', password: '', repeatPassword: '' },
+    mode: 'onChange',
+    reValidateMode: 'onChange'
   });
 
   const onSubmit = async (values) => {
@@ -82,13 +86,14 @@ const SignUpForm = () => {
         navigate('/tracker')
       })
       .catch((e) => {
-        console.log(e)
+        let errorMessage = e || 'Please, try again';
+
         setIsSubmitting(false)
-      toast.error('Please, try again', {
-      style: {
-         backgroundColor: 'white',
-         color: 'red',
-      },
+        toast.error(errorMessage, {
+          style: {
+            backgroundColor: 'white',
+            color: 'red',
+        },
     });
     })
   };
@@ -102,12 +107,35 @@ const SignUpForm = () => {
     });
   };
 
+    const emailValue = watch('email');
+    const pwdValue = watch('password');
+    const repeatPwdValue = watch('repeatPassword')
+
+    useEffect(() => {
+      if (emailValue) {
+         trigger('email'); 
+        }
+    }, [emailValue, trigger]);
+
+
+    useEffect(() => {
+      if (pwdValue) {
+         trigger('password');
+        }
+    }, [pwdValue, trigger]);
+  
+    useEffect(() => {
+      if (repeatPwdValue) {
+         trigger('repeatPassword');
+        }
+    }, [repeatPwdValue, trigger]);
+
   return (
     <div className={s.container}>
       <div className={s.logo_container}>
         <Logo />
+        <LanguageButtons/>
       </div>
-
       <div className={s.menu_container}>
         <h2 className={s.title}>Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
@@ -117,7 +145,6 @@ const SignUpForm = () => {
               type="text"
               id={emailId}
               {...register('email')}
-              onBlur={() => trigger('email')}
               placeholder="Enter your email"
               className={errors.email ? s.inputError : ''}
             />
@@ -131,7 +158,6 @@ const SignUpForm = () => {
                 id={pwdId}
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
-                onBlur={() => trigger('password')}
                 placeholder="Enter your password"
                 className={errors.password ? s.inputError : ''}
               />

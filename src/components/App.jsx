@@ -49,7 +49,7 @@ export function App() {
             <Route
               path="/tracker"
               element={
-                <RestrictedRoute component={<TrackerPage />} redirectTo="/tracker" />
+                <PrivateRoute component={<TrackerPage />} redirectTo="/" />
               }
             />
             <Route
