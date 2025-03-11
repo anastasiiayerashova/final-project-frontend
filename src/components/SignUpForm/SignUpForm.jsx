@@ -86,15 +86,8 @@ const SignUpForm = () => {
         navigate('/tracker')
       })
       .catch((e) => {
-        let errorMessage = 'Please, try again';
-        
-        if (e) {
-            errorMessage = 'Email in use'
-        }
-        else {
-          errorMessage = e.response.data?.message || 'Something went wrong'
-        }
-        
+        let errorMessage = e || 'Please, try again';
+
         setIsSubmitting(false)
         toast.error(errorMessage, {
           style: {

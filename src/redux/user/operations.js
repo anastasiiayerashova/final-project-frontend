@@ -15,7 +15,7 @@ export const registerUserOperation = createAsyncThunk(
             
         }
         catch (e) {
-            return thunkAPI.rejectWithValue(e.response.data.message) // выводим ошибку с бека
+            return thunkAPI.rejectWithValue(e.response.data.data.message) // выводим ошибку с бека
         }
     }
 )
@@ -31,7 +31,7 @@ export const loginUserOperation = createAsyncThunk(
             return {accessToken: accessToken}
         }
         catch (e) {
-            return thunkAPI.rejectWithValue(e.response.data.message)
+            return thunkAPI.rejectWithValue(e.response.data.data.message)
         }
     }
 )
