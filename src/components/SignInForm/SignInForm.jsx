@@ -1,19 +1,24 @@
-import React, { useState, useId } from 'react';
+import React, { useState, useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import s from './SignInForm.module.css';
 import Logo from '../Logo/Logo.jsx';
-import { registerUserOperation } from '../../redux/user/operations.js';
+import { loginUserOperation } from '../../redux/user/operations.js';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton.jsx';
+import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email address')
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i, 
+      'Enter a valid email'
+    )
     .min(3, 'Email must be at least 3 characters')
     .max(50, 'Email cannot exceed 50 characters')
     .required('Email is required'),
@@ -28,6 +33,7 @@ const SignInForm = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const emailId = useId()
   const pwdId = useId()
 
@@ -40,15 +46,17 @@ const SignInForm = () => {
     handleSubmit,
     reset,
     trigger,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { email: '', password: '' },
-    mode: 'onBlur'
+    mode: 'onChange',
+    reValidateMode: 'onChange'
   });
 
   const onSubmit = (values) => {
-    dispatch(registerUserOperation({
+    dispatch(loginUserOperation({
       email: values.email,
       password: values.password
     }))
@@ -64,7 +72,8 @@ const SignInForm = () => {
         navigate('/tracker')
       })
       .catch((e) => {
-      toast.error('Please, try again', {
+      let errorMessage = e || 'Please, try again';
+      toast.error(errorMessage, {
       style: {
          backgroundColor: 'white',
          color: 'red',
@@ -82,10 +91,26 @@ const SignInForm = () => {
     });
   };
 
+      const emailValue = watch('email');
+      const pwdValue = watch('password');
+  
+      useEffect(() => {
+        if (emailValue) {
+           trigger('email'); 
+          }
+      }, [emailValue, trigger]);
+  
+      useEffect(() => {
+        if (pwdValue) {
+           trigger('password');
+          }
+      }, [pwdValue, trigger]);
+
   return (
     <div className={s.container}>
       <div className={s.logo_container}>
         <Logo />
+        <LanguageButtons/>
       </div>
 
       <div className={s.menu_container}>
@@ -97,7 +122,6 @@ const SignInForm = () => {
               id={emailId}
               type="text"
               {...register('email')}
-              onBlur={() => trigger('email')}
               placeholder="Enter your email"
               className={errors.email ? `${s.inputError}` : ''}
             />
@@ -112,7 +136,6 @@ const SignInForm = () => {
                 id={pwdId}
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
-                onBlur={() => trigger('password')}
                 placeholder="Enter your password"
                 className={errors.password ? `${s.inputError}` : ''}
               />
@@ -128,11 +151,12 @@ const SignInForm = () => {
               </button>
             </div>
           </div>
-
+        <div className={s.buttonWrapper}>
           <button type="submit" className={s.button}>
             Sign In
           </button>
-          <GoogleAuthButton/>
+            <GoogleAuthButton text={'Sign in with Google'} />
+          </div>
         </form>
      <div className={s.helpersWrapper}>
         <div className={s.wrapperUp}>
