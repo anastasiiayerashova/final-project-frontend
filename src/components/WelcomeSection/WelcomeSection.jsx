@@ -1,12 +1,14 @@
 import Logo from '../Logo/Logo.jsx';
 import { NavLink } from 'react-router-dom';
 import s from './WelcomeSection.module.css';
+import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 
 const WelcomeSection = () => {
   return (
     <div className={s.container}>
       <div className={s.logo_container}>
         <Logo />
+        <LanguageButtons/>
       </div>
       <div className={s.container_without_logo}>
         <div className={s.title_container}>

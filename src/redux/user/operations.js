@@ -36,7 +36,23 @@ export const loginUserOperation = createAsyncThunk(
     }
 )
 
-export const getCurrentUserDataOperation = createAsyncThunk()
+export const getCurrentUserDataOperation = createAsyncThunk(
+    'user/data', 
+    async (_, thunkAPI) => {
+        try {
+            const state = thunkAPI.getState()
+
+            setAuthHeader(state.user.token)
+
+            const res = await api.get('/auth/data')
+
+            return res.data.data
+        }
+        catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
+        }
+    }
+)
 
 export const updateUserOperation = createAsyncThunk()
 
@@ -47,7 +63,18 @@ export const updateUserAvatarOperation = createAsyncThunk(
 
 export const refreshUserOperation = createAsyncThunk()
 
-export const logoutUserOperation = createAsyncThunk()
+export const logoutUserOperation = createAsyncThunk(
+    'user/logout',
+    async (_, thunkAPI) => {
+        try {
+            await api.post('/auth/logout')
+            clearAuthHeader()
+        }
+        catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data.message)
+        }
+    }
+)
 
 export const sendEmailOperation = createAsyncThunk(
     'user/sendEmail',
