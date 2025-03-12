@@ -1,11 +1,11 @@
 .wrapper {
   position: relative; /* Робимо відносне позиціонування, щоб поповер прив’язувався до цього контейнера */
   display: flex;
-  flex-direction: column;
   /* Щоб контейнер займав лише необхідний розмір */
 }
 
 .btn {
+  width: 137px;
   height: 50px;
   display: flex;
   gap: 8px;
@@ -24,12 +24,17 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   color: var(--white);
+  max-width: 60px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .avatar {
   width: 38px;
   height: 38px;
   border-radius: 100%;
+  object-fit: cover;
 }
 
 .icon {
@@ -40,6 +45,7 @@
 
 @media (min-width: 768px) {
   .btn {
+    width: 157px;
     height: 56px;
     gap: 10px;
   }

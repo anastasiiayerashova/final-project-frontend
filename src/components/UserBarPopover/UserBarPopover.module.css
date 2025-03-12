@@ -3,7 +3,7 @@
   top: calc(100% + 4px); /* Відстань 4рх від верхн кнопки */
   /* transform: translateY(-14px); Зміна по відношенню до top */
   z-index: 10; /* Щоб поповер був над іншими елементами */
-  width: 100%;
+  /* width: 100%; */
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
@@ -13,10 +13,9 @@
   flex-direction: column;
   align-items: flex-start;
   border-radius: 15px;
-  padding-left: 20px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 14px 27px 14px 20px;
   background-color: var(--white);
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .barBtn {
@@ -62,6 +61,9 @@
 @media (min-width: 768px) {
   .barPopover {
     top: calc(100% + 8px); /* Відстань 4рх від верхн кнопки */
+    width: 157px;
+    height: 82px;
+    font-size: 15px;
   }
 
   .setting {
