@@ -93,7 +93,7 @@ export const refreshUserOperation = createAsyncThunk(
     try {
       const response = await api.post("/auth/refresh")
         
-      console.log('Ответ при обновлении токена:', response.data)
+      console.log('Token refreshed', response.data)
 
       const accessToken = response.data?.data?.accessToken
         

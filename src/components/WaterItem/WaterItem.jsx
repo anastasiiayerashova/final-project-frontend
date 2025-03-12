@@ -17,7 +17,7 @@ const WaterItem = () => {
     <div className={s.item}>
       <div className={s.iconWrap}>
         <svg className={s.svgIconGlass}>
-          <use href={`${svgIcon}#mage_water-glass-fill`} />
+          <use href={`${svgIcon}#water-glass`} />
         </svg>
       </div>
       <div className={s.info}>
