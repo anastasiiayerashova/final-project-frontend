@@ -1,3 +1,4 @@
+// DeleteWaterModal jsx
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteWaterEntry, fetchWaterData } from "../../redux/store";
