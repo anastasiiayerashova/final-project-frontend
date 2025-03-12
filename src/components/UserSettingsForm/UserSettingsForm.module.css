@@ -1,0 +1,174 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  /* background-color: var(--white); */
+  border-radius: 8px;
+  padding: 16px;
+
+  /* Робимо скрол на мобільному, якщо вікно замале */
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--black);
+  text-align: left;
+}
+
+/* Аватар + завантаження фото */
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 16px; */
+}
+.avatarImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.avatarPlaceholder {
+  width: 80px;
+  height: 80px;
+  background-color: #ddd;
+  border-radius: 50%;
+  /* margin-bottom: 8px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+.uploadLabel {
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+.hiddenInput {
+  display: none;
+}
+
+/* Групи полів */
+.formGroup {
+  margin-bottom: 16px;
+}
+.label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+}
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Помилка */
+.errorText {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Радіокнопки */
+.genderWrapper {
+  display: flex;
+  gap: 16px;
+}
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Інформаційний блок */
+.formulaInfo {
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.3;
+}
+.hint {
+  margin-top: 4px;
+  color: #444;
+}
+
+/* Рекомендація */
+.recommended {
+  margin: 16px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+/* Кнопка */
+.saveButton {
+  background-color: var(--green);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+.saveButton:hover {
+  background-color: var(--green-hover);
+}
+
+/* ---- MEDIA QUERIES ---- */
+
+/* Мобайл від 320px до 374px + з 375px */
+@media screen and (min-width: 375px) {
+  .title {
+    font-size: 22px;
+  }
+}
+
+/* Tablet: від 768px */
+@media screen and (min-width: 768px) {
+  .form {
+    max-width: 500px;
+    max-height: 80vh;
+    padding: 24px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .avatarImage,
+  .avatarPlaceholder {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Desktop: від 1440px */
+@media screen and (min-width: 1440px) {
+  .form {
+    max-width: 600px;
+    max-height: 85vh;
+    padding: 32px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .avatarImage,
+  .avatarPlaceholder {
+    width: 120px;
+    height: 120px;
+  }
+}
