@@ -49,6 +49,7 @@
 .uploadLabel {
   cursor: pointer;
   font-weight: 500;
+  margin-top: 10px;
   margin-bottom: 40px;
 }
 .hiddenInput {
@@ -59,20 +60,35 @@
 .formGroup {
   margin-bottom: 16px;
 }
-.label {
+.labelYourGender {
   display: block;
   margin-bottom: 14px;
   font-size: 14px;
   font-weight: 600;
   color: var(--black);
 }
+.labelNameEmail {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+
+
+}
 .input {
   width: 100%;
-  padding: 8px;
+  height: 46px;
+  margin-top: 8px;
+  padding-left: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
   font-size: 14px;
+  border: 1px solid rgba(47, 47, 47, 0.15); /* Рамка із прозорістю */
+  border-radius: 15px; /* Закруглення */
+  box-sizing: border-box; /* Враховує рамку та падінги у розмір */
+}
+.inputNameEmail {
+  
 }
 
 /* Помилка */
@@ -101,9 +117,43 @@
   color: #666;
   line-height: 1.3;
 }
+.formulaGender {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.formulaGenderMan {
+  margin-top: 12px;
+  margin-bottom: 4px;
+
+}
+.formulaSpan {
+  color: #9BE1A0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -1%;
+}
 .hint {
-  margin-top: 4px;
-  color: #444;
+  margin-top: 14px;
+  width: 303px;
+  padding: 16px; 
+  border: 1px solid rgba(47, 47, 47, 0.15); 
+  border-radius: 15px; 
+  gap: 10px;
+  font-weight: 400;
+  size: 14px;
+  line-height: 18px;
+}
+.labelWeightSport {
+
+}
+.formAttentionSign {
+  color: #9BE1A0;
+font-size: 22px;
+vertical-align: text-bottom; 
+  margin-bottom: -3px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 /* Рекомендація */

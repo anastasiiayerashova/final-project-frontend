@@ -69,6 +69,19 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
     }
   };
 
+  const calculateWaterNorm = (weightKg, activeTimeHours, gender) => {
+    const weightGrams = weightKg * 1000;
+    const activeTimeMinutes = activeTimeHours * 60;
+
+    let norm = 0;
+    if (gender === 'female') {
+      norm = weightGrams * 0.03 + activeTimeMinutes * 0.4;
+    } else if (gender === 'male') {
+      norm = weightGrams * 0.04 + activeTimeMinutes * 0.6;
+    }
+    return parseFloat(norm.toFixed(2));
+  };
+
   // Сабміт форми
   const onSubmit = async (data) => {
     // Якщо є токен — встановлюємо заголовок авторизації
@@ -138,7 +151,7 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Гендер */}
       <div className={s.formGroup}>
-        <label className={s.label}>Your gender identity</label>
+        <label className={s.labelYourGender}>Your gender identity</label>
         <div className={s.genderWrapper}>
           <label className={s.radioLabel}>
             <input type="radio" value="female" {...register('gender')} />
@@ -156,28 +169,28 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Імʼя */}
       <div className={s.formGroup}>
-        <label htmlFor="name" className={s.label}>
+        <label htmlFor="name" className={s.labelNameEmail}>
           Your name
         </label>
         <input
           id="name"
           type="text"
           {...register('name')}
-          className={s.input}
+          className={`${s.input} ${s.inputNameEmail}`}
         />
         {errors.name && <p className={s.errorText}>{errors.name.message}</p>}
       </div>
 
       {/* Email */}
       <div className={s.formGroup}>
-        <label htmlFor="email" className={s.label}>
+        <label htmlFor="email" className={s.labelNameEmail}>
           Email
         </label>
         <input
           id="email"
           type="email"
           {...register('email')}
-          className={s.input}
+          className={`${s.input} ${s.inputNameEmail}`}
         />
         {errors.email && <p className={s.errorText}>{errors.email.message}</p>}
       </div>
@@ -185,15 +198,8 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
       {/* Денна норма */}
       <div className={s.formGroup}>
         <label htmlFor="waterNorm" className={s.label}>
-          My daily norma (L)
+          My daily norma
         </label>
-        <input
-          id="waterNorm"
-          type="number"
-          step="0.1"
-          {...register('waterNorm')}
-          className={s.input}
-        />
         {errors.waterNorm && (
           <p className={s.errorText}>{errors.waterNorm.message}</p>
         )}
@@ -201,28 +207,25 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Формула */}
       <div className={s.formulaInfo}>
-        <p>
-          For woman: V=(M*0.03)+(T*0.3)
-          <br />
-          For man: V=(M*0.04)+(T*0.6)
-        </p>
+        <div>
+          <p className={s.formulaGender}>For woman:</p>
+          <span className={s.formulaSpan}>V=(M*0.03)+(T*0.3)</span>
+          <p className={s.formulaGenderMan}>For man:</p>
+          <span className={s.formulaSpan}>V=(M*0.04)+(T*0.6)</span>
+        </div>
         <p className={s.hint}>
           * V is the volume of the water norm in liters per day, M is your body
-          weight, T is the time of active sports.
+          weight, T is the time of active sports, or another type of activity
+          commensurate in terms of loads (in the absence of these, you must set
+          0)
         </p>
       </div>
 
       {/* Час активності */}
       <div className={s.formGroup}>
         <label htmlFor="activeTime" className={s.label}>
-          Active time in hours
+          <span className={s.formAttentionSign}>!</span>Active time in hours
         </label>
-        <input
-          id="activeTime"
-          type="number"
-          {...register('activeTime')}
-          className={s.input}
-        />
         {errors.activeTime && (
           <p className={s.errorText}>{errors.activeTime.message}</p>
         )}
@@ -237,7 +240,7 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
           id="weight"
           type="number"
           {...register('weight')}
-          className={s.input}
+          className={`${s.input} ${s.inputWeight}`}
         />
         {errors.weight && (
           <p className={s.errorText}>{errors.weight.message}</p>
@@ -246,17 +249,22 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Скільки планує пити */}
       <div className={s.formGroup}>
-        <label htmlFor="dailyWater" className={s.label}>
-          Write down how much water you will drink
+        <label
+          htmlFor="dailyWater"
+          className={`${s.label} ${s.labelWeightSport}`}
+        >
+          The time of active participation in sports:
         </label>
         <input
           id="dailyWater"
           type="number"
-          step="0.1"
+          step="1"
           {...register('waterNorm')}
           className={s.input}
         />
       </div>
+
+      
 
       {/* Рекомендація */}
       <div className={s.recommended}>
