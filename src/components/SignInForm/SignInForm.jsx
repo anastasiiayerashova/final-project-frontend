@@ -2,7 +2,7 @@ import React, { useState, useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from 'yup';
+
 import s from './SignInForm.module.css';
 import Logo from '../Logo/Logo.jsx';
 import { loginUserOperation } from '../../redux/user/operations.js';
@@ -12,28 +12,12 @@ import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton.jsx';
 import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
 import { useValidationSchema } from '../../utils/hooks/useValidationSchema.js';
-
-// const schema = yup.object().shape({
-//   email: yup
-//     .string()
-//     .email('Invalid email address')
-//     .matches(
-//       /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i,
-//       'Enter a valid email',
-//     )
-//     .min(3, 'Email must be at least 3 characters')
-//     .max(50, 'Email cannot exceed 50 characters')
-//     .required('Email is required'),
-//   password: yup
-//     .string()
-//     .min(3, 'Password must be at least 3 characters')
-//     .max(50, 'Password cannot exceed 50 characters')
-//     .required('Password is required'),
-// });
+import { useLastFocusedField } from '../../utils/hooks/useLastFocusedField.js';
 
 const SignInForm = () => {
   const { t } = useTranslation();
   const schema = useValidationSchema();
+  const { restoreFocus } = useLastFocusedField();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,6 +34,7 @@ const SignInForm = () => {
     handleSubmit,
     reset,
     trigger,
+    getValues,
     watch,
     formState: { errors },
   } = useForm({
@@ -78,7 +63,8 @@ const SignInForm = () => {
         navigate('/tracker');
       })
       .catch((e) => {
-        let errorMessage = e || t('notifications.try_again');
+        let errorMessage =
+          t(`errors.${formattedErrorKey(e)}`) || t('errors.try_again');
         toast.error(errorMessage, {
           style: {
             backgroundColor: 'white',
@@ -89,7 +75,7 @@ const SignInForm = () => {
   };
 
   const onError = (errors) => {
-    toast.error(t('notifications.try_again'), {
+    toast.error(t('errors.try_again'), {
       style: {
         backgroundColor: 'white',
         color: 'red',
@@ -111,6 +97,14 @@ const SignInForm = () => {
       trigger('password');
     }
   }, [pwdValue, trigger]);
+
+  useEffect(() => {
+    reset(getValues(), {
+      keepValues: true,
+      keepDirty: true,
+    });
+    restoreFocus();
+  }, [schema, reset, getValues]);
 
   return (
     <div className={s.container}>
