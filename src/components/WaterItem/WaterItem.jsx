@@ -45,7 +45,7 @@ const WaterItem = ({ openWaterModal, data }) => {
         <button
           className={s.btn}
           type="button"
-          onClick={handleOpenDeleteWaterModal}
+          onClick={() => openDeleteWaterModal()}
         >
           <svg className={s.svgIconTrash}>
             <use href={`${svgIcon}#trash`} />
