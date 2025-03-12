@@ -11,7 +11,10 @@ const SignUpPage = lazy(() => import('./../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('./../pages/SignInPage/SignInPage'));
 const TrackerPage = lazy(() => import('./../pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./../pages/NotFoundPage/NotFoundPage'));
-const ResetPasswordPage = lazy(() => import('./../pages/ResetPasswordPage/ResetPasswordPage'));
+const ResetPasswordPage = lazy(() =>
+  import('./../pages/ResetPasswordPage/ResetPasswordPage'),
+);
+import '../i18n/index.js';
 
 export function App() {
   return (
@@ -61,7 +64,7 @@ export function App() {
                 />
               }
             />
-            <Route 
+            <Route
               path="/change-pwd"
               element={
                 <RestrictedRoute
@@ -69,7 +72,7 @@ export function App() {
                   redirectTo="/signin"
                 />
               }
-            /> 
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
