@@ -1,6 +1,6 @@
 import s from './WaterItem.module.css';
 
-const WaterItem = () => {
+const WaterItem = ({openEditWaterModal}) => {
   const svgIcon = '/sprite.svg';
 
   const handleOpenWaterModal = () => {
@@ -25,7 +25,7 @@ const WaterItem = () => {
         <p className={s.time}>7:00 AM</p>
       </div>
       <div className={s.buttons}>
-        <button className={s.btn} type="button" onClick={handleOpenWaterModal}>
+        <button className={s.btn} type="button" onClick={() => openEditWaterModal()}>
           <svg className={s.svgIconEdit}>
             <use href={`${svgIcon}#edit-2`} />
           </svg>

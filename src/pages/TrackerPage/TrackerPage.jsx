@@ -10,6 +10,7 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isSettingsModalOpen, setSettingsModal] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ function TrackerPage() {
     return (
        <div className={s.tracker_page}>
         <WaterMainInfo isWaterModal={isWaterModal} openWaterModal={openWaterModal} />
-        <WaterDetailedInfo/> 
+        <WaterDetailedInfo openWaterModal={openWaterModal} /> 
             <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
               <WaterModal type={isWaterModal.type } onClose={closeWaterModal} />
             </Modal>
