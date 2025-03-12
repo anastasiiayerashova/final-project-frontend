@@ -6,7 +6,7 @@ import { TYPE, MODAL_NAME } from "../../constants/index.js";
 const WaterModal = ({ onClose, type }) => {
     
     return (
-        <>
+        <div className={s.waterModal}>
             <h2 className={s.title}>
             {type === TYPE.ADD_WATER ? (
              'Add water') : (
@@ -19,7 +19,7 @@ const WaterModal = ({ onClose, type }) => {
                 {type === TYPE.ADD_WATER ? 'Correct entered data:' : 'Choose a value'}
             </p>
             <WaterForm/>
-        </>
+        </div>
     );
 };
 
