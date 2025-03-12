@@ -1,0 +1,114 @@
+.waterContainer {
+  margin: 0;
+  width: 100%;
+  height: 415px;
+  background: #9be1a0;
+  border-radius: 30px;
+  padding: 24px 16px 32px 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: image-set(
+    url('../../../public/bottle_images/bottle_for_water_mob-min.png')
+  );
+}
+
+@media screen and (min-width: 375px) {
+  .waterContainer {
+    min-width: 343px;
+  }
+}
+
+@media (min-resolution: 2dppx) {
+  .waterContainer {
+    background-size: 262px 335px;
+    background-image: url('/public/bottle_images/bottle_for_water_mob@2x-min.png');
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 24px;
+  left: 16px;
+}
+
+.btn {
+  position: absolute;
+  bottom: 32px;
+  right: 16px;
+}
+
+.progress {
+  position: absolute;
+  left: 50%;
+  bottom: 120px;
+  transform: translate(-50%);
+}
+
+@media (min-width: 768px) {
+  .waterContainer {
+    width: 704px;
+    height: 578px;
+    padding: 32px;
+    background-size: 374px 477px;
+    background-image: image-set(
+      url('public/bottle_images/bottle_for_water_tab-min.png')
+    );
+  }
+
+  @media (min-resolution: 2dppx) {
+    .waterContainer {
+      background-size: 374px 477px;
+      background-image: url('public/bottle_images/bottle_for_water_tab@2x-min.png');
+    }
+  }
+
+  .logo {
+    position: absolute;
+    width: 155px;
+    height: 24px;
+    top: 32px;
+    left: 32px;
+  }
+
+  .progress {
+    bottom: 150px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .btn {
+    bottom: 64px;
+    right: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .waterContainer {
+    border-radius: 30px;
+    width: 672px;
+    height: 736px;
+    background-size: 472px 604px;
+    background-image: image-set(
+      url('public/bottle_images/bottle_for_water_desk-min.png')
+    );
+  }
+
+  @media (min-resolution: 2dppx) {
+    .waterContainer {
+      background-size: 472px 604px;
+      background-image: url('public/bottle_images/bottle_for_water_desk@2x-min.png');
+    }
+  }
+
+  .btn {
+    bottom: 64px;
+    right: 32px;
+  }
+
+  .progress {
+    bottom: 180px;
+  }
+}

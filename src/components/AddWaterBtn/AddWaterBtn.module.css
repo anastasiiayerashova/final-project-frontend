@@ -1,0 +1,142 @@
+.btn {
+  border-radius: 30px;
+  padding: 14px 20px;
+  width: 140px;
+  height: 46px;
+  background-color: #323f47;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn:hover {
+  color: #9be1a0;
+  .plus::before,
+  .plus::after {
+    background-color: #9be1a0;
+  }
+}
+.plus {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  position: relative;
+  margin-right: 10px;
+}
+
+.plus::before,
+.plus::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+}
+
+.plus::before {
+  width: 100%;
+  height: 1.5px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.plus::after {
+  height: 100%;
+  width: 1.5px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    border-radius: 30px;
+    padding: 18px 30px;
+    width: 178px;
+    height: 60px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .plus {
+    width: 16px;
+    height: 16px;
+  }
+  .plus::after {
+    height: 100%;
+    width: 2px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+  .plus::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.small {
+  border: none;
+  padding: 0;
+  background-color: #f0eff4;
+}
+.small.plus {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #9be1a0;
+}
+
+.detailsAddBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background-color: transparent;
+  border: 0;
+
+  cursor: pointer;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  background-color: var(--green);
+  border-radius: 30px;
+
+  transition: background-color 0.3s ease;
+}
+
+.iconContainer:hover,
+.iconContainer:focus {
+  background-color: var(--hover-green);
+}
+
+.detailsBtnText {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+}
+
+.icon {
+  fill: var(--light-black);
+}

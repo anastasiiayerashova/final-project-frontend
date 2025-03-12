@@ -1,0 +1,55 @@
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 24px;
+}
+.subtitle {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 20px;
+}
+
+.waterModal {
+  width: 343px;
+  height: 514px;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 20px;
+}
+
+@media screen and (max-width: 375px) {
+  .waterModal {
+    width: 311px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 114%;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .subtitle {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .waterModal {
+    border-radius: 15px;
+    padding: 40px;
+    width: 518px;
+    height: 587px;
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  }
+}
