@@ -1,0 +1,76 @@
+.barPopover {
+  position: absolute; /* Випадає зверху, не займає місце */
+  top: calc(100% + 4px); /* Відстань 4рх від верхн кнопки */
+  /* transform: translateY(-14px); Зміна по відношенню до top */
+  z-index: 10; /* Щоб поповер був над іншими елементами */
+  width: 100%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  height: 72px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background-color: var(--white);
+}
+
+.barBtn {
+  font-family: var(--font-family);
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.barBtn > :last-child {
+  margin-bottom: 0; /* Зменшуємо відступ для останнього елемента */
+}
+
+.setting {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--light-black);
+}
+.barPopoverIconSettings {
+  color: var(--light-black);
+}
+
+.logOut {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: rgba(50, 63, 71, 0.4);
+}
+
+.barPopoverIcon {
+  color: var(--light-black);
+}
+
+.barPopoverIconLogOut {
+  color: rgba(50, 63, 71, 0.4);
+}
+
+@media (min-width: 768px) {
+  .barPopover {
+    top: calc(100% + 8px); /* Відстань 4рх від верхн кнопки */
+  }
+
+  .setting {
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .logOut {
+    font-size: 15px;
+    line-height: 149%;
+  }
+}

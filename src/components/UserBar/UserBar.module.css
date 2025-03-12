@@ -1,0 +1,64 @@
+.wrapper {
+  position: relative; /* Робимо відносне позиціонування, щоб поповер прив’язувався до цього контейнера */
+  display: flex;
+  flex-direction: column;
+  /* Щоб контейнер займав лише необхідний розмір */
+}
+
+.btn {
+  height: 50px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid rgba(251, 251, 251, 0.2);
+  border-radius: 30px;
+  padding: 6px 12px;
+  background-color: var(--light-black);
+}
+
+.nameUser {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 100%;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    height: 56px;
+    gap: 10px;
+  }
+
+  .nameUser {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+}
