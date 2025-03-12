@@ -1,20 +1,27 @@
-import clsx from 'clsx';
-import s from './AddWaterBtn.module.css'
+import s from './AddWaterBtn.module.css';
+import { TYPE } from '../../constants/index.js';
 
-const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
- 
-    return( !inDailyInfo ? (
-        <button className={clsx(small ? s.small : s.btn)} onClick={onClick}><span className={s.plus}></span>Add water</button>
-    ) : (
-            <button className={s.detailsAddBtn} onClick={onClick}>
-                <div className={s.iconContainer}>
-                    <svg className={s.icon}>
-                        <use href="/sprite.svg#plus-green"></use>
-                    </svg>
-                </div>
-                <p className={s.detailsBtnText}>Add water</p>
-            </button>
-    )
-    )
-}
+const AddWaterBtn = ({ openWaterModal }) => {
+  const svgIcon = '/sprite.svg';
+
+  const handleOpenWaterModal = () => {
+    openWaterModal({ isOpen: true, type: TYPE.ADD_WATER });
+  };
+
+  return (
+    <button
+      type="button"
+      className={s.addWaterBtn}
+      onClick={handleOpenWaterModal}
+    >
+      <div className={s.iconWrap}>
+        <svg className={s.icon}>
+          <use href={`${svgIcon}#plus-green`} />
+        </svg>
+      </div>
+      Add water
+    </button>
+  );
+};
+
 export default AddWaterBtn;

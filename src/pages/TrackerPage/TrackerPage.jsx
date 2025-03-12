@@ -47,7 +47,7 @@ function TrackerPage() {
         isWaterModal={isWaterModal}
         openWaterModal={openWaterModal}
       />
-      {/* <WaterDetailedInfo/>  */}
+      <WaterDetailedInfo openWaterModal={openWaterModal} />
       <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
         <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
       </Modal>
