@@ -1,16 +1,21 @@
 import s from './WaterItem.module.css';
 import { TYPE } from '../../constants/index.js';
-import { MODAL_NAME } from '../../constants/index.js';
 
 const WaterItem = ({ openWaterModal, data }) => {
   const svgIcon = '/sprite.svg';
 
-  // Перетворимо дату в формат читання 7:00 AM
-  const formattedTime = new Date(data.date).toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-  });
+  if (!data) {
+    return <p className={s.error}>Error: No data available</p>;
+  }
+
+  // Проверяем, есть ли дата, иначе устанавливаем "N/A"
+  const formattedTime = data.date
+    ? new Date(data.date).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+      })
+    : 'N/A';
 
   const handleOpenEditWaterModal = () => {
     openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
@@ -18,7 +23,7 @@ const WaterItem = ({ openWaterModal, data }) => {
 
   const handleOpenDeleteWaterModal = () => {
     console.log('Show DeleteWaterModal');
-    // TODO Створити логіку відкриття модального вікна
+    // TODO: Добавить логику удаления записи
   };
 
   return (
@@ -29,7 +34,7 @@ const WaterItem = ({ openWaterModal, data }) => {
         </svg>
       </div>
       <div className={s.info}>
-        <p className={s.volume}>{data.value} ml</p>
+        <p className={s.volume}>{data?.value || '0'} ml</p>
         <p className={s.time}>{formattedTime}</p>
       </div>
       <div className={s.buttons}>
@@ -45,7 +50,7 @@ const WaterItem = ({ openWaterModal, data }) => {
         <button
           className={s.btn}
           type="button"
-          onClick={() => openDeleteWaterModal()}
+          onClick={handleOpenDeleteWaterModal}
         >
           <svg className={s.svgIconTrash}>
             <use href={`${svgIcon}#trash`} />

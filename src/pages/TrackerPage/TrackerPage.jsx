@@ -9,6 +9,7 @@ import { getCurrentUserDataOperation } from '../../redux/user/operations.js';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx';
 import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal.jsx';
 import LogOutModal from '../../components/LogOutModal/LogOutModal.jsx';
+import { Toaster } from 'react-hot-toast';
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,6 +77,7 @@ function TrackerPage() {
       <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
         <LogOutModal onClose={closeLogoutModal} />
       </Modal>
+      <Toaster position="top-right" />
     </div>
   );
 }
