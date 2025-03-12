@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal.jsx'
 import WaterModal from '../../components/WaterModal/WaterModal.jsx'
 import { useDispatch } from 'react-redux'
 import { getCurrentUserDataOperation } from '../../redux/user/operations.js'
-import Loader from '../../components/Loader/Loader.jsx'
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx'
 
 function TrackerPage() {
 
@@ -16,8 +16,13 @@ function TrackerPage() {
 
   useEffect(() => {
     async function fetchCurrentUserData() {
-      await dispatch(getCurrentUserDataOperation()).unwrap()
-      setIsLoading(false)
+      try {
+        await dispatch(getCurrentUserDataOperation()).unwrap()
+        setIsLoading(false)
+      }
+      catch (e) {
+        console.error('Error in tracker page during getting current user data', e)
+      }
     }
     fetchCurrentUserData()
   }, [dispatch])
@@ -38,6 +43,7 @@ function TrackerPage() {
     return (
        <div className={s.tracker_page}>
         <WaterMainInfo isWaterModal={isWaterModal} openWaterModal={openWaterModal} />
+        {/* <WaterDetailedInfo/> */}
             <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
               <WaterModal type={isWaterModal.type } onClose={closeWaterModal} />
             </Modal>

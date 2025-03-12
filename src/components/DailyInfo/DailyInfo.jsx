@@ -9,7 +9,7 @@ const DailyInfo = () => {
       <div className={s.dateAndBtnWrapper}>
         <ChooseDate />
         {/* TODO Кнопку AddWaterBtn рендеримо тільки якщо дата "Сьогодні". Для цього зі стора потрібно отримати обрану користувачем дату (за замовчуванням вона - "Сьогодні") */}
-        <AddWaterBtn />
+        <AddWaterBtn inDailyInfo={true} />
       </div>
       <WaterList />
     </div>
