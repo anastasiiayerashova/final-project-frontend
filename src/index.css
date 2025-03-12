@@ -10,6 +10,10 @@
   font-weight: 700;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 :root {
   --black: #2f2f2f;
   --light-black: #323f47;

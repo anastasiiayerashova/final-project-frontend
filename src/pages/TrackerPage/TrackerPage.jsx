@@ -10,7 +10,9 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
+  const dispatch = useDispatch();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,17 +29,26 @@ function TrackerPage() {
     }
     fetchCurrentUserData();
   }, [dispatch]);
+    fetchCurrentUserData();
+  }, [dispatch]);
 
   const [isWaterModal, setIsWaterModal] = useState({
     isOpen: false,
+    type: null,
+  });
     type: null,
   });
 
   const openWaterModal = ({ isOpen, type }) => {
     setIsWaterModal({ isOpen: true, type });
   };
+  const openWaterModal = ({ isOpen, type }) => {
+    setIsWaterModal({ isOpen: true, type });
+  };
 
   const closeWaterModal = (isOpen) => {
+    setIsWaterModal({ isOpen: false, type: null });
+  };
     setIsWaterModal({ isOpen: false, type: null });
   };
 
