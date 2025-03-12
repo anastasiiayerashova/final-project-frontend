@@ -1,0 +1,192 @@
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.inputGroup:nth-of-type(1) {
+  margin-bottom: 16px;
+}
+
+.inputGroup:nth-of-type(2),
+.inputGroup:nth-of-type(3) {
+  margin-bottom: 24px;
+}
+
+.controls {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.descrAmount,
+.timeLabel {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.iconMinus,
+.iconPlus {
+  width: 40px;
+  height: 40px;
+}
+
+.minusButton:disabled {
+  border-color: var(--grey);
+  fill: var(--grey);
+  cursor: not-allowed;
+  opacity: 0.3;
+  overflow: hidden;
+}
+
+.plusButton:disabled {
+  border-color: var(--grey);
+  fill: var(--grey);
+  cursor: not-allowed;
+  opacity: 0.3;
+  overflow: hidden;
+}
+
+.input {
+  border-radius: 30px;
+  padding: 11px 20px;
+  width: 89px;
+  height: 40px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  background-color: #323f47;
+  border: 1px solid var(--grey);
+}
+
+.inputGroup input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  color: var(--black);
+}
+
+.timeInput,
+.waterInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 14px 16px 14px 16px;
+  width: 303px;
+  height: 46px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+
+.manualInput {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--black);
+}
+
+.saveBtn {
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+  background-color: #9be1a0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--error);
+  white-space: normal;
+}
+
+.inputGroup input.inputError {
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+@media screen and (max-width: 375px) {
+  .timeInput,
+  .waterInput {
+    width: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  .iconPlus,
+  .iconMinus {
+    width: 43px;
+    height: 43px;
+  }
+
+  .input {
+    border-radius: 30px;
+    padding: 11px 20px;
+    width: 92px;
+    height: 43px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 149%;
+  }
+
+  .descrAmount,
+  .timeLabel {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+
+  .timeInput,
+  .waterInput {
+    border: 1px solid rgba(47, 47, 47, 0.15);
+    border-radius: 15px;
+    padding: 16px 16px 16px 16px;
+    width: 438px;
+    height: 56px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+  }
+
+  .manualInput {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    letter-spacing: -0.01em;
+  }
+
+  .saveBtn {
+    border-radius: 30px;
+    padding: 18px 50px;
+    width: 141px;
+    height: 60px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+}

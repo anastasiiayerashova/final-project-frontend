@@ -3,20 +3,20 @@ import { api } from '../../utils/axios.config.js';
 import { useEffect, useState } from 'react';
 
 const AdvantagesSection = () => {
-  // const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(null)
 
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     try {
-  //       const {data: {data}} = await api.get('/auth/count')
-  //       setUsers(data)
-  //     }
-  //     catch (e) {
-  //       console.log(e)
-  //     }
-  //   }
-  //   getUsers()
-  // }, [])
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const {data: {data}} = await api.get('/auth/count')
+        setUsers(data)
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    getUsers()
+  }, [])
 
   return (
     <div className={s.container}>
@@ -27,7 +27,7 @@ const AdvantagesSection = () => {
         <img className={s.customers_img_third} alt="third customer" />
 
         <p className={s.customers_text}>
-          Our <span className={s.customers_text_happy}>happy {users}</span> customers
+          {users} <span className={s.customers_text_happy}>happy</span> customers
         </p>
       </div>
       <div className={s.container_benefits}>
