@@ -1,15 +1,14 @@
-import axios from "axios"
+import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'https://aquatrack-bd.onrender.com',
-    withCredentials: true 
-})
-
+  baseURL: 'https://aquatrack-bd.onrender.com',
+  withCredentials: true,
+});
 
 export const setAuthHeader = (token) => {
-    api.defaults.headers.common.Authorization = `Bearer ${token}`
-}
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 export const clearAuthHeader = () => {
-    api.defaults.headers.common.Authorization = ''
-}
+  api.defaults.headers.common.Authorization = '';
+};

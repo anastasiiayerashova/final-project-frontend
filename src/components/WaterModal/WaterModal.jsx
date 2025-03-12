@@ -18,7 +18,7 @@ const WaterModal = ({ onClose, type }) => {
       <p className={s.subtitle}>
         {type === TYPE.ADD_WATER ? 'Correct entered data:' : 'Choose a value'}
       </p>
-      <WaterForm />
+      <WaterForm onClose={onClose} />
     </>
   );
 };

@@ -11,7 +11,7 @@ const DailyInfo = ({ openWaterModal }) => {
         {/* TODO Кнопку AddWaterBtn рендеримо тільки якщо дата "Сьогодні". Для цього зі стора потрібно отримати обрану користувачем дату (за замовчуванням вона - "Сьогодні") */}
         <AddWaterBtn openWaterModal={openWaterModal} inDailyInfo={true} />
       </div>
-      <WaterList />
+      <WaterList openWaterModal={openWaterModal} />
     </div>
   );
 };

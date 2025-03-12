@@ -1,11 +1,12 @@
 import s from './WaterItem.module.css';
+import { TYPE } from '../../constants/index.js';
+import { MODAL_NAME } from '../../constants/index.js';
 
-const WaterItem = () => {
+const WaterItem = ({ openWaterModal }) => {
   const svgIcon = '/sprite.svg';
 
-  const handleOpenWaterModal = () => {
-    console.log('Show WaterModal');
-    // TODO Створити логіку відкриття модального вікна
+  const handleOpenEditWaterModal = () => {
+    openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
   };
 
   const handleOpenDeleteWaterModal = () => {
@@ -25,7 +26,11 @@ const WaterItem = () => {
         <p className={s.time}>7:00 AM</p>
       </div>
       <div className={s.buttons}>
-        <button className={s.btn} type="button" onClick={handleOpenWaterModal}>
+        <button
+          className={s.btn}
+          type="button"
+          onClick={handleOpenEditWaterModal}
+        >
           <svg className={s.svgIconEdit}>
             <use href={`${svgIcon}#edit-2`} />
           </svg>
@@ -36,7 +41,7 @@ const WaterItem = () => {
           onClick={handleOpenDeleteWaterModal}
         >
           <svg className={s.svgIconTrash}>
-            <use href={`${svgIcon}#trash-04`} />
+            <use href={`${svgIcon}#trash`} />
           </svg>
         </button>
       </div>
