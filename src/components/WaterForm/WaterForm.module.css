@@ -110,6 +110,7 @@
   &.loading {
     background: #f0eff4;
     color: rgba(50, 63, 71, 0.3);
+    cursor: not-allowed;
   }
 }
 

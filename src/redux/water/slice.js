@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addWater } from './operations';
+import { addWater, fetchWaterDaily } from './operations';
 
 const initialState = {
   date: new Date().toISOString(),
-  todayWaterList: [],
+  dayWaterList: [],
   monthData: [],
   loading: false,
   error: null,
@@ -15,10 +15,14 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchWaterDaily.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.dayWaterList = action.payload;
+      })
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.todayWaterList.push(action.payload);
       })
 
       // При logoutі користвуача очищаємо всі дані в стейті
@@ -29,7 +33,7 @@ const slice = createSlice({
       .addMatcher(
         // isAnyOf - допоміжна функція, яка спрощує створення предикатів для addMatcher. Вона повертає true, якщо дія відповідає будь-якій з переданих дій.
         isAnyOf(
-          // fetchWater.pending,
+          fetchWaterDaily.pending,
           addWater.pending,
           // deleteWater.pending,
           // editWater.pending,
@@ -40,7 +44,7 @@ const slice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          // fetchWater.rejected,
+          fetchWaterDaily.rejected,
           addWater.rejected,
           // deleteWater.rejected,
           // editWater.rejected,

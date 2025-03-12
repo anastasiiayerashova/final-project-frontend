@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater } from '../../redux/water/operations';
+import { addWater, fetchWaterDaily } from '../../redux/water/operations';
 import s from './WaterForm.module.css';
 import { useId } from 'react';
-import { selectLoading } from '../../redux/water/selectors';
+import { selectDate, selectLoading } from '../../redux/water/selectors';
 
 const WaterForm = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -54,6 +54,10 @@ const WaterForm = ({ onClose }) => {
   // Состояние для количества воды
   const [amount, setAmount] = useState(50);
 
+  // Получаем дату из Redux и форматируем
+  const date = useSelector(selectDate);
+  const dateFormatted = useMemo(() => date.split('T')[0], [date]);
+
   // Отслеживание значений формы
   const timeValue = watch('time');
 
@@ -81,7 +85,6 @@ const WaterForm = ({ onClose }) => {
     return `${date.toISOString().split('T')[0]}T${hours}:${minutes}`;
   };
 
-  // Отправка данных на сервер
   const onSubmit = async (values) => {
     try {
       const formattedDate = formatDate(new Date(), values.time);
@@ -90,10 +93,12 @@ const WaterForm = ({ onClose }) => {
         value: Number(values.amount),
       };
 
-      console.log('Отправляем запрос:', requestData);
       await dispatch(addWater(requestData)).unwrap();
 
       toast.success('Water record added successfully!');
+
+      // Ждем завершения dispatch(addWater), затем обновляем данные с сервера
+      dispatch(fetchWaterDaily(dateFormatted));
 
       // Полностью сбрасываем состояние формы
       reset({
@@ -104,8 +109,8 @@ const WaterForm = ({ onClose }) => {
         amount: 50,
       });
 
-      setAmount(50); // Обновляем состояние счётчика
-      onClose(); // Закрываем окно после небольшой задержки
+      setAmount(50);
+      onClose();
     } catch (error) {
       toast.error(`Error: ${error}`);
     }
