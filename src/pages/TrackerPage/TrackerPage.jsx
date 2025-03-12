@@ -43,7 +43,7 @@ function TrackerPage() {
     return (
        <div className={s.tracker_page}>
         <WaterMainInfo isWaterModal={isWaterModal} openWaterModal={openWaterModal} />
-        {/* <WaterDetailedInfo/> */}
+        {/* <WaterDetailedInfo/>  */}
             <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
               <WaterModal type={isWaterModal.type } onClose={closeWaterModal} />
             </Modal>
