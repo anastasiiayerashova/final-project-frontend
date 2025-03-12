@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
 import css from './Modal.module.css';
 
-export default function Modal({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children, setState }) {
 
   return (
     <ReactModal
