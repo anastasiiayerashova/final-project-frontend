@@ -137,7 +137,7 @@ const SignUpForm = () => {
       <div className={s.menu_container}>
         <h2 className={s.title}>{t('common.sign_up')}</h2>
         <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
-          <div className={s.inputGroup}>
+          <div className={s.input_group}>
             <label htmlFor={emailId}>{t('common.email_label')}</label>
             <input
               type="text"
@@ -149,7 +149,7 @@ const SignUpForm = () => {
             {errors.email && <p className={s.error}>{errors.email.message}</p>}
           </div>
 
-          <div className={s.inputGroup}>
+          <div className={s.input_group}>
             <label htmlFor={pwdId}>{t('common.password_label')}</label>
             <div className={s.icon}>
               <input
@@ -180,7 +180,7 @@ const SignUpForm = () => {
             </div>
           </div>
 
-          <div className={s.inputGroup}>
+          <div className={s.input_group}>
             <label htmlFor={repeatPwdId}>
               {t('common.repeat_password_label')}
             </label>
@@ -213,19 +213,18 @@ const SignUpForm = () => {
               </button>
             </div>
           </div>
-          <div className={s.buttonWrapper}>
-            <button type="submit" className={s.button} disabled={isSubmitting}>
+          <div className={s.button_wrapper}>
+            <button type="submit" className={s.submit_button} disabled={isSubmitting}>
               {isSubmitting ? 'Signing up...' : t('common.sign_up')}
             </button>
             <GoogleAuthButton text={t('common.sign_up_google')} />
           </div>
         </form>
-
-        <div className={s.wrapperUp}>
+          <div className={s.wrapper_up}>
           <span className={s.account}>
             {t('signUpForm.with_account')}&nbsp;
           </span>
-          <a href="/signin" className={s.signup}>
+          <a href="/signin" className={s.sign_in}>
             {t('common.sign_in')}
           </a>
         </div>
