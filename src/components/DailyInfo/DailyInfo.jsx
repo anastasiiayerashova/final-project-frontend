@@ -5,13 +5,8 @@ import WaterList from '../WaterList/WaterList';
 import { TYPE } from '../../constants/index.js';
 
 const DailyInfo = ({ openWaterModal, setDeleteWaterModal }) => {
-  
   const handleAddWater = () => {
     openWaterModal({ isOpen: true, type: TYPE.ADD_WATER });
-  };
-
-  const handleEditWater = () => {
-    openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
   };
 
   const handleDeleteWater = () => {
@@ -22,10 +17,13 @@ const DailyInfo = ({ openWaterModal, setDeleteWaterModal }) => {
     <div className={s.dailyInfo}>
       <div className={s.dateAndBtnWrapper}>
         <ChooseDate />
-        {/* TODO Кнопку AddWaterBtn рендеримо тільки якщо дата "Сьогодні". Для цього зі стора потрібно отримати обрану користувачем дату (за замовчуванням вона - "Сьогодні") */}
-        <AddWaterBtn inDailyInfo={true} onClick={handleAddWater}/>
+        <AddWaterBtn inDailyInfo={true} onClick={handleAddWater} />
       </div>
-      <WaterList openEditWaterModal={handleEditWater} openDeleteWaterModal={handleDeleteWater}/>
+      <WaterList
+        openWaterModal={openWaterModal}
+        openDeleteWaterModal={handleDeleteWater}
+        setDeleteWaterModal={setDeleteWaterModal}
+      />
     </div>
   );
 };

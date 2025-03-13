@@ -12,7 +12,7 @@ const MonthInfo = () => {
         <CalendarPagination />
         <button className={s.btnChart} type="button">
           <svg className={s.svgIcon}>
-            <use href={`${svgIcon}#pie-chart`} />
+            <use href={`${svgIcon}#pie-chart-colour`} />
           </svg>
         </button>
       </div>
