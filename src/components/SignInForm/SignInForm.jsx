@@ -25,15 +25,14 @@ const schema = yup.object().shape({
 });
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const emailId = useId();
+  const pwdId = useId();
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const emailId = useId()
-  const pwdId = useId()
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [showPassword, setShowPassword] = useState(false)
-
-  const togglePasswordVisibility = () => setShowPassword(!showPassword)
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const {
     register,
@@ -44,40 +43,42 @@ const SignInForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { email: '', password: '' },
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   const onSubmit = (values) => {
-    dispatch(registerUserOperation({
-      email: values.email,
-      password: values.password
-    }))
-    .unwrap()
+    dispatch(
+      registerUserOperation({
+        email: values.email,
+        password: values.password,
+      }),
+    )
+      .unwrap()
       .then((res) => {
-      toast.success(`Welcome, ${values.email}!`, {
-      style: {
-        backgroundColor: 'white',
-        color: 'green'
-      }
-    })
-        reset()
-        navigate('/tracker')
+        toast.success(`Welcome, ${values.email}!`, {
+          style: {
+            backgroundColor: 'white',
+            color: 'green',
+          },
+        });
+        reset();
+        navigate('/tracker');
       })
       .catch((e) => {
-      toast.error('Please, try again', {
-      style: {
-         backgroundColor: 'white',
-         color: 'red',
-      },
-    });
-    })
-  }
+        toast.error('Please, try again', {
+          style: {
+            backgroundColor: 'white',
+            color: 'red',
+          },
+        });
+      });
+  };
 
   const onError = (errors) => {
     toast.error('Please, try again', {
       style: {
-         backgroundColor: 'white',
-         color: 'red',
+        backgroundColor: 'white',
+        color: 'red',
       },
     });
   };
@@ -119,12 +120,20 @@ const SignInForm = () => {
               {errors.password && (
                 <p className={s.error}>{errors.password.message}</p>
               )}
-              <button className={s.eyeIcon} onClick={togglePasswordVisibility} type='button'> 
-                {showPassword ? <svg width="20" height="20">
-                  <use href='/sprite.svg#eye-off' />
-                </svg> : <svg width="20" height="20">
-                  <use href='/sprite.svg#eye' />
-                </svg>}
+              <button
+                className={s.eyeIcon}
+                onClick={togglePasswordVisibility}
+                type="button"
+              >
+                {showPassword ? (
+                  <svg width="20" height="20">
+                    <use href="/sprite.svg#eye" />
+                  </svg>
+                ) : (
+                  <svg width="20" height="20">
+                    <use href="/sprite.svg#eye-off" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
@@ -132,22 +141,22 @@ const SignInForm = () => {
           <button type="submit" className={s.button}>
             Sign In
           </button>
-          <GoogleAuthButton/>
+          <GoogleAuthButton />
         </form>
-     <div className={s.helpersWrapper}>
-        <div className={s.wrapperUp}>
-          <p className={s.account}>Don’t have an account?&nbsp;</p>
-          <a href="/signup" className={s.signup}>
-            Sign Up
-          </a>
+        <div className={s.helpersWrapper}>
+          <div className={s.wrapperUp}>
+            <p className={s.account}>Don’t have an account?&nbsp;</p>
+            <a href="/signup" className={s.signup}>
+              Sign Up
+            </a>
+          </div>
+          <div className={s.wrapperUp}>
+            <p className={s.account}>Need help?&nbsp;</p>
+            <a href="/reset-pwd-email" className={s.signup}>
+              Reset your password
+            </a>
+          </div>
         </div>
-        <div className={s.wrapperUp}>
-         <p className={s.account}>Need help?&nbsp;</p>
-          <a href="/reset-pwd-email" className={s.signup}>
-            Reset your password
-          </a>
-        </div>
-       </div>
       </div>
     </div>
   );
