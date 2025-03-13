@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,16 +11,19 @@ import { api } from '../../utils/axios.config.js';
 const schema = yup.object().shape({
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters')
+    .min(3, 'Password must be at least 6 characters')
     .max(50, 'Password cannot exceed 50 characters')
     .required('Password is required'),
   confirmPassword: yup
     .string()
+    .min(3, 'Password must be at least 6 characters')
+    .max(50, 'Password cannot exceed 50 characters')
     .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
 });
 
 const ChangePasswordForm = () => {
+  
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -33,18 +36,20 @@ const ChangePasswordForm = () => {
     handleSubmit,
     reset,
     trigger,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: { password: '', confirmPassword: '' },
-    mode: 'onBlur',
+    mode: 'onChange',
+    reValidateMode: 'onChange',
   });
 
   const onSubmit = async (values) => {
     try {
       console.log('Reset token:', token);
 
-      const response = await api.post('/auth/reset-pwd', {
+      const response = await api.post('/auth/reset-password', {
         token,
         password: values.password,
       });
@@ -65,6 +70,21 @@ const ChangePasswordForm = () => {
     }
   };
 
+  const pwdValue = watch('password');
+  const confirmPwdValue = watch('confirmPassword');
+  
+    useEffect(() => {
+      if (pwdValue) {
+        trigger('password');
+      }
+    }, [pwdValue, trigger]);
+  
+    useEffect(() => {
+      if (confirmPwdValue) {
+        trigger('confirmPassword');
+      }
+    }, [confirmPwdValue, trigger]);
+
   return (
     <div className={s.container}>
       <div className={s.logo_container}>
@@ -72,15 +92,14 @@ const ChangePasswordForm = () => {
       </div>
 
       <div className={s.menu_container}>
-        <h2 className={s.title}>Change Your Password</h2>
+        <h2 className={s.title}>Change your password</h2>
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div className={s.inputGroup}>
-            <label htmlFor={pwdId}>New Password</label>
+            <label htmlFor={pwdId}>New password</label>
             <input
               id={pwdId}
               type="password"
               {...register('password')}
-              onBlur={() => trigger('password')}
               placeholder="Enter new password"
               className={errors.password ? s.inputError : ''}
             />
@@ -90,13 +109,12 @@ const ChangePasswordForm = () => {
           </div>
 
           <div className={s.inputGroup}>
-            <label htmlFor={confirmPwdId}>Confirm Password</label>
+            <label htmlFor={confirmPwdId}>Repeat password</label>
             <input
               id={confirmPwdId}
               type="password"
               {...register('confirmPassword')}
-              onBlur={() => trigger('confirmPassword')}
-              placeholder="Confirm new password"
+              placeholder="Repeat new password"
               className={errors.confirmPassword ? s.inputError : ''}
             />
             {errors.confirmPassword && (
@@ -105,7 +123,7 @@ const ChangePasswordForm = () => {
           </div>
 
           <button type="submit" className={s.button}>
-            Change Password
+            Change password
           </button>
         </form>
       </div>
