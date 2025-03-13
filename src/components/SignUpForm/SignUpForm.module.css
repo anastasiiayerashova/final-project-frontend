@@ -18,12 +18,13 @@
 }
 
 .title {
+  font-weight: 700;
   font-size: 32px;
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--light-black);
   margin-right: auto;
-  margin-bottom: 32px;
+  padding-bottom: 32px;
 }
 
 .form {

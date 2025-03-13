@@ -3,7 +3,7 @@ import s from './UserPanel.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectName } from '../../redux/user/selectors'; //перевірити селектори
 
-const UserPanel = ({setLogoutModal}) => {
+const UserPanel = ({setLogoutModal, setSettingsModal}) => {
   const isLoggedIn = useSelector(selectIsLoggedIn); //перевірити селектори
   const nameUser = useSelector(selectName); //перевірити селектори
 
@@ -13,7 +13,7 @@ const UserPanel = ({setLogoutModal}) => {
         Hello,{' '}
         <span className={s.user}>{!isLoggedIn ? 'USER' : nameUser}!</span>
       </h2>
-      <UserBar setLogoutModal={setLogoutModal} />
+      <UserBar setLogoutModal={setLogoutModal} setSettingsModal={setSettingsModal} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './user/slice.js';
+import { waterReducer } from './water/slice.js';
 import {
   persistStore,
   FLUSH,
@@ -9,7 +10,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { waterReducer } from './water/slice.js';
 
 export const store = configureStore({
   reducer: {

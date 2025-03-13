@@ -6,11 +6,11 @@ import s from './UserBarPopover.module.css';
 // Встановлюємо root-елемент для модального вікна (зазвичай це #root)
 Modal.setAppElement('#root');
 
-const UserBarPopover = ({ setLogoutModal, popoverRef }) => {
+const UserBarPopover = ({ setLogoutModal, popoverRef, setSettingsModal }) => {
 
   return (
     <div className={s.barPopover} ref={popoverRef}>
-      <button className={s.barBtn}>
+      <button className={s.barBtn} onClick={setSettingsModal}>
         <svg width="16" height="16">
           <use
             href={`${sprite}#settings`}
