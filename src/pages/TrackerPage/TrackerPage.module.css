@@ -1,0 +1,12 @@
+.tracker_page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+@media screen and (min-width: 1440px) {
+  .tracker_page {
+    flex-direction: row;
+    gap: 32px;
+  }
+}

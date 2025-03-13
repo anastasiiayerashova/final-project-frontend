@@ -1,7 +1,4 @@
 .container {
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center; */
   background-color: var(--grey);
   border-radius: 30px;
   height: 100vh;
@@ -10,12 +7,13 @@
 
 .logo_container {
   padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu_container {
   width: 100%;
-  /* padding: 0px 16px;
-  margin: auto 0; */
   padding: 170px 16px;
 }
 
@@ -44,7 +42,11 @@
 }
 
 .inputGroup:not(:last-child) {
-  margin-bottom: 16px;
+  margin-bottom: 30px;
+}
+
+.inputGroup:nth-last-of-type(1) {
+  margin-bottom: 0;
 }
 
 .inputGroup label {
@@ -72,6 +74,13 @@
   color: var(--black);
 }
 
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding-bottom: 16px;
+}
+
 .button {
   font-weight: 700;
   font-size: 14px;
@@ -82,8 +91,6 @@
   border-radius: 30px;
   cursor: pointer;
   width: 100%;
-  margin-bottom: 16px;
-  margin-top: 32px;
 }
 
 .button:hover,
@@ -163,6 +170,7 @@
 
   .logo_container {
     padding-left: 32px;
+    padding-right: 32px;
   }
 
   .menu_container {
@@ -186,14 +194,16 @@
     line-height: 1.5;
   }
 
-  .inputGroup:nth-child(1) {
-    margin-bottom: 20px;
-  }
-
   .button {
     font-size: 16px;
     line-height: 1.5;
   }
+
+  .buttonWrapper {
+    flex-direction: row;
+    column-gap: 10px;
+  }
+
   .account {
     font-size: 16px;
     line-height: 1.5;

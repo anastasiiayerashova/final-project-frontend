@@ -1,6 +1,6 @@
 import s from './WaterItem.module.css';
 
-const WaterItem = () => {
+const WaterItem = ({openEditWaterModal, openDeleteWaterModal}) => {
   const svgIcon = '/sprite.svg';
 
   const handleOpenWaterModal = () => {
@@ -17,7 +17,7 @@ const WaterItem = () => {
     <div className={s.item}>
       <div className={s.iconWrap}>
         <svg className={s.svgIconGlass}>
-          <use href={`${svgIcon}#mage_water-glass-fill`} />
+          <use href={`${svgIcon}#water-glass`} />
         </svg>
       </div>
       <div className={s.info}>
@@ -25,7 +25,7 @@ const WaterItem = () => {
         <p className={s.time}>7:00 AM</p>
       </div>
       <div className={s.buttons}>
-        <button className={s.btn} type="button" onClick={handleOpenWaterModal}>
+        <button className={s.btn} type="button" onClick={() => openEditWaterModal()}>
           <svg className={s.svgIconEdit}>
             <use href={`${svgIcon}#edit-2`} />
           </svg>
@@ -33,7 +33,7 @@ const WaterItem = () => {
         <button
           className={s.btn}
           type="button"
-          onClick={handleOpenDeleteWaterModal}
+          onClick={() => openDeleteWaterModal()}
         >
           <svg className={s.svgIconTrash}>
             <use href={`${svgIcon}#trash-04`} />

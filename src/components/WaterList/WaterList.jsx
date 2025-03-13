@@ -1,11 +1,11 @@
 import WaterItem from '../WaterItem/WaterItem';
 import s from './WaterList.module.css';
 
-const WaterList = () => {
+const WaterList = ({openEditWaterModal, openDeleteWaterModal}) => {
   return (
     <ul className={s.list}>
       <li>
-        <WaterItem />
+        <WaterItem openEditWaterModal={openEditWaterModal} openDeleteWaterModal={openDeleteWaterModal} />
       </li>
       <li>
         <WaterItem />
