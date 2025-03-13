@@ -30,12 +30,11 @@ const schema = yup.object().shape({
 });
 
 const SignUpForm = () => {
-  
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const emailId = useId()
-  const pwdId = useId()
-  const repeatPwdId = useId()
+  const emailId = useId();
+  const pwdId = useId();
+  const repeatPwdId = useId();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -51,45 +50,47 @@ const SignUpForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     values: { email: '', password: '' },
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
 
   const onSubmit = async (values) => {
     setIsSubmitting(true);
-    dispatch(registerUserOperation({
-      email: values.email,
-      password: values.password
-    }))
+    dispatch(
+      registerUserOperation({
+        email: values.email,
+        password: values.password,
+      }),
+    )
       .unwrap()
       .then((res) => {
-      localStorage.setItem('token', res.token)
-      toast.success(`Welcome, ${values.email}!`, {
-      style: {
-        backgroundColor: 'white',
-        color: 'green'
-      }
-      })
-        setIsSubmitting(false)
-        reset()
-        navigate('/tracker')
+        localStorage.setItem('token', res.token);
+        toast.success(`Welcome, ${values.email}!`, {
+          style: {
+            backgroundColor: 'white',
+            color: 'green',
+          },
+        });
+        setIsSubmitting(false);
+        reset();
+        navigate('/tracker');
       })
       .catch((e) => {
-        console.log(e)
-        setIsSubmitting(false)
-      toast.error('Please, try again', {
-      style: {
-         backgroundColor: 'white',
-         color: 'red',
-      },
-    });
-    })
+        console.log(e);
+        setIsSubmitting(false);
+        toast.error('Please, try again', {
+          style: {
+            backgroundColor: 'white',
+            color: 'red',
+          },
+        });
+      });
   };
 
   const onError = (errors) => {
     toast.error('Please, try again', {
       style: {
-         backgroundColor: 'white',
-         color: 'red',
+        backgroundColor: 'white',
+        color: 'red',
       },
     });
   };
