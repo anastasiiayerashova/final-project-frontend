@@ -16,6 +16,12 @@ export const en = {
       repeat_password_label: 'Repeat Password',
       add_water: 'Add water',
       save: 'Save',
+      log_out: 'Log out',
+      cancel: 'Cancel',
+      settings: 'Setting',
+      send_email: 'Send email',
+      go_home: 'Go Home',
+      delete: 'Delete',
     },
     advantagesSection: {
       customers_text: `{{count}} <span class={{class}}>happy</span> customers`,
@@ -50,6 +56,8 @@ export const en = {
       enter_password: 'Enter your password',
       repeat_password: 'Repeat your password',
       signing_up: 'Signing up...',
+      want_leave: 'Do you really want to leave?',
+      email_sent: 'Email with password reset instructions sent!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',
@@ -67,14 +75,40 @@ export const en = {
       record_time: 'Recording time',
       enter_water_value: 'Enter the value of the water used',
     },
+    settingModal: {
+      no_img: 'No image',
+      upload_img: 'Upload a photo',
+      gender_identity: 'Your gender identity',
+      woman: 'Woman',
+      man: 'Man',
+      your_name: 'Your name',
+      for_woman: 'For woman',
+      for_man: 'For man',
+      v_m_t_description:
+        'V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or   another type of activity commensurate in terms of loads (in the       absence of these, you must set 0)',
+      active_time: 'Active time in hours',
+      weight: 'Your weight in kilograms',
+      sport_time: 'The time of active participation in sports',
+      recommend_water_intake: 'Your recommended water intake per day',
+      how_much_will_drink: 'Write down how much water you will drink',
+    },
+    deleteWaterModal: {
+      delete_entry: 'Delete entry',
+      are_you_sure: 'Are you sure you want to delete the entry?',
+    },
+
     trackerPage: {
+      daily_norm_value: '{{dailyWaterNormInLiters}} L',
       daily_norm: 'My daily norma',
       today: 'Today',
+      month_general: 'Month',
     },
     errors: {
       try_again: 'Please, try again',
+      try_again_wrong: 'Please, try again later, something went wrong',
       Email_is_in_use: 'Email is in use',
       User_not_found: 'User not found',
+      no_response: 'No response',
     },
   },
 };

@@ -18,7 +18,6 @@ function TrackerPage() {
   const [isSettingsModalOpen, setSettingsModal] = useState(false)
   const [isDeleteWaterModalOpen, setDeleteWaterModal] = useState(false)
   const [isLogoutModalOpen, setLogoutModal] = useState(false)
-  
 
   const dispatch = useDispatch();
 

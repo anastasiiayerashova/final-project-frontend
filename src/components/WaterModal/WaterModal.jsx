@@ -12,7 +12,11 @@ const WaterModal = ({ onClose, type }) => {
         {type === TYPE.ADD_WATER ? (
           t('common.add_water')
         ) : (
-          <>{t('waterModal.edit_entered_amount')}</>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: t('waterModal.edit_entered_amount'),
+            }}
+          />
         )}
       </h2>
       <p className={s.subtitle}>

@@ -30,19 +30,57 @@ p {
   line-height: 100%;
   color: rgba(47, 47, 47, 0.6);
 }
-input[type='range'] {
-  width: 174px;
-  -webkit-appearance: none;
-  appearance: none;
+
+.progressBar {
+  position: relative;
+
+  width: 100%;
   height: 6px;
-  background: #f0eff4;
+  margin-top: 8px;
+
+  background-color: var(--grey);
   border-radius: 9px;
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  transition: background 0.3s;
-  accent-color: #9be1a0;
 }
+
+.progressBarFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 6px;
+
+  border-radius: 9px;
+
+  transition: ease 1s;
+}
+
+.slider {
+  position: absolute;
+  top: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: var(--white);
+  border-radius: 100%;
+
+  transform: translate(50%, -50%);
+  transition: ease 1s;
+}
+
+.percentNumber {
+  position: absolute;
+  bottom: 130%;
+  right: 0;
+
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 100%;
+
+  transform: translate(50%, -50%);
+}
+
 @media (min-width: 768px) {
   .container {
     border-radius: 15px;
@@ -60,17 +98,18 @@ input[type='range'] {
     font-size: 12px;
     line-height: 187%;
   }
-  input[type='range'] {
-    width: 255px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 6px;
-    background: #f0eff4;
-    border-radius: 9px;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    transition: background 0.3s;
-    accent-color: #9be1a0;
+  .progressBar {
+    height: 8px;
+    margin-top: 18px;
+  }
+  .progressBarFill {
+    height: 8px;
+  }
+
+  .percentNumber {
+    bottom: 20%;
+
+    font-size: 9px;
+    line-height: 180%;
   }
 }

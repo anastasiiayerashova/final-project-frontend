@@ -41,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: #999;
   font-size: 14px;
 }
@@ -213,7 +214,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   border-radius: 30px;
-  padding: 14px 40px;
+  padding: 14px 0px;
   width: 116px;
   height: 46px;
   cursor: pointer;
