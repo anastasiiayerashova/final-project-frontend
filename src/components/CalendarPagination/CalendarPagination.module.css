@@ -14,9 +14,18 @@
   align-items: center;
   justify-content: center;
 
-  .svgIcon {
+  .svgIconLeft,
+  .svgIconRight {
     width: 18px;
     height: 18px;
+    color: var(--light-black);
+  }
+
+  .svgIconLeft {
+    transform: rotate(90deg);
+  }
+  .svgIconRight {
+    transform: rotate(90deg);
   }
 }
 

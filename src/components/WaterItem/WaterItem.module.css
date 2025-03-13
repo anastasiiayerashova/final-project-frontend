@@ -16,6 +16,7 @@
 .svgIconGlass {
   width: 38px;
   height: 38px;
+  color: var(--green);
 
   @media screen and (min-width: 768px) {
     width: 44px;
@@ -56,6 +57,7 @@
     font-size: 12px;
     line-height: 1;
     color: rgba(47, 47, 47, 0.6);
+    font-weight: 400;
 
     @media screen and (min-width: 768px) {
       font-size: 13px;
@@ -85,6 +87,7 @@
   .svgIconTrash {
     width: 14px;
     height: 14px;
+    color: var(--light-black);
 
     @media screen and (min-width: 768px) {
       width: 16px;
