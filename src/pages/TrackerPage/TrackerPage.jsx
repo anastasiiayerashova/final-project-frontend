@@ -9,6 +9,7 @@ import { getCurrentUserDataOperation } from '../../redux/user/operations.js'
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo.jsx'
 import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal.jsx'
 import LogOutModal from '../../components/LogOutModal/LogOutModal.jsx'
+import UserSettingsModal from '../../components/UserSettingsModal/UserSettingsModal.jsx'
 
 function TrackerPage() {
   
@@ -52,6 +53,10 @@ function TrackerPage() {
     setLogoutModal(false)
   }
 
+  const closeSettingsModal = (isOpen) => {
+    setSettingsModal(false)
+  }
+
     return (
       <div className={s.tracker_page}>
         <WaterMainInfo isWaterModal={isWaterModal} openWaterModal={openWaterModal} />
@@ -64,6 +69,9 @@ function TrackerPage() {
             </Modal>
             <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
               <LogOutModal onClose={closeLogoutModal}/>
+            </Modal>
+            <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
+              <UserSettingsModal onClose={closeSettingsModal}/>
             </Modal>
       </div>
     )

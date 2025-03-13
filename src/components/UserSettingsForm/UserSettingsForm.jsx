@@ -20,6 +20,8 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
     initialData?.avatar || null,
   );
 
+  const svgIcon = '/sprite.svg';
+
   // Токен із Redux (для авторизації)
   const token = useSelector(selectToken);
 
@@ -58,6 +60,7 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
       weight: initialData.weight || '',
       activeTime: initialData.dailySportTime || '',
       waterNorm: initialData.dailyWaterNorm || '',
+      
     },
   });
 
@@ -118,6 +121,10 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
         ) : (
           <div className={s.avatarPlaceholder}>No image</div>
         )}
+        <div className={s.labelWrapper}>
+          <svg className={s.icon}>
+              <use href={`${svgIcon}#upload`} />
+          </svg>
         <label htmlFor="avatar" className={s.uploadLabel}>
           Upload a photo
         </label>
@@ -133,12 +140,14 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
         />
         {errors.avatar && (
           <p className={s.errorText}>{errors.avatar.message}</p>
-        )}
+          )}
+          </div>
       </div>
-
+<div className={s.main_wrap}>
+<div className={s.first_wrap}>
       {/* Гендер */}
       <div className={s.formGroup}>
-        <label className={s.label}>Your gender identity</label>
+        <p className={s.bold_text}>Your gender identity</p>
         <div className={s.genderWrapper}>
           <label className={s.radioLabel}>
             <input type="radio" value="female" {...register('gender')} />
@@ -156,7 +165,7 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Імʼя */}
       <div className={s.formGroup}>
-        <label htmlFor="name" className={s.label}>
+        <label htmlFor="name" className={s.label_bold_text}>
           Your name
         </label>
         <input
@@ -170,7 +179,7 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Email */}
       <div className={s.formGroup}>
-        <label htmlFor="email" className={s.label}>
+        <label htmlFor="email" className={s.label_bold_text}>
           Email
         </label>
         <input
@@ -184,8 +193,8 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
 
       {/* Денна норма */}
       <div className={s.formGroup}>
-        <label htmlFor="waterNorm" className={s.label}>
-          My daily norma (L)
+        <label htmlFor="waterNorm" className={s.bold_text}>
+          My daily norma
         </label>
         <input
           id="waterNorm"
@@ -199,38 +208,35 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
         )}
       </div>
 
-      {/* Формула */}
+          {/* Формула */}
+          <div className={s.formula_wrap}>
       <div className={s.formulaInfo}>
-        <p>
-          For woman: V=(M*0.03)+(T*0.3)
-          <br />
-          For man: V=(M*0.04)+(T*0.6)
+            <p>For woman:</p>
+            <span>V=(M*0,03) + (T*0,4)</span>
+          </div>
+          <div className={s.formulaInfo}>
+            <p>For man:</p>
+            <span>V=(M*0,04) + (T*0,6)</span>
+          </div>
+            <div>
+              </div>
+            <p className={s.hint}>
+              <span>* </span>V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)
         </p>
-        <p className={s.hint}>
-          * V is the volume of the water norm in liters per day, M is your body
-          weight, T is the time of active sports.
-        </p>
-      </div>
+          </div>
 
       {/* Час активності */}
-      <div className={s.formGroup}>
-        <label htmlFor="activeTime" className={s.label}>
-          Active time in hours
-        </label>
-        <input
-          id="activeTime"
-          type="number"
-          {...register('activeTime')}
-          className={s.input}
-        />
-        {errors.activeTime && (
-          <p className={s.errorText}>{errors.activeTime.message}</p>
-        )}
+      <div className={s.formActive}>
+        <svg className={s.exclamIcon}>
+              <use href={`${svgIcon}#icon-alert`} />
+          </svg>
+        <p className={s.label_simple}>Active time in hours</p>
       </div>
-
+      </div>
+      <div className={s.second_wrap}>
       {/* Вага */}
       <div className={s.formGroup}>
-        <label htmlFor="weight" className={s.label}>
+        <label htmlFor="weight" className={s.label_simple}>
           Your weight in kilograms
         </label>
         <input
@@ -242,11 +248,29 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
         {errors.weight && (
           <p className={s.errorText}>{errors.weight.message}</p>
         )}
-      </div>
-
+          </div>
+          
+          <div className={s.formGroup}>
+        <label htmlFor="sport" className={s.label_simple}>
+          The time of active participation in sports:
+        </label>
+        <input
+          id="sport"
+          type="number"
+        
+          className={s.input}
+        />
+        {errors.weight && (
+          <p className={s.errorText}>{errors.sport.message}</p>
+        )}
+          </div>
+          <div className={s.recommend_wrap}>
+            <p>Your recommended water intake per day:</p>
+            <span>1.5 L</span>
+            </div>
       {/* Скільки планує пити */}
       <div className={s.formGroup}>
-        <label htmlFor="dailyWater" className={s.label}>
+        <label htmlFor="dailyWater" className={s.bold_text}>
           Write down how much water you will drink
         </label>
         <input
@@ -259,10 +283,9 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
       </div>
 
       {/* Рекомендація */}
-      <div className={s.recommended}>
-        Your recommended water intake per day: <strong>1.8 L</strong>
-      </div>
-
+      
+        </div>
+        </div>
       {/* Кнопка сабміту */}
       <button type="submit" className={s.saveButton}>
         Save

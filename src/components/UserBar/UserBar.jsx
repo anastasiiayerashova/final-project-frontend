@@ -5,7 +5,7 @@ import { selectIsLoggedIn, selectName, selectAvatar } from '../../redux/user/sel
 import sprite from '../../../public/sprite.svg';
 import s from './UserBar.module.css';
 
-const UserBar = ({ setLogoutModal }) => {
+const UserBar = ({ setLogoutModal, setSettingsModal }) => {
   
   const [isPopoverOpen, setPopoverOpen] = useState(false)
   const buttonRef = useRef(null)
@@ -68,7 +68,7 @@ const UserBar = ({ setLogoutModal }) => {
           ></use>
         </svg>
       </button>
-      {isPopoverOpen && <UserBarPopover setLogoutModal={setLogoutModal} popoverRef={popoverRef} />}
+      {isPopoverOpen && <UserBarPopover setLogoutModal={setLogoutModal} popoverRef={popoverRef} setSettingsModal={setSettingsModal} />}
     </div>
   );
 };

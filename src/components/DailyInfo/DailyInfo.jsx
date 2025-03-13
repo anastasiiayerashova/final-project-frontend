@@ -25,7 +25,7 @@ const DailyInfo = ({ openWaterModal, setDeleteWaterModal }) => {
         {/* TODO Кнопку AddWaterBtn рендеримо тільки якщо дата "Сьогодні". Для цього зі стора потрібно отримати обрану користувачем дату (за замовчуванням вона - "Сьогодні") */}
         <AddWaterBtn inDailyInfo={true} onClick={handleAddWater}/>
       </div>
-      <WaterList openEditWaterModal={handleEditWater} openDeleteWaterModal={handleDeleteWater} />
+      <WaterList openEditWaterModal={handleEditWater} openDeleteWaterModal={handleDeleteWater}/>
     </div>
   );
 };
