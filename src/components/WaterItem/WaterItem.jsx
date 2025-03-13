@@ -1,8 +1,12 @@
 import s from './WaterItem.module.css';
 import { TYPE } from '../../constants/index.js';
+import { setWaterId } from '../../redux/water/slice.js';
+import { useDispatch } from 'react-redux';
 
-const WaterItem = ({ openWaterModal, data }) => {
+const WaterItem = ({ openWaterModal, setDeleteWaterModal, data }) => {
   const svgIcon = '/sprite.svg';
+
+  const dispatch = useDispatch();
 
   if (!data) {
     return <p className={s.error}>Error: No data available</p>;
@@ -18,12 +22,13 @@ const WaterItem = ({ openWaterModal, data }) => {
     : 'N/A';
 
   const handleOpenEditWaterModal = () => {
+    dispatch(setWaterId(data._id));
     openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
   };
 
   const handleOpenDeleteWaterModal = () => {
-    console.log('Show DeleteWaterModal');
-    // TODO: Добавить логику удаления записи
+    dispatch(setWaterId(data._id));
+    setDeleteWaterModal(true);
   };
 
   return (

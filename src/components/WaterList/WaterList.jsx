@@ -10,7 +10,7 @@ import { useEffect, useMemo } from 'react';
 import { fetchWaterDaily } from '../../redux/water/operations';
 import Loader from '../Loader/Loader';
 
-const WaterList = ({ openWaterModal }) => {
+const WaterList = ({ openWaterModal, setDeleteWaterModal }) => {
   const date = useSelector(selectDate);
   const dayWaterList = useSelector(selectDayWaterList);
   const isLoading = useSelector(selectLoading);
@@ -54,7 +54,11 @@ const WaterList = ({ openWaterModal }) => {
     <ul className={s.list}>
       {dayWaterList.map((item) => (
         <li key={item._id}>
-          <WaterItem data={item} openWaterModal={openWaterModal} />
+          <WaterItem
+            data={item}
+            openWaterModal={openWaterModal}
+            setDeleteWaterModal={setDeleteWaterModal}
+          />
         </li>
       ))}
     </ul>

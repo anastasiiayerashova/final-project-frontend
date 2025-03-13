@@ -7,7 +7,7 @@ export const fetchWaterDaily = createAsyncThunk(
   async (date, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
-      const token = selectToken(state); // Отримуємо токен з Redux
+      const token = selectToken(state);
 
       if (!token) {
         return thunkAPI.rejectWithValue('User not authenticated');
@@ -18,6 +18,9 @@ export const fetchWaterDaily = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
+      if (error.response?.status === 404) {
+        return []; // Якщо `404`, то це нормально: записуємо пустий масив у store
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -39,6 +42,48 @@ export const addWater = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteWater = createAsyncThunk(
+  'water/deleteWater',
+  async (waterId, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('User not authenticated');
+      }
+
+      const response = await api.delete(`/water/${waterId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const editWater = createAsyncThunk(
+  'water/editWater',
+  async ({ waterId, newData }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('User not authenticated');
+      }
+
+      const response = await api.put(`/water/${waterId}`, newData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

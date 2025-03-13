@@ -4,15 +4,30 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater, fetchWaterDaily } from '../../redux/water/operations';
+import {
+  addWater,
+  fetchWaterDaily,
+  editWater,
+} from '../../redux/water/operations';
 import s from './WaterForm.module.css';
 import { useId } from 'react';
-import { selectDate, selectLoading } from '../../redux/water/selectors';
+import {
+  selectDate,
+  selectDayWaterList,
+  selectLoading,
+  selectWaterId,
+} from '../../redux/water/selectors';
+import { clearWaterId } from '../../redux/water/slice';
 
 const WaterForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const timeId = useId();
   const amountId = useId();
+
+  const waterId = useSelector(selectWaterId);
+  const dayWaterList = useSelector(selectDayWaterList);
+  const date = useSelector(selectDate);
+  const dateFormatted = useMemo(() => date.split('T')[0], [date]);
 
   // Валидация
   const schema = yup.object().shape({
@@ -29,7 +44,6 @@ const WaterForm = ({ onClose }) => {
       .required('Amount of water is required'),
   });
 
-  // useForm настройки
   const {
     register,
     handleSubmit,
@@ -51,27 +65,40 @@ const WaterForm = ({ onClose }) => {
     reValidateMode: 'onChange',
   });
 
-  // Состояние для количества воды
   const [amount, setAmount] = useState(50);
 
-  // Получаем дату из Redux и форматируем
-  const date = useSelector(selectDate);
-  const dateFormatted = useMemo(() => date.split('T')[0], [date]);
+  // Если waterId есть, значит редактируем запись
+  useEffect(() => {
+    if (waterId) {
+      const waterRecord = dayWaterList.find((item) => item._id === waterId);
+      if (waterRecord) {
+        const formattedTime = new Date(waterRecord.date).toLocaleTimeString(
+          'en-GB',
+          { hour: '2-digit', minute: '2-digit' },
+        );
 
-  // Отслеживание значений формы
-  const timeValue = watch('time');
+        setValue('time', formattedTime);
+        setValue('amount', waterRecord.value);
+        setAmount(waterRecord.value);
+      }
+    } else {
+      // Если waterId нет, сбрасываем значения формы
+      reset({
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        amount: 50,
+      });
+      setAmount(50);
+    }
+  }, [waterId, dayWaterList, setValue, reset]);
 
-  // Синхронизация amount с полем ввода
   useEffect(() => {
     setValue('amount', amount);
-    trigger('amount'); // Теперь валидация происходит сразу при изменении
+    trigger('amount');
   }, [amount, setValue, trigger]);
 
-  useEffect(() => {
-    if (timeValue) trigger('time');
-  }, [timeValue, trigger]);
-
-  // Функция для обработки нажатий кнопок +/-
   const handleStepChange = (step) => {
     setAmount((prevAmount) => {
       const newAmount = prevAmount + step;
@@ -79,7 +106,6 @@ const WaterForm = ({ onClose }) => {
     });
   };
 
-  // Форматирование даты и времени для бэкенда
   const formatDate = (date, time) => {
     const [hours, minutes] = time.split(':');
     return `${date.toISOString().split('T')[0]}T${hours}:${minutes}`;
@@ -93,14 +119,18 @@ const WaterForm = ({ onClose }) => {
         value: Number(values.amount),
       };
 
-      await dispatch(addWater(requestData)).unwrap();
+      if (waterId) {
+        // Если waterId есть, значит редактируем
+        await dispatch(editWater({ waterId, newData: requestData })).unwrap();
+        toast.success('Water record updated successfully!');
+      } else {
+        // Если waterId нет, значит добавляем
+        await dispatch(addWater(requestData)).unwrap();
+        toast.success('Water record added successfully!');
+      }
 
-      toast.success('Water record added successfully!');
-
-      // Ждем завершения dispatch(addWater), затем обновляем данные с сервера
       dispatch(fetchWaterDaily(dateFormatted));
 
-      // Полностью сбрасываем состояние формы
       reset({
         time: new Date().toLocaleTimeString('en-GB', {
           hour: '2-digit',
@@ -110,6 +140,7 @@ const WaterForm = ({ onClose }) => {
       });
 
       setAmount(50);
+      dispatch(clearWaterId()); // Очищаем waterId при закрытии формы
       onClose();
     } catch (error) {
       toast.error(`Error: ${error}`);
