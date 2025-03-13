@@ -11,6 +11,7 @@ import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal
 import LogOutModal from '../../components/LogOutModal/LogOutModal.jsx';
 import UserSettingsModal from '../../components/UserSettingsModal/UserSettingsModal.jsx';
 import { Toaster } from 'react-hot-toast';
+import Loader from '../../components/Loader/Loader.jsx';
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,30 +63,34 @@ function TrackerPage() {
   };
 
   return (
-    <div className={s.tracker_page}>
-      <WaterMainInfo
-        isWaterModal={isWaterModal}
-        openWaterModal={openWaterModal}
-      />
-      <WaterDetailedInfo
-        openWaterModal={openWaterModal}
-        setLogoutModal={setLogoutModal}
-        setDeleteWaterModal={setDeleteWaterModal}
-        setSettingsModal={setSettingsModal}
-      />
-      <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
-        <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
-      </Modal>
-      <Modal isOpen={isDeleteWaterModalOpen} onClose={closeDeleteWaterModal}>
-        <DeleteWaterModal onClose={closeDeleteWaterModal} />
-      </Modal>
-      <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
-        <LogOutModal onClose={closeLogoutModal} />
-      </Modal>
-      <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
-        <UserSettingsModal onClose={closeSettingsModal} />
-      </Modal>
-      <Toaster position="top-right" />
+    <div>
+      {isLoading ? (<Loader />) : (
+        <div className={s.tracker_page}>
+          <WaterMainInfo
+            isWaterModal={isWaterModal}
+            openWaterModal={openWaterModal}
+          />
+          <WaterDetailedInfo
+            openWaterModal={openWaterModal}
+            setLogoutModal={setLogoutModal}
+            setDeleteWaterModal={setDeleteWaterModal}
+            setSettingsModal={setSettingsModal}
+          />
+          <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
+            <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
+          </Modal>
+          <Modal isOpen={isDeleteWaterModalOpen} onClose={closeDeleteWaterModal}>
+            <DeleteWaterModal onClose={closeDeleteWaterModal} />
+          </Modal>
+          <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
+            <LogOutModal onClose={closeLogoutModal} />
+          </Modal>
+          <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
+            <UserSettingsModal onClose={closeSettingsModal} />
+          </Modal>
+          <Toaster position="top-right" />
+        </div>
+      )}
     </div>
   );
 }
