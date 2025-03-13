@@ -1,9 +1,16 @@
-import s from './ChangePasswordPage.module.css'
+import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection.jsx';
+import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
+import s from './ChangePasswordPage.module.css';
 
-const ChangePasswordPage = () => { // сюда попадаем после перехода по ссылке из email
-    return (
-        <p>ChangePasswordForm with AdvantagesSection and redirect us to '/signin/</p>
-    )
-}
+const ChangePasswordPage = () => {
+  return (
+    <div className={s.main_wrapper}>
+      <ChangePasswordForm />
+      <div className={s.advantages_wrapper}>
+        <AdvantagesSection/>
+      </div>
+    </div>
+  );
+};
 
-export default ChangePasswordPage
+export default ChangePasswordPage;

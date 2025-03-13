@@ -10,6 +10,7 @@ import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedI
 import DeleteWaterModal from '../../components/DeleteWaterModal/DeleteWaterModal.jsx'
 import LogOutModal from '../../components/LogOutModal/LogOutModal.jsx'
 import UserSettingsModal from '../../components/UserSettingsModal/UserSettingsModal.jsx'
+import ResetPasswordModal from '../../components/ResetPasswordModal/ResetPasswordModal.jsx'
 
 function TrackerPage() {
   
@@ -18,7 +19,6 @@ function TrackerPage() {
   const [isSettingsModalOpen, setSettingsModal] = useState(false)
   const [isDeleteWaterModalOpen, setDeleteWaterModal] = useState(false)
   const [isLogoutModalOpen, setLogoutModal] = useState(false)
-  
 
   const dispatch = useDispatch();
 
@@ -56,6 +56,10 @@ function TrackerPage() {
   const closeSettingsModal = (isOpen) => {
     setSettingsModal(false)
   }
+
+  const openResetPasswordModal = () => setIsResetPasswordModalOpen(true)
+
+  const closeResetPasswordModal = () => setIsResetPasswordModalOpen(false)
 
     return (
       <div className={s.tracker_page}>
