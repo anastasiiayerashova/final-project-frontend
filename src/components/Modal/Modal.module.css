@@ -12,12 +12,16 @@
 }
 
 .modal {
-  width: 343px;
-  height: 514px;
-  background: white;
-  border-radius: 20px;
-  padding: 40px 20px;
+  z-index: 1001;
+}
+
+.content {
   position: relative;
+
+  /* display: flex;
+
+  align-items: center;
+  justify-content: center; */
 }
 
 .iconX {
@@ -31,21 +35,7 @@
   right: 16px;
 }
 
-@media screen and (max-width: 375px) {
-  .modal {
-    width: 311px;
-  }
-}
-
 @media (min-width: 768px) {
-  .modal {
-    border-radius: 15px;
-    padding: 40px;
-    width: 518px;
-    height: 587px;
-    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  }
-
   .closeBtn {
     width: 28px;
     height: 28px;

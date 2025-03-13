@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from "redux-persist"
-import { registerUserOperation } from "./operations.js"
+import { getCurrentUserDataOperation, loginUserOperation, logoutUserOperation, refreshUserOperation, registerUserOperation } from "./operations.js"
 
 const initialState = {
     user: {
@@ -14,19 +14,46 @@ const initialState = {
         avatar: null
     },
     token: null,
-    isLoggedId: false
+    isLoggedIn: false
 }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+    //   logoutUser: (state) => {
+    //   state.token = null;
+    //   state.isLoggedIn = false;
+    //   state.user = initialState.user;
+    // }
+    },
     extraReducers: (builder) =>
         builder
             .addCase(registerUserOperation.fulfilled, (state, { payload }) => {
                 state.token = payload.accessToken
-                state.isLoggedId = true
-    })
+                state.isLoggedIn = true
+            })
+            .addCase(loginUserOperation.fulfilled, (state, { payload }) => {
+                state.token = payload.accessToken
+                state.isLoggedIn = true
+            })
+            .addCase(getCurrentUserDataOperation.fulfilled, (state, { payload }) => {
+                state.user = {...state.user, ...payload}
+            })
+            .addCase(refreshUserOperation.fulfilled, (state, { payload }) => {
+                state.token = payload.accessToken;
+                state.isLoggedIn = true;
+            })
+            .addCase(logoutUserOperation.fulfilled, (state) => {
+                state.token = null
+                state.isLoggedIn = false
+                state.user = initialState.user
+            })
+            .addCase(refreshUserOperation.rejected, (state) => { // если рефреш отклонился, логаут
+                state.token = null;
+                state.isLoggedIn = false;
+                state.user = initialState.user;
+            })       
 }
 )
 
@@ -37,3 +64,4 @@ const persistConfig = {
 }
 
 export const authReducer = persistReducer(persistConfig, userSlice.reducer)
+export const { resetToken, logoutUser } = userSlice.actions;

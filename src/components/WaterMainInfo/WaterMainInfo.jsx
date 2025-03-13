@@ -4,6 +4,7 @@ import WaterDailyNorma from "../WaterDailyNorma/WaterDailyNorma.jsx";
 import WaterProgressBar from "../WaterProgressBar/WaterProgressBar.jsx";
 import s from "./WaterMainInfo.module.css";
 import { TYPE } from "../../constants/index.js";
+import LanguageButtons from "../LanguageButtons/LanguageButtons.jsx";
 
 const WaterMainInfo = ({ openWaterModal }) => {
     

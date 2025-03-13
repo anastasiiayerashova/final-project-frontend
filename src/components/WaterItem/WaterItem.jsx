@@ -1,31 +1,53 @@
 import s from './WaterItem.module.css';
+import { TYPE } from '../../constants/index.js';
+import { setWaterId } from '../../redux/water/slice.js';
+import { useDispatch } from 'react-redux';
 
-const WaterItem = () => {
+const WaterItem = ({ openWaterModal, setDeleteWaterModal, data }) => {
   const svgIcon = '/sprite.svg';
 
-  const handleOpenWaterModal = () => {
-    console.log('Show WaterModal');
-    // TODO Створити логіку відкриття модального вікна
+  const dispatch = useDispatch();
+
+  if (!data) {
+    return <p className={s.error}>Error: No data available</p>;
+  }
+
+  // Проверяем, есть ли дата, иначе устанавливаем "N/A"
+  const formattedTime = data.date
+    ? new Date(data.date).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+      })
+    : 'N/A';
+
+  const handleOpenEditWaterModal = () => {
+    dispatch(setWaterId(data._id));
+    openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
   };
 
   const handleOpenDeleteWaterModal = () => {
-    console.log('Show DeleteWaterModal');
-    // TODO Створити логіку відкриття модального вікна
+    dispatch(setWaterId(data._id));
+    setDeleteWaterModal(true);
   };
 
   return (
     <div className={s.item}>
       <div className={s.iconWrap}>
         <svg className={s.svgIconGlass}>
-          <use href={`${svgIcon}#mage_water-glass-fill`} />
+          <use href={`${svgIcon}#water-glass`} />
         </svg>
       </div>
       <div className={s.info}>
-        <p className={s.volume}>250 ml</p>
-        <p className={s.time}>7:00 AM</p>
+        <p className={s.volume}>{data?.value || '0'} ml</p>
+        <p className={s.time}>{formattedTime}</p>
       </div>
       <div className={s.buttons}>
-        <button className={s.btn} type="button" onClick={handleOpenWaterModal}>
+        <button
+          className={s.btn}
+          type="button"
+          onClick={handleOpenEditWaterModal}
+        >
           <svg className={s.svgIconEdit}>
             <use href={`${svgIcon}#edit-2`} />
           </svg>
@@ -36,7 +58,7 @@ const WaterItem = () => {
           onClick={handleOpenDeleteWaterModal}
         >
           <svg className={s.svgIconTrash}>
-            <use href={`${svgIcon}#trash-04`} />
+            <use href={`${svgIcon}#trash`} />
           </svg>
         </button>
       </div>

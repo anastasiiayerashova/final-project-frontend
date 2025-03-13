@@ -4,3 +4,5 @@ https://github.com/anastasiiayerashova/final-project-frontend/pull/36
 https://github.com/anastasiiayerashova/final-project-frontend/pull/38
 https://github.com/anastasiiayerashova/final-project-frontend/pull/39
 >>>>>>> cb2f13594b3dc6257696634471347774438003b0
+
+https://github.com/anastasiiayerashova/final-project-frontend/pull/60

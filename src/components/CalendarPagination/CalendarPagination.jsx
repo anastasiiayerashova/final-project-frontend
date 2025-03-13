@@ -43,14 +43,14 @@ const CalendarPagination = () => {
         type="button"
         onClick={handlePreviousMonth}
       >
-        <svg className={s.svgIcon}>
-          <use href={`${svgIcon}#chevron-left`} />
+        <svg className={s.svgIconLeft}>
+          <use href={`${svgIcon}#chevron-down`} />
         </svg>
       </button>
       <div className={s.date}>{formattedDate}</div>
       <button className={s.btnArrow} type="button" onClick={handleNextMonth}>
-        <svg className={s.svgIcon}>
-          <use href={`${svgIcon}#chevron-right`} />
+        <svg className={s.svgIconRight}>
+          <use href={`${svgIcon}#chevron-up`} />
         </svg>
       </button>
     </div>

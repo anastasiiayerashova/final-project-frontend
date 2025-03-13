@@ -7,6 +7,9 @@
 
 .logo_container {
   padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu_container {
@@ -15,12 +18,13 @@
 }
 
 .title {
+  font-weight: 700;
   font-size: 32px;
   line-height: 1;
   letter-spacing: -0.01em;
   color: var(--light-black);
   margin-right: auto;
-  margin-bottom: 32px;
+  padding-bottom: 32px;
 }
 
 .form {
@@ -166,6 +170,7 @@
 
   .logo_container {
     padding-left: 32px;
+    padding-right: 32px;
   }
 
   .menu_container {

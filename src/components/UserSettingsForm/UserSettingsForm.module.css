@@ -1,0 +1,268 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - 60px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--black);
+  text-align: left;
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  margin-bottom: 40px;
+}
+
+.avatarImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.avatarPlaceholder {
+  width: 75px;
+  height: 75px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.uploadLabel {
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  font-size: 14px;
+}
+
+.hiddenInput {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formActive {
+  margin: 14px 0 24px 0;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.exclamIcon {
+  fill: var(--green);
+  width: 18px;
+  height: 18px;
+}
+
+.bold_text {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  color: var(--black);
+  display: block;
+}
+
+.label_bold_text {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--black);
+  display: block;
+}
+
+.label_simple {
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 0px 14px 16px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  outline: none;
+  font-size: 14px;
+}
+
+.errorText {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.genderWrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.formula_wrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.formulaInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  & p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    display: block;
+  }
+  & span {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+    display: block;
+    color: var(--green);
+  }
+}
+
+.hint {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  margin-top: 2px;
+  border-radius: 15px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #2f2f2f99;
+  & span {
+    color: #9be1a0;
+  }
+}
+
+.recommend_wrap {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  & p {
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.01em;
+  }
+  & span {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    color: var(--green);
+  }
+}
+
+.saveButton {
+  background-color: var(--green);
+  color: var(--black);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.saveButton:hover {
+  background-color: var(--green-hover);
+}
+
+@media screen and (min-width: 375px) {
+  .title {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    max-width: 500px;
+    max-height: 80vh;
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .avatarImage,
+  .avatarPlaceholder {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .form {
+    max-width: 600px;
+    max-height: 85vh;
+    padding: 32px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .avatarImage,
+  .avatarPlaceholder {
+    width: 120px;
+    height: 120px;
+  }
+}
