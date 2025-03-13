@@ -14,6 +14,8 @@ export const en = {
       email_label: 'Email',
       password_label: 'Password',
       repeat_password_label: 'Repeat Password',
+      add_water: 'Add water',
+      save: 'Save',
     },
     advantagesSection: {
       customers_text: `{{count}} <span class={{class}}>happy</span> customers`,
@@ -33,8 +35,16 @@ export const en = {
       password_max: 'Password cannot exceed 50 characters',
       password_required: 'Password is required',
       password_match: 'Passwords must match',
+      valid_time: 'Enter a valid time format',
+      number_amount: 'Amount must be a number',
+      time_required: 'Time is required',
+      number_positive: 'Amount must be greater than 0',
+      number_min: 'Amount of water must be at least 50 ml',
+      number_max: 'Amount of water cannot exceed 5000 ml',
+      water_required: 'Amount of water is required',
     },
     notifications: {
+      hello: 'Hello, {{user}}!',
       welcome: 'Welcome, {{email}}!',
       enter_email: 'Enter your email',
       enter_password: 'Enter your password',
@@ -49,9 +59,22 @@ export const en = {
     signUpForm: {
       with_account: 'Already have an account?',
     },
+    waterModal: {
+      entered_data: 'Correct entered data:',
+      choose_value: 'Choose a value',
+      edit_entered_amount: 'Edit the entered amount <br /> of water',
+      water_amount: 'Amount of water',
+      record_time: 'Recording time',
+      enter_water_value: 'Enter the value of the water used',
+    },
+    trackerPage: {
+      daily_norm: 'My daily norma',
+      today: 'Today',
+    },
     errors: {
       try_again: 'Please, try again',
       Email_is_in_use: 'Email is in use',
+      User_not_found: 'User not found',
     },
   },
 };
