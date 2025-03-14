@@ -59,8 +59,8 @@ const UserSettingsForm = ({ onClose }) => {
       .required('Active sport time is required'),
     waterNorm: Yup.number()
       .typeError('Daily water norm must be a number')
-      .positive('Daily water norm number must be positive')
-      .min(0, 'Daily water norm must be at least 500 ml')
+      .min(0,5, 'Daily water norm must be at least 0,5 l')
+      .max(15000, 'Daily water norm cannot exceed 15000')
       .required('Daily water norm is required'),
   });
 
@@ -370,12 +370,11 @@ const UserSettingsForm = ({ onClose }) => {
             </label>
             <input
               id="dailyWater"
-              type="number"
+              type="text"
               step="0.01"
               {...register('waterNorm', {
-                valueAsNumber: true,
-                min: 500,
-                required: true
+                min: 0.5,
+                required: true,
               })}
               onBlur={() => trigger('waterNorm')}
               className={s.input}
