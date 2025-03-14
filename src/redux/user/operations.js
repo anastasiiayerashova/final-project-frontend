@@ -97,7 +97,7 @@ export const updateUserOperation = createAsyncThunk(
       return data
     }
     catch (e) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error during updating  avatar')
+      return thunkAPI.rejectWithValue(error.response?.data?.errors?.message || 'Error during updating  avatar')
     }
   }
 );
