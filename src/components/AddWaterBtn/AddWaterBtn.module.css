@@ -103,11 +103,21 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   background-color: transparent;
   border: 0;
-
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    .iconContainer,
+    .iconContainer {
+      background-color: var(--light-black);
+    }
+
+    .icon {
+      color: var(--white);
+    }
+  }
 }
 
 .iconContainer {
@@ -116,16 +126,9 @@
   align-items: center;
   width: 30px;
   height: 30px;
-
   background-color: var(--green);
   border-radius: 30px;
-
-  transition: background-color 0.3s ease;
-}
-
-.iconContainer:hover,
-.iconContainer:focus {
-  background-color: var(--hover-green);
+  transition: background-color 0.3s ease, color 0.3s ease 0s;
 }
 
 .detailsBtnText {
@@ -136,5 +139,7 @@
 }
 
 .icon {
-  fill: var(--light-black);
+  color: var(--light-black);
+  width: 100%;
+  height: 100%;
 }

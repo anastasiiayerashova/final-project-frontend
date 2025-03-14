@@ -1,17 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addWater,
+  fetchWaterDaily,
+  editWater,
+} from '../../redux/water/operations';
 import s from './WaterForm.module.css';
 import { useId } from 'react';
+import {
+  selectDate,
+  selectDayWaterList,
+  selectLoading,
+  selectWaterId,
+} from '../../redux/water/selectors';
+import { clearWaterId } from '../../redux/water/slice';
 
-const WaterForm = () => {
-  const { t } = useTranslation();
+const WaterForm = ({ onClose }) => {
+  const dispatch = useDispatch();
   const timeId = useId();
   const amountId = useId();
+  const { t } = useTranslation();
+  const waterId = useSelector(selectWaterId);
+  const dayWaterList = useSelector(selectDayWaterList);
+  const date = useSelector(selectDate);
+  const dateFormatted = useMemo(() => date.split('T')[0], [date]);
 
+  // Валидация
   const schema = yup.object().shape({
     time: yup
       .string()
@@ -31,58 +50,108 @@ const WaterForm = () => {
     handleSubmit,
     reset,
     trigger,
+    setValue,
     watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { time: '', amount: '' },
+    defaultValues: {
+      time: new Date().toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      amount: 50,
+    },
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
-  };
-
-  const onErrors = (errors) => {
-    console.log(errors);
-  };
-
   const [amount, setAmount] = useState(50);
-  const [isDisabled, setIsDisabled] = useState(false);
+
+  // Если waterId есть, значит редактируем запись
+  useEffect(() => {
+    if (waterId) {
+      const waterRecord = dayWaterList.find((item) => item._id === waterId);
+      if (waterRecord) {
+        const formattedTime = new Date(waterRecord.date).toLocaleTimeString(
+          'en-GB',
+          { hour: '2-digit', minute: '2-digit' },
+        );
+
+        setValue('time', formattedTime);
+        setValue('amount', waterRecord.value);
+        setAmount(waterRecord.value);
+      }
+    } else {
+      // Если waterId нет, сбрасываем значения формы
+      reset({
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        amount: 50,
+      });
+      setAmount(50);
+    }
+  }, [waterId, dayWaterList, setValue, reset]);
+
+  useEffect(() => {
+    setValue('amount', amount);
+    trigger('amount');
+  }, [amount, setValue, trigger]);
 
   const handleStepChange = (step) => {
     setAmount((prevAmount) => {
       const newAmount = prevAmount + step;
-      return Math.min(5000, Math.max(0, newAmount)); // ограничиваем 0 - 5000
+      return Math.min(5000, Math.max(50, newAmount));
     });
   };
 
-  // const handleInputChange = (e) => {
-  //     let value = Number(e.target.value);
-  //     if (isNaN(value)) return; // защита от NaN
+  const formatDate = (date, time) => {
+    const [hours, minutes] = time.split(':');
+    return `${date.toISOString().split('T')[0]}T${hours}:${minutes}`;
+  };
 
-  //     value = Math.min(5000, Math.max(0, value)); // ограничиваем диапазон
-  //     setAmount(value);
-  // };
+  const onSubmit = async (values) => {
+    try {
+      const formattedDate = formatDate(new Date(), values.time);
+      const requestData = {
+        date: formattedDate,
+        value: Number(values.amount),
+      };
 
-  const timeValue = watch('time');
-  const amountValue = watch('amount');
+      if (waterId) {
+        // Если waterId есть, значит редактируем
+        await dispatch(editWater({ waterId, newData: requestData })).unwrap();
+        toast.success(t('notifications.water_updated'));
+      } else {
+        // Если waterId нет, значит добавляем
+        await dispatch(addWater(requestData)).unwrap();
+        toast.success(t('notifications.water_added'));
+      }
 
-  useEffect(() => {
-    if (timeValue) {
-      trigger('time');
+      dispatch(fetchWaterDaily(dateFormatted));
+
+      reset({
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        amount: 50,
+      });
+
+      setAmount(50);
+      dispatch(clearWaterId()); // Очищаем waterId при закрытии формы
+      onClose();
+    } catch (error) {
+      toast.error(`Error: ${error}`); /*TRANSLATE THIS */
     }
-  }, [timeValue, trigger]);
+  };
 
-  useEffect(() => {
-    if (amountValue) {
-      trigger('amount');
-    }
-  }, [amountValue, trigger]);
+  const isLoading = useSelector(selectLoading);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onErrors)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={s.inputGroup}>
         <label htmlFor="amount" className={s.descrAmount}>
           {t('waterModal.water_amount')}:
@@ -90,9 +159,9 @@ const WaterForm = () => {
         <div className={s.controls}>
           <button
             className={s.minusButton}
-            disabled
             type="button"
             onClick={() => handleStepChange(-50)}
+            disabled={amount <= 50}
           >
             <svg className={s.iconMinus}>
               <use href="../../../public/sprite.svg#minus-plus"></use>
@@ -115,6 +184,7 @@ const WaterForm = () => {
           </button>
         </div>
       </div>
+
       <div className={s.inputGroup}>
         <label htmlFor={timeId} className={s.timeLabel}>
           {t('waterModal.record_time')}:
@@ -123,11 +193,12 @@ const WaterForm = () => {
           className={`${s.timeInput} ${errors.time ? s.inputError : ''}`}
           id={timeId}
           type="text"
-          placeholder="7:00" //add time
+          placeholder="7:00"
           {...register('time')}
         />
         {errors.time && <p className={s.error}>{errors.time.message}</p>}
       </div>
+
       <div className={s.inputGroup}>
         <label htmlFor={amountId} className={s.manualInput}>
           {t('waterModal.enter_water_value')}:
@@ -138,10 +209,24 @@ const WaterForm = () => {
           className={`${s.waterInput} ${errors.amount ? s.inputError : ''}`}
           placeholder="50"
           {...register('amount')}
+          value={amount}
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            if (!isNaN(value)) {
+              setAmount(value);
+            }
+          }}
         />
         {errors.amount && <p className={s.error}>{errors.amount.message}</p>}
       </div>
-      <button className={s.saveBtn}>{t('common.save')}</button>
+
+      <button
+        className={`${s.saveBtn} ${isLoading ? s.loading : ''}`}
+        type="submit"
+        disabled={isLoading}
+      >
+        {t(isLoading ? 'common.saving' : 'common.save')}
+      </button>
     </form>
   );
 };

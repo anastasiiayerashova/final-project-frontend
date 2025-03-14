@@ -1,111 +1,172 @@
-// src/components/UserSettingsForm/UserSettingsForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './UserSettingsForm.module.css';
-
-// react-hook-form + Yup
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-
-// redux
-import { useSelector } from 'react-redux';
-import { selectToken } from '../../redux/user/selectors'; // шлях до ваших селекторів
-
-// axios
-import { api, setAuthHeader } from '../../utils/axios.config'; // ваш файл із налаштованим axios
-
+import { toast } from 'react-hot-toast';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectDailySportTime,
+  selectDailyWaterNorm,
+  selectEmail,
+  selectGender,
+  selectName,
+  selectWeight,
+  selectAvatar,
+} from '../../redux/user/selectors';
+import {
+  updateUserAvatarOperation,
+  updateUserOperation,
+} from '../../redux/user/operations.js';
+import { MODAL_NAME } from '../../constants/index.js';
 import { useTranslation } from 'react-i18next';
 
-const UserSettingsForm = ({ initialData = {}, onClose }) => {
-  const { t } = useTranslation();
-  // Локальний стан для попереднього перегляду аватарки
-  const [avatarPreview, setAvatarPreview] = useState(
-    initialData?.avatar || null,
-  );
-
+const UserSettingsForm = ({ onClose }) => {
   const svgIcon = '/sprite.svg';
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const avatar = useSelector(selectAvatar);
+  const waterNorm = useSelector(selectDailyWaterNorm);
+  const name = useSelector(selectName);
+  const email = useSelector(selectEmail);
+  const gender = useSelector(selectGender);
+  const activeTime = useSelector(selectDailySportTime);
+  const weight = useSelector(selectWeight);
 
-  // Токен із Redux (для авторизації)
-  const token = useSelector(selectToken);
-
-  // Схема валідації (Yup)
   const validationSchema = Yup.object().shape({
     avatar: Yup.mixed(),
     gender: Yup.string().required('Please select your gender'),
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
+    name: Yup.string()
+      .required('Name is required')
+      .matches(
+        /^[а-яА-ЯёЁЇїІіЄєҐґa-zA-Z\s]+$/,
+        'Name must contain only letters',
+      ),
+    email: Yup.string()
+      .email('Invalid email address')
+      .matches(
+        /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i,
+        'Enter valid email',
+      )
+      .min(3, 'Email must be at least 3 characters')
+      .max(50, 'Email cannot exceed 50 characters')
+      .required('Email is required'),
     weight: Yup.number()
       .typeError('Weight must be a number')
-      .positive('Weight must be greater than 0')
+      .positive('Weight number must be positive')
+      .min(0, 'Weight must be at least 0 kg')
+      .max(500, 'Weight cannot exceed 50 kg')
       .required('Weight is required'),
     activeTime: Yup.number()
-      .typeError('Active time must be a number')
-      .min(0, 'Active time cannot be negative')
-      .required('Active time is required'),
+      .typeError('Active sport time must be a number')
+      .positive('Active sport time number must be positive')
+      .min(0, 'Active sport time must be at least 0 characters')
+      .max(24, 'Active sport time cannot exceed 24 hours')
+      .required('Active sport time is required'),
     waterNorm: Yup.number()
       .typeError('Daily water norm must be a number')
-      .min(0, 'Daily water norm cannot be negative')
+      .positive('Daily water norm number must be positive')
+      .min(500, 'Daily water norm must be at least 500 ml')
+      .max(5000, 'Daily water norm cannot exceed 5000 ml')
       .required('Daily water norm is required'),
   });
 
-  // Підключаємо форму
   const {
     register,
     handleSubmit,
+    clearErrors,
+    trigger,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    mode: 'onChange',
+    reValidateMode: 'onChange',
     defaultValues: {
-      // Заповнюємо форму з initialData (або пустими значеннями)
-      gender: initialData.gender || 'female',
-      name: initialData.name || 'Nadia',
-      email: initialData.email || 'nadia10@gmail.com',
-      weight: initialData.weight || '',
-      activeTime: initialData.dailySportTime || '',
-      waterNorm: initialData.dailyWaterNorm || '',
+      gender,
+      name,
+      email,
+      weight: weight || 0,
+      activeTime,
+      waterNorm: waterNorm ? waterNorm / 1000 : 0,
     },
   });
 
-  // Зміна файлу аватарки
-  const handleAvatarChange = (e) => {
+  const [avatarPreview, setAvatarPreview] = useState(avatar);
+  const [calculatedWaterAmount, setCalculatedWaterAmount] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const calculateWaterNorm = (weight, time, gender) => {
+    if (gender === 'woman') {
+      return (weight * 0.03 + time * 0.4).toFixed(2);
+    } else if (gender === 'man') {
+      return (weight * 0.04 + time * 0.6).toFixed(2);
+    }
+    return null;
+  };
+
+  const watchedWeight = watch('weight');
+  const watchedSportTime = watch('activeTime');
+  const watchedGender = watch('gender');
+
+  useEffect(() => {
+    const waterNorm = calculateWaterNorm(
+      Number(watchedWeight) || 0,
+      Number(watchedSportTime) || 0,
+      watchedGender,
+    );
+
+    if (!isNaN(waterNorm)) {
+      setCalculatedWaterAmount(waterNorm);
+    }
+  }, [watchedWeight, watchedSportTime, watchedGender]);
+
+  const handleChangeAvatar = (e) => {
     const file = e.target.files[0];
+
     if (file) {
-      setAvatarPreview(URL.createObjectURL(file));
+      const formData = new FormData();
+      const objectUrl = URL.createObjectURL(file);
+      setAvatarPreview(objectUrl);
+      formData.append('photo', file);
+      console.log([...formData.entries()]);
+      dispatch(updateUserAvatarOperation(formData));
+      clearErrors('avatar');
+      trigger('avatar');
     }
   };
 
-  // Сабміт форми
-  const onSubmit = async (data) => {
-    // Якщо є токен — встановлюємо заголовок авторизації
-    if (token) {
-      setAuthHeader(token);
-    }
+  const onSubmit = (values) => {
+    dispatch(
+      updateUserOperation({
+        email: values.email,
+        name: values.name,
+        gender: values.gender,
+        weight: values.weight,
+        dailySportTime: values.activeTime,
+        dailyWaterNorm: values.waterNorm,
+      }),
+    )
+      .unwrap()
+      .then((res) => {
+        toast.success('Your data was successfully updated', {
+          style: {
+            backgroundColor: 'white',
+            color: 'green',
+          },
+        });
+      })
+      .catch((e) => {
+        let errorMessage = e.message || 'Please, try again';
 
-    // Формуємо FormData
-    const formData = new FormData();
-    if (data.avatar && data.avatar[0]) {
-      formData.append('avatar', data.avatar[0]);
-    }
-    formData.append('gender', data.gender);
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('weight', data.weight);
-    formData.append('dailySportTime', data.activeTime);
-    formData.append('dailyWaterNorm', data.waterNorm);
-
-    try {
-      // Надсилаємо PUT/POST/PATCH (залежно від вашого бекенду)
-      // Приклад: PUT на '/auth/user'
-      const response = await api.put('/auth/user', formData);
-
-      // Якщо успіх — можете закрити модалку чи показати повідомлення
-      console.log('User updated:', response.data);
-      alert('User data updated successfully!');
-      if (onClose) onClose();
-    } catch (error) {
-      console.error('Update user error:', error);
-      alert(error.response?.data?.message || 'Error updating user data');
-    }
+        setIsSubmitting(false);
+        toast.error(errorMessage, {
+          style: {
+            backgroundColor: 'white',
+            color: 'red',
+          },
+        });
+      });
   };
 
   return (
@@ -133,10 +194,11 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
           <input
             type="file"
             id="avatar"
+            accept="image/*"
             {...register('avatar')}
             onChange={(e) => {
-              handleAvatarChange(e);
               register('avatar').onChange(e);
+              handleChangeAvatar(e);
             }}
             className={s.hiddenInput}
           />
@@ -248,8 +310,16 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
             <input
               id="weight"
               type="number"
-              {...register('weight')}
+              {...register('weight', {
+                valueAsNumber: true,
+                setValueAs: (v) => (v === '' ? 0 : v), // Авто-замена пустого значения на 0
+              })}
               className={s.input}
+              onKeyDown={(e) => {
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
+              }}
             />
             {errors.weight && (
               <p className={s.errorText}>{errors.weight.message}</p>
@@ -260,9 +330,14 @@ const UserSettingsForm = ({ initialData = {}, onClose }) => {
             <label htmlFor="sport" className={s.label_simple}>
               {t('settingModal.sport_time')}:
             </label>
-            <input id="sport" type="number" className={s.input} />
+            <input
+              id="sport"
+              type="number"
+              {...register('activeTime')}
+              className={s.input}
+            />
             {errors.weight && (
-              <p className={s.errorText}>{errors.sport.message}</p>
+              <p className={s.errorText}>{errors.activeTime.message}</p>
             )}
           </div>
           <div className={s.recommend_wrap}>

@@ -24,7 +24,7 @@ const WaterModal = ({ onClose, type }) => {
           ? t('waterModal.entered_data')
           : t('waterModal.choose_value')}
       </p>
-      <WaterForm />
+      <WaterForm onClose={onClose} />
     </div>
   );
 };

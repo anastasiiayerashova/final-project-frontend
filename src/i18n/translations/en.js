@@ -16,6 +16,7 @@ export const en = {
       repeat_password_label: 'Repeat Password',
       add_water: 'Add water',
       save: 'Save',
+      saving: 'Saving...',
       log_out: 'Log out',
       cancel: 'Cancel',
       settings: 'Setting',
@@ -58,6 +59,8 @@ export const en = {
       signing_up: 'Signing up...',
       want_leave: 'Do you really want to leave?',
       email_sent: 'Email with password reset instructions sent!',
+      water_updated: 'Water record updated successfully!',
+      water_added: 'Water record added successfully!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',

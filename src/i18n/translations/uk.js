@@ -15,6 +15,7 @@ export const uk = {
       repeat_password_label: 'Повторіть пароль',
       add_water: 'Додай воду',
       save: 'Зберегти',
+      saving: 'Збереження...',
       log_out: 'Вийти',
       cancel: 'Відміна',
       settings: 'Опції',
@@ -58,6 +59,8 @@ export const uk = {
       signing_up: 'Триває реєстрація...',
       want_leave: 'Ви дійсно хочете піти?',
       email_sent: 'Імейл з інструкціями щодо зміни паролю надіслано!',
+      water_updated: 'Успішно оновлено запис про воду!',
+      water_added: 'Запис про воду успішно додано!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
