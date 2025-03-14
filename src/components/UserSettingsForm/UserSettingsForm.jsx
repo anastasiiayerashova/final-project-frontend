@@ -61,7 +61,6 @@ const UserSettingsForm = ({ onClose }) => {
       .typeError('Daily water norm must be a number')
       .positive('Daily water norm number must be positive')
       .min(0, 'Daily water norm must be at least 500 ml')
-      // .max(5000, 'Daily water norm cannot exceed 5000 ml')
       .required('Daily water norm is required'),
   });
 
@@ -159,15 +158,12 @@ const UserSettingsForm = ({ onClose }) => {
             color: 'green',
           },
         });
-        // setTimeout(() => {
-        //   setIsDisabled(false)
-        //   onClose(MODAL_NAME.SETTINGS_MODAL)
-        // }, 2000)
+       
       })
       .catch((e) => {
         setIsDisabled(false)
         console.log(e)
-        let errorMessage = e || 'Please, try again';
+        let errorMessage = 'Please, try again';
 
         toast.error(errorMessage, {
           style: {
@@ -390,6 +386,9 @@ const UserSettingsForm = ({ onClose }) => {
               }}
               value={watch('waterNorm') ? watch('waterNorm') : ''}
             />
+             {errors.waterNorm && (
+              <p className={s.errorText}>{errors.waterNorm.message}</p>
+            )}
           </div>
 
           {/* Рекомендація */}
