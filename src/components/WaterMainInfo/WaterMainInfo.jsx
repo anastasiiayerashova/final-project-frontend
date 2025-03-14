@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 const WaterMainInfo = ({ openWaterModal }) => {
   const { t } = useTranslation();
   const handleOpenAddWaterModal = () => {
-    openWaterModal({ isOpen: true, type: TYPE.ADD_WATER });
+    openWaterModal({ isOpen: true/*, type: TYPE.ADD_WATER*/ });
   };
 
   return (
