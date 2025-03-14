@@ -21,11 +21,15 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-    //   logoutUser: (state) => {
-    //   state.token = null;
-    //   state.isLoggedIn = false;
-    //   state.user = initialState.user;
-    // }
+        resetToken: (state, { payload }) => {
+            state.token = payload
+            if (!payload || !payload.length) state.isLoggedIn = false
+            else state.isLoggedIn = true
+        },
+        refreshError: (state) => {
+            state.isLoggedIn = false
+            state.token = null
+        }
     },
     extraReducers: (builder) =>
         builder
@@ -70,4 +74,4 @@ const persistConfig = {
 }
 
 export const authReducer = persistReducer(persistConfig, userSlice.reducer)
-export const { resetToken, logoutUser } = userSlice.actions;
+export const { resetToken, refreshError } = userSlice.actions;
