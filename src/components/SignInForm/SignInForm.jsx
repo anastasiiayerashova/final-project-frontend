@@ -13,6 +13,7 @@ import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
 import { useValidationSchema } from '../../utils/hooks/useValidationSchema.js';
 import { useLastFocusedField } from '../../utils/hooks/useLastFocusedField.js';
+import { formattedErrorKey } from '../../i18n/utils/formattedErrorKey.js';
 
 const SignInForm = () => {
   const { t } = useTranslation();

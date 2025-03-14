@@ -2,12 +2,13 @@ import React from 'react';
 import sprite from '../../../public/sprite.svg';
 import Modal from 'react-modal';
 import s from './UserBarPopover.module.css';
+import { useTranslation } from 'react-i18next';
 
 // Встановлюємо root-елемент для модального вікна (зазвичай це #root)
 Modal.setAppElement('#root');
 
 const UserBarPopover = ({ setLogoutModal, popoverRef, setSettingsModal }) => {
-
+  const { t } = useTranslation();
   return (
     <div className={s.barPopover} ref={popoverRef}>
       <button className={s.barBtn} onClick={setSettingsModal}>
@@ -17,7 +18,7 @@ const UserBarPopover = ({ setLogoutModal, popoverRef, setSettingsModal }) => {
             className={s.barPopoverIconSettings}
           ></use>
         </svg>
-        <p className={s.setting}>Setting</p>
+        <p className={s.setting}>{t('common.settings')}</p>
       </button>
 
       <button className={s.barBtn} onClick={setLogoutModal}>
@@ -27,7 +28,7 @@ const UserBarPopover = ({ setLogoutModal, popoverRef, setSettingsModal }) => {
             className={s.barPopoverIconLogOut}
           ></use>
         </svg>
-        <p className={s.logOut}>Log out</p>
+        <p className={s.logOut}>{t('common.log_out')}</p>
       </button>
     </div>
   );

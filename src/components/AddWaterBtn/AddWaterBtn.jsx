@@ -3,10 +3,11 @@ import s from './AddWaterBtn.module.css';
 import { useSelector } from 'react-redux';
 import { selectDate } from '../../redux/water/selectors';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
   const svgIcon = '/sprite.svg';
-
+  const { t } = useTranslation();
   const date = useSelector(selectDate);
   const today = new Date();
 
@@ -22,7 +23,8 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
       className={clsx(small ? s.small : s.btn)}
       onClick={onClick}
     >
-      <span className={s.plus}></span>Add water
+      <span className={s.plus}></span>
+      {t('common.add_water')}
     </button>
   ) : (
     <button
@@ -35,7 +37,7 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
           <use href={`${svgIcon}#plus-green`} />
         </svg>
       </div>
-      <p className={s.detailsBtnText}>Add water</p>
+      <p className={s.detailsBtnText}>{t('common.add_water')}</p>
     </button>
   );
 };

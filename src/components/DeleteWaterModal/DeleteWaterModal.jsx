@@ -5,8 +5,10 @@ import s from './DeleteWaterModal.module.css';
 import { selectWaterId, selectDate } from '../../redux/water/selectors.js';
 import { clearWaterId } from '../../redux/water/slice.js';
 import { deleteWater, fetchWaterDaily } from '../../redux/water/operations.js';
+import { useTranslation } from 'react-i18next';
 
 const DeleteWaterModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isBtnDisabled, setBtnDisabled] = useState(false);
 
@@ -50,8 +52,8 @@ const DeleteWaterModal = ({ onClose }) => {
   return (
     <div className={s.delete_wrapper}>
       <div className={s.delete_desc}>
-        <h3>Delete entry</h3>
-        <p>Are you sure you want to delete the entry?</p>
+        <h3>{t('deleteWaterModal.delete_entry')}</h3>
+        <p>{t('deleteWaterModal.are_you_sure')}</p>
       </div>
       <div className={s.delete_btns}>
         <button
@@ -62,7 +64,7 @@ const DeleteWaterModal = ({ onClose }) => {
           {isBtnDisabled ? 'Deleting...' : 'Delete'}
         </button>
         <button className={`${s.button} ${s.cancelBtn}`} onClick={handleClose}>
-          Cancel
+          {t('common.cancel')}
         </button>
       </div>
     </div>

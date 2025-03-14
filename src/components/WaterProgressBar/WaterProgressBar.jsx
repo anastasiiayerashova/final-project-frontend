@@ -1,18 +1,19 @@
-import { useState } from 'react';
-import s from './WaterProgressBar.module.css'
+import s from './WaterProgressBar.module.css';
 import { useSelector } from 'react-redux';
 import { selectDailyWaterNorm } from '../../redux/user/selectors.js';
+import { useTranslation } from 'react-i18next';
 
 const WaterProgressBar = () => {
-  const dailyWaterNorm = useSelector(selectDailyWaterNorm)
-  const displayedPercentage = 0
-  
-    return (
-        <div className={s.container}>
-        <div className={s.data}>
-          <p>Today</p>
-        </div>
-            <div className={s.progressBar}>
+  const { t } = useTranslation();
+  const dailyWaterNorm = useSelector(selectDailyWaterNorm);
+  const displayedPercentage = 0;
+
+  return (
+    <div className={s.container}>
+      <div className={s.data}>
+        <p>{t('trackerPage.today')}</p>
+      </div>
+      <div className={s.progressBar}>
         <div
           className={s.progressBarFill}
           style={{
@@ -39,13 +40,18 @@ const WaterProgressBar = () => {
         ></div>
       </div>
       <div className={s.sliderScale}>
-        <span className={s.scaleMark} style={{ left: '0%' }}>0%</span>
-        <span className={s.scaleMark} style={{ left: '50%' }}>50%</span>
-        <span className={s.scaleMark} style={{ left: '100%' }}>100%</span>
+        <span className={s.scaleMark} style={{ left: '0%' }}>
+          0%
+        </span>
+        <span className={s.scaleMark} style={{ left: '50%' }}>
+          50%
+        </span>
+        <span className={s.scaleMark} style={{ left: '100%' }}>
+          100%
+        </span>
       </div>
-    
     </div>
-    )
- }
+  );
+};
 
 export default WaterProgressBar;

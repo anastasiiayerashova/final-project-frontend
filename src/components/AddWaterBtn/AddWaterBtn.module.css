@@ -1,6 +1,5 @@
 .btn {
   border-radius: 30px;
-  padding: 14px 20px;
   width: 140px;
   height: 46px;
   background-color: #323f47;
@@ -57,7 +56,6 @@
 @media (min-width: 768px) {
   .btn {
     border-radius: 30px;
-    padding: 18px 30px;
     width: 178px;
     height: 60px;
     font-weight: 700;
