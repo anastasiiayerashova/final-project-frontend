@@ -32,6 +32,9 @@
   position: absolute;
   top: 24px;
   left: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 89%;
 }
 
 .btn {
@@ -67,10 +70,13 @@
 
   .logo {
     position: absolute;
-    width: 155px;
+    /* width: 155px; */
     height: 24px;
     top: 32px;
     left: 32px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
   }
 
   .progress {
