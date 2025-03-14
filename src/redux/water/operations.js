@@ -89,3 +89,24 @@ export const editWater = createAsyncThunk(
     }
   },
 );
+
+export const fetchWaterMonth = createAsyncThunk(
+  'water/fetchWaterMonth',
+  async (month, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('User not authenticated');
+      }
+
+      const response = await api.get(`/water/monthly/${month}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

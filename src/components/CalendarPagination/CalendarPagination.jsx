@@ -1,39 +1,46 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import s from './CalendarPagination.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMonth } from '../../redux/water/selectors';
+import { setMonth } from '../../redux/water/slice';
 
 const CalendarPagination = () => {
+  const dispatch = useDispatch();
+  const monthRedux = useSelector(selectMonth);
   const svgIcon = '/sprite.svg';
 
-  // TODO Поточну дату отримуємо зі store (за замовчуванням - Сьогодні)
-  // useState - це тимчасове рішення
-  const [date, setDate] = useState(new Date());
-  const formatDate = (date) => {
-    const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
-      date,
-    );
-    const year = date.getFullYear();
-    return `${month}, ${year}`;
+  // Форматуємо дату як треба
+  const formatMonth = (monthString) => {
+    const [year, month] = monthString.split('-');
+    const date = new Date(year, month - 1);
+    const formattedMonth = new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+    }).format(date);
+    return `${formattedMonth}, ${year}`;
   };
-  const formattedDate = formatDate(date);
+  const formattedDate = useMemo(() => formatMonth(monthRedux), [monthRedux]);
 
   const handlePreviousMonth = () => {
-    setDate((prevDate) => {
-      const newDate = new Date(prevDate);
-      newDate.setDate(1); // Ставимо 1-е число месяця
-      newDate.setMonth(newDate.getMonth() - 1); // Змінюємо місяць
-      return newDate;
-    });
-    // TODO Відправити dispatch в store на встановлення поточного місяця і року
+    const [year, month] = monthRedux.split('-').map(Number);
+    let newMonth = month - 1;
+    let newYear = year;
+    if (newMonth < 1) {
+      newMonth = 12;
+      newYear -= 1;
+    }
+    // Змінюємо місяць і рік у стор у відповідному форматі
+    dispatch(setMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`));
   };
 
   const handleNextMonth = () => {
-    setDate((prevDate) => {
-      const newDate = new Date(prevDate);
-      newDate.setDate(1);
-      newDate.setMonth(newDate.getMonth() + 1);
-      return newDate;
-    });
-    // TODO Відправити dispatch в store на встановлення поточного місяця і року
+    const [year, month] = monthRedux.split('-').map(Number);
+    let newMonth = month + 1;
+    let newYear = year;
+    if (newMonth > 12) {
+      newMonth = 1;
+      newYear += 1;
+    }
+    dispatch(setMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`));
   };
 
   return (

@@ -1,56 +1,48 @@
-import { useState } from 'react';
 import s from './Calendar.module.css';
+import CalendarItem from '../CalendarItem/CalendarItem';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectLoading,
+  selectMonth,
+  selectMonthData,
+} from '../../redux/water/selectors';
+import { fetchWaterMonth } from '../../redux/water/operations';
+import { useEffect } from 'react';
 
 const Calendar = () => {
-  // TODO Поточну дату отримуємо зі store (за замовчуванням - Сьогодні)
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
+  const monthRedux = useSelector(selectMonth);
+  const daysArrayRedux = useSelector(selectMonthData);
 
-  // Визначаємо кількість днів на місяці (враховує високосні роки)
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const isLoading = useSelector(selectLoading);
 
-  // Робимо масив днів
+  const dispatch = useDispatch();
+
+  // Разбираем строку "YYYY-MM" на year и month
+  const [year, month] = monthRedux.split('-').map(Number);
+
+  // Определяем количество дней в месяце
+  const daysInMonth = new Date(year, month, 0).getDate();
+
+  // Создаем массив дней (от 1 до дней в месяце)
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
-  const today = new Date();
-  const todayDate = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
-
-  // TODO Стан обраного дня отримуємо зі store (за замовчуванням null)
-  const [selectedDay, setSelectedDay] = useState(null);
-
-  // Відправляємо в store обрану дату
-  const handleSelectDay = (day) => {
-    const selectedDate = new Date(year, month, day);
-    // TODO Відправити dispatch в store щодо обраного дня (повна дата)
-    console.log(`Selected date is: ${selectedDate.toDateString()}`);
-    setSelectedDay(day);
-  };
+  useEffect(() => {
+    dispatch(fetchWaterMonth(monthRedux));
+  }, [dispatch, monthRedux]);
 
   return (
-    <div className={s.calendar}>
+    <ul className={s.calendar}>
       {daysArray.map((day) => {
-        // Перевіряємо чи це число масива є Сьогодні
-        const isToday =
-          day === todayDate && month === todayMonth && year === todayYear;
+        // Создаем полную дату в формате ISO (YYYY-MM-DDTHH:mm:ss.sssZ)
+        const fullDate = new Date(Date.UTC(year, month - 1, day)).toISOString();
 
         return (
-          <div key={day} className={s.day}>
-            <button
-              className={`${s.dayNumber} ${isToday ? s.today : ''} ${
-                selectedDay === day ? s.selected : ''
-              }`}
-              onClick={() => handleSelectDay(day)}
-            >
-              {day}
-            </button>
-            <div className={s.percent}>100%</div>
-          </div>
+          <li key={day} className={s.day}>
+            <CalendarItem date={fullDate} />
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
 

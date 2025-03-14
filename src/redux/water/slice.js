@@ -4,10 +4,16 @@ import {
   deleteWater,
   editWater,
   fetchWaterDaily,
+  fetchWaterMonth,
 } from './operations';
+
+const getMonthFromDate = (dateString) => {
+  return dateString.slice(0, 7);
+};
 
 const initialState = {
   date: new Date().toISOString(),
+  month: getMonthFromDate(new Date().toISOString()),
   isDaySelected: false, // Якщо користувач обрав днь з календаря
   dayWaterList: [],
   monthData: [],
@@ -30,6 +36,15 @@ const slice = createSlice({
       const newDate = new Date().toISOString();
       state.date = newDate;
     },
+    setMonth: (state, action) => {
+      state.month = action.payload;
+    },
+    setDaySelected: (state, action) => {
+      state.isDaySelected = action.payload;
+    },
+    setDate: (state, action) => {
+      state.date = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -37,7 +52,6 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayWaterList = action.payload;
-        state.date = new Date().toISOString();
       })
       .addCase(addWater.fulfilled, (state) => {
         state.loading = false;
@@ -58,6 +72,11 @@ const slice = createSlice({
         if (index !== -1) {
           state.dayWaterList[index] = updatedItem; // Оновлюємо елемент по індексу
         }
+      })
+      .addCase(fetchWaterMonth.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.monthData = action.payload;
       })
       // При logoutі користвуача очищаємо всі дані в стейті
       // .addCase(logout.fulfilled, () => {
@@ -90,6 +109,13 @@ const slice = createSlice({
   },
 });
 
-export const { setWaterId, clearWaterId, updateDate } = slice.actions;
+export const {
+  setWaterId,
+  clearWaterId,
+  updateDate,
+  setMonth,
+  setDaySelected,
+  setDate,
+} = slice.actions;
 
 export const waterReducer = slice.reducer;
