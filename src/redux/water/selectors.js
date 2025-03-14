@@ -1,4 +1,6 @@
 export const selectLoading = (state) => state.water.loading;
+export const selectLoadingDaily = (state) => state.water.loadingDaily;
+export const selectLoadingMonthly = (state) => state.water.loadingMonthly;
 export const selectError = (state) => state.water.error;
 export const selectDayWaterList = (state) => state.water.dayWaterList;
 export const selectWaterId = (state) => state.water.waterId;

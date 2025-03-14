@@ -2,43 +2,56 @@ import s from './Calendar.module.css';
 import CalendarItem from '../CalendarItem/CalendarItem';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectLoading,
+  selectLoadingMonthly,
   selectMonth,
   selectMonthData,
 } from '../../redux/water/selectors';
-import { fetchWaterMonth } from '../../redux/water/operations';
+import { fetchWaterMonthly } from '../../redux/water/operations';
 import { useEffect } from 'react';
 
 const Calendar = () => {
   const monthRedux = useSelector(selectMonth);
   const daysArrayRedux = useSelector(selectMonthData);
-
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectLoadingMonthly);
 
   const dispatch = useDispatch();
 
-  // Разбираем строку "YYYY-MM" на year и month
+  // Розбираємо рядок "YYYY-MM" на year та month
   const [year, month] = monthRedux.split('-').map(Number);
 
-  // Определяем количество дней в месяце
+  // Визначаємо кількість днів на місяці
   const daysInMonth = new Date(year, month, 0).getDate();
 
-  // Создаем массив дней (от 1 до дней в месяце)
+  // Створюємо масив днів (від 1 до днів на місяць)
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   useEffect(() => {
-    dispatch(fetchWaterMonth(monthRedux));
+    dispatch(fetchWaterMonthly(monthRedux));
   }, [dispatch, monthRedux]);
 
   return (
     <ul className={s.calendar}>
       {daysArray.map((day) => {
-        // Создаем полную дату в формате ISO (YYYY-MM-DDTHH:mm:ss.sssZ)
-        const fullDate = new Date(Date.UTC(year, month - 1, day)).toISOString();
+        // Створюємо рядок дати у форматі YYYY-MM-DD
+        const formattedDate = `${year}-${String(month).padStart(
+          2,
+          '0',
+        )}-${String(day).padStart(2, '0')}`;
+
+        // Шукаємо дані для цього дня
+        const dayData = daysArrayRedux.find(
+          (entry) => entry.date === formattedDate,
+        );
+
+        const percentage = dayData ? dayData.percentage : 0;
 
         return (
           <li key={day} className={s.day}>
-            <CalendarItem date={fullDate} />
+            <CalendarItem
+              date={formattedDate}
+              percentage={percentage}
+              loading={isLoading}
+            />
           </li>
         );
       })}

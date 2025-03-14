@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import s from './CalendarPagination.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth } from '../../redux/water/selectors';
 import { setMonth } from '../../redux/water/slice';
+import { fetchWaterMonthly } from '../../redux/water/operations';
 
 const CalendarPagination = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,11 @@ const CalendarPagination = () => {
     }
     dispatch(setMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`));
   };
+
+  // Робимо запит на бекенд
+  useEffect(() => {
+    dispatch(fetchWaterMonthly(monthRedux));
+  }, [dispatch, monthRedux]);
 
   return (
     <div className={s.CalendarPagination}>

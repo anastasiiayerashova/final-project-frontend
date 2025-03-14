@@ -90,8 +90,8 @@ export const editWater = createAsyncThunk(
   },
 );
 
-export const fetchWaterMonth = createAsyncThunk(
-  'water/fetchWaterMonth',
+export const fetchWaterMonthly = createAsyncThunk(
+  'water/fetchWaterMonthly',
   async (month, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
@@ -106,6 +106,9 @@ export const fetchWaterMonth = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
+      if (error.response?.status === 404) {
+        return []; // Якщо `404`, то це нормально: записуємо пустий масив у store
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   },

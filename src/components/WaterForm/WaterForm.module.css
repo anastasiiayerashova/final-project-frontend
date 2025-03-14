@@ -102,8 +102,22 @@
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #323f47;
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--green-hover);
+  }
+
+  &.loading {
+    color: rgba(50, 63, 71, 0.3);
+    background-color: var(--grey);
+    cursor: not-allowed;
+  }
 }
 
 input[type='number']::-webkit-outer-spin-button,

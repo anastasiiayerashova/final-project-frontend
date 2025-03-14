@@ -76,7 +76,8 @@
   color: rgba(50, 63, 71);
 }
 
-.delete_btn:hover {
+.delete_btn:hover,
+.delete_btn:focus {
   background-color: var(--green-hover);
 }
 

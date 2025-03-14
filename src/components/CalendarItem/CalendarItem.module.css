@@ -1,0 +1,95 @@
+.dayBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+
+  @media screen and (min-width: 768px) {
+    gap: 4px;
+  }
+}
+
+.dayNumber {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(50, 63, 71, 0.2);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--light-black);
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s, color 0.3s ease 0s;
+
+  @media screen and (min-width: 768px) {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  &.today {
+    border: 2px solid var(--light-black);
+  }
+
+  &.completed {
+    background: var(--white);
+  }
+
+  &.selected,
+  &:hover,
+  &:focus {
+    background-color: var(--light-black);
+    color: var(--green);
+    outline: none;
+  }
+}
+
+.percent {
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(47, 47, 47, 0.6);
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 1.86667;
+  }
+}
+
+/* ========================================================================================================================== */
+
+/* Ефект завантаження */
+.dayNumber.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.dayNumber.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(50, 63, 71, 0) 0%,
+    rgba(50, 63, 71, 0.2) 50%,
+    rgba(50, 63, 71, 0) 100%
+  );
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

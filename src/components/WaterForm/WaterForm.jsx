@@ -8,6 +8,7 @@ import {
   addWater,
   fetchWaterDaily,
   editWater,
+  fetchWaterMonthly,
 } from '../../redux/water/operations';
 import s from './WaterForm.module.css';
 import { useId } from 'react';
@@ -15,6 +16,7 @@ import {
   selectDate,
   selectDayWaterList,
   selectLoading,
+  selectMonth,
   selectWaterId,
 } from '../../redux/water/selectors';
 import { clearWaterId } from '../../redux/water/slice';
@@ -28,6 +30,7 @@ const WaterForm = ({ onClose }) => {
   const dayWaterList = useSelector(selectDayWaterList);
   const date = useSelector(selectDate);
   const dateFormatted = useMemo(() => date.split('T')[0], [date]);
+  const month = useSelector(selectMonth);
 
   // Валидация
   const schema = yup.object().shape({
@@ -66,7 +69,7 @@ const WaterForm = ({ onClose }) => {
 
   const [amount, setAmount] = useState(50);
 
-  // Если waterId есть, значит редактируем запись
+  // Якщо waterId є, значить редагуємо запис
   useEffect(() => {
     if (waterId) {
       const waterRecord = dayWaterList.find((item) => item._id === waterId);
@@ -81,7 +84,7 @@ const WaterForm = ({ onClose }) => {
         setAmount(waterRecord.value);
       }
     } else {
-      // Если waterId нет, сбрасываем значения формы
+      // Якщо waterId немає, скидаємо значення форми
       reset({
         time: new Date().toLocaleTimeString('en-GB', {
           hour: '2-digit',
@@ -112,23 +115,21 @@ const WaterForm = ({ onClose }) => {
 
   const onSubmit = async (values) => {
     try {
-      const formattedDate = formatDate(new Date(), values.time);
+      const formattedDate = formatDate(new Date(date), values.time);
       const requestData = {
         date: formattedDate,
         value: Number(values.amount),
       };
 
       if (waterId) {
-        // Если waterId есть, значит редактируем
+        // Якщо waterId є, значить редагуємо
         await dispatch(editWater({ waterId, newData: requestData })).unwrap();
         toast.success('Water record updated successfully!');
       } else {
-        // Если waterId нет, значит добавляем
+        // Якщо waterId немає, значить додаємо
         await dispatch(addWater(requestData)).unwrap();
         toast.success('Water record added successfully!');
       }
-
-      dispatch(fetchWaterDaily(dateFormatted));
 
       reset({
         time: new Date().toLocaleTimeString('en-GB', {
@@ -139,8 +140,11 @@ const WaterForm = ({ onClose }) => {
       });
 
       setAmount(50);
-      dispatch(clearWaterId()); // Очищаем waterId при закрытии формы
+      dispatch(clearWaterId()); // Очищаємо waterId при закритті форми
       onClose();
+
+      await dispatch(fetchWaterDaily(dateFormatted)).unwrap();
+      dispatch(fetchWaterMonthly(month)).unwrap();
     } catch (error) {
       toast.error(`Error: ${error}`);
     }
