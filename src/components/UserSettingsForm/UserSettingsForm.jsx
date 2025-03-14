@@ -59,8 +59,8 @@ const UserSettingsForm = ({ onClose }) => {
       .required('Active sport time is required'),
     waterNorm: Yup.number()
       .typeError('Daily water norm must be a number')
-      .min(0,5, 'Daily water norm must be at least 0,5 l')
-      .max(15000, 'Daily water norm cannot exceed 15000')
+      .min(0.5, 'Daily water norm must be at least 0.5 L')
+      .max(15, 'Daily water norm cannot exceed 15 L')
       .required('Daily water norm is required'),
   });
 
