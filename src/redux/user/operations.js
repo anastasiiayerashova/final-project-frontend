@@ -88,11 +88,32 @@ export const getCurrentUserDataOperation = createAsyncThunk(
   },
 );
 
-export const updateUserOperation = createAsyncThunk();
+export const updateUserOperation = createAsyncThunk(
+  'user/updateUser',
+  async (cred, thunkAPI) => {
+    try {
+      const { data: { data } } = await api.patch('/auth/data', cred)
+      
+      return data
+    }
+    catch (e) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error during updating  avatar')
+    }
+  }
+);
 
 export const updateUserAvatarOperation = createAsyncThunk(
   'user/updateAvatar',
-  async (file, thunkAPI) => {},
+  async (file, thunkAPI) => {
+    try {
+      const { data: {data} } = await api.put('/auth/data-avatar-load', file)
+      
+      return data
+    }
+    catch (e) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error during updating  avatar')
+    }
+  },
 );
 
 export const refreshUserOperation = createAsyncThunk(
