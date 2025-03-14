@@ -23,6 +23,7 @@ export const en = {
       send_email: 'Send email',
       go_home: 'Go Home',
       delete: 'Delete',
+      change_pwd: 'Change password',
     },
     advantagesSection: {
       customers_text: `{{count}} <span class={{class}}>happy</span> customers`,
@@ -61,6 +62,8 @@ export const en = {
       email_sent: 'Email with password reset instructions sent!',
       water_updated: 'Water record updated successfully!',
       water_added: 'Water record added successfully!',
+      check_email: 'Please, check your email',
+      changed_password: 'Password changed successfully!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',
@@ -106,7 +109,14 @@ export const en = {
       today: 'Today',
       month_general: 'Month',
     },
+    changePasswordPage: {
+      change_pwd: 'Change your password',
+      new_password: 'New password',
+      enter_new_pwd: 'Enter new password',
+      repeat_new_pwd: 'Repeat new password',
+    },
     errors: {
+      failed_change_pwd: 'Failed to change password. Try again!',
       try_again: 'Please, try again',
       try_again_wrong: 'Please, try again later, something went wrong',
       Email_is_in_use: 'Email is in use',

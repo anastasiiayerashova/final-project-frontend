@@ -22,6 +22,7 @@ export const uk = {
       send_email: 'Відправити імейл',
       go_home: 'На Головну',
       delete: 'Видалити',
+      change_pwd: 'Змінити пароль',
     },
 
     advantagesSection: {
@@ -61,6 +62,8 @@ export const uk = {
       email_sent: 'Імейл з інструкціями щодо зміни паролю надіслано!',
       water_updated: 'Успішно оновлено запис про воду!',
       water_added: 'Запис про воду успішно додано!',
+      check_email: 'Будь ласка, перевірте вашу електронну пошту',
+      changed_password: 'Пароль успішно змінено!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
@@ -105,8 +108,14 @@ export const uk = {
       delete_entry: 'Видалення запису',
       are_you_sure: 'Ви впевнені, що хочете видалити запис?',
     },
-
+    changePasswordPage: {
+      change_pwd: 'Змініть свій пароль',
+      new_password: 'Новий пароль',
+      enter_new_pwd: 'Введіть новий пароль',
+      repeat_new_pwd: 'Повторіть новий пароль',
+    },
     errors: {
+      failed_change_pwd: 'Не вдалося змінити пароль. Спробуйте ще раз!',
       try_again: 'Будь ласка, спробуйте ще раз',
       try_again_wrong: 'Будь ласка, спробуйте пізніше, щось пішло не так',
       Email_is_in_use: 'Електронна пошта вже використовується',
