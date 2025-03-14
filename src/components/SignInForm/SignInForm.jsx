@@ -65,7 +65,7 @@ const SignInForm = () => {
       })
       .catch((e) => {
         let errorMessage =
-          t(`errors.${formattedErrorKey(e)}`) || t('errors.try_again');
+          e
         toast.error(errorMessage, {
           style: {
             backgroundColor: 'white',

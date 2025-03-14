@@ -40,6 +40,10 @@ export const loginUserOperation = createAsyncThunk(
 
       return { accessToken: accessToken };
     } catch (e) {
+      console.log(e.response.status)
+      if (e.response.status === 401) {
+        return thunkAPI.rejectWithValue('Wrong password')
+      }
       return thunkAPI.rejectWithValue(e.response.data.data.message);
     }
   },
