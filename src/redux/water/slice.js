@@ -8,11 +8,12 @@ import {
 
 const initialState = {
   date: new Date().toISOString(),
+  isDaySelected: false, // Якщо користувач обрав днь з календаря
   dayWaterList: [],
   monthData: [],
   loading: false,
   error: null,
-  waterId: null, // для видалення або редагування конкретного запису про воду
+  waterId: null, // Для видалення або редагування конкретного запису про воду
 };
 
 const slice = createSlice({
@@ -25,6 +26,10 @@ const slice = createSlice({
     clearWaterId: (state) => {
       state.waterId = null;
     },
+    updateDate: (state) => {
+      const newDate = new Date().toISOString();
+      state.date = newDate;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -32,6 +37,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
         state.dayWaterList = action.payload;
+        state.date = new Date().toISOString();
       })
       .addCase(addWater.fulfilled, (state) => {
         state.loading = false;
@@ -84,6 +90,6 @@ const slice = createSlice({
   },
 });
 
-export const { setWaterId, clearWaterId } = slice.actions;
+export const { setWaterId, clearWaterId, updateDate } = slice.actions;
 
 export const waterReducer = slice.reducer;

@@ -50,7 +50,6 @@ const WaterForm = ({ onClose }) => {
     reset,
     trigger,
     setValue,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -176,6 +175,7 @@ const WaterForm = ({ onClose }) => {
             className={s.plusButton}
             type="button"
             onClick={() => handleStepChange(50)}
+            disabled={amount >= 5000}
           >
             <svg className={s.iconPlus}>
               <use href="../../../public/sprite.svg#plus-minus"></use>

@@ -95,23 +95,15 @@
 .saveBtn {
   border-radius: 30px;
   padding: 14px 40px;
-  min-width: 116px;
+  width: 116px;
   height: 46px;
   background-color: #9be1a0;
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
+  text-align: center;
   color: #323f47;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.loading {
-    background: #f0eff4;
-    color: rgba(50, 63, 71, 0.3);
-    cursor: not-allowed;
-  }
 }
 
 input[type='number']::-webkit-outer-spin-button,
