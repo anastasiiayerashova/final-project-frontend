@@ -11,6 +11,15 @@ const CalendarPagination = () => {
   const monthRedux = useSelector(selectMonth);
   const svgIcon = '/sprite.svg';
 
+  // Поточний місяць у форматі "YYYY-MM"
+  const currentMonth = useMemo(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(
+      2,
+      '0',
+    )}`;
+  }, []);
+
   // Форматуємо дату як треба
   const formatMonth = (monthString) => {
     const [year, month] = monthString.split('-');
@@ -62,7 +71,12 @@ const CalendarPagination = () => {
         </svg>
       </button>
       <div className={s.date}>{formattedDate}</div>
-      <button className={s.btnArrow} type="button" onClick={handleNextMonth}>
+      <button
+        className={s.btnArrow}
+        type="button"
+        onClick={handleNextMonth}
+        disabled={monthRedux === currentMonth}
+      >
         <svg className={s.svgIconRight}>
           <use href={`${svgIcon}#chevron-up`} />
         </svg>

@@ -144,24 +144,26 @@ const WaterForm = ({ onClose }) => {
       dispatch(clearWaterId()); // Очищаємо waterId при закритті форми
       onClose();
 
-      await dispatch(fetchWaterDaily(dateFormatted)).unwrap();
-      dispatch(fetchWaterMonthly(month)).unwrap();
+      await Promise.all([
+        dispatch(fetchWaterDaily(dateFormatted)).unwrap(),
+        dispatch(fetchWaterMonthly(month)).unwrap(),
+      ]);
     } catch (error) {
       toast.error(`Error: ${error}`); /*TRANSLATE THIS */
     }
   };
 
-    const isLoading = useSelector(selectLoading);
-    
-    const onError = (errors) => {
-     console.log(errors)
-      toast.error(t('errors.try_again'), {
-        style: {
-          backgroundColor: 'white',
-          color: 'red',
-        },
-      });
-  }
+  const isLoading = useSelector(selectLoading);
+
+  const onError = (errors) => {
+    console.log(errors);
+    toast.error(t('errors.try_again'), {
+      style: {
+        backgroundColor: 'white',
+        color: 'red',
+      },
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>

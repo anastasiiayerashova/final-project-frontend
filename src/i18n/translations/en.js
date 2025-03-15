@@ -128,6 +128,7 @@ export const en = {
       daily_norm: 'My daily norma',
       today: 'Today',
       month_general: 'Month',
+      statistics: 'Statistics',
     },
     changePasswordPage: {
       change_pwd: 'Change your password',

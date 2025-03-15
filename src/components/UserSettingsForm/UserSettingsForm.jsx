@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import s from './UserSettingsForm.module.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -18,7 +17,6 @@ import {
   updateUserAvatarOperation,
   updateUserOperation,
 } from '../../redux/user/operations.js';
-import { MODAL_NAME } from '../../constants/index.js';
 import { useTranslation } from 'react-i18next';
 import { useUserValidationSchema } from '../../utils/hooks/useUserValidationSchema.js';
 
@@ -47,7 +45,7 @@ const UserSettingsForm = ({ onClose }) => {
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
-    
+
     defaultValues: {
       gender,
       name,
@@ -75,11 +73,11 @@ const UserSettingsForm = ({ onClose }) => {
   const watchedSportTime = watch('activeTime');
   const watchedGender = watch('gender');
 
-   useEffect(() => {
-      if (watchedSportTime) {
-        trigger('activeTime');
-      }
-    }, [watchedSportTime, trigger]);
+  useEffect(() => {
+    if (watchedSportTime) {
+      trigger('activeTime');
+    }
+  }, [watchedSportTime, trigger]);
 
   useEffect(() => {
     const waterNorm = calculateWaterNorm(
@@ -108,54 +106,52 @@ const UserSettingsForm = ({ onClose }) => {
     }
   };
 
-  const onSubmit = (values) => {
-    setIsDisabled(true)
-    console.log(values)
-    dispatch(
-      updateUserOperation({
-        email: values.email,
-        name: values.name,
-        gender: values.gender,
-        weight: values.weight,
-        dailySportTime: values.activeTime,
-        dailyWaterNorm: values.waterNorm * 1000,
-      }),
-    )
-      .unwrap()
-      .then((res) => {
-        console.log(res)
-        toast.success('Your data was successfully updated', {
-          style: {
-            backgroundColor: 'white',
-            color: 'green',
-          },
-        });
-       
-      })
-      .catch((e) => {
-        setIsDisabled(false)
-        console.log(e)
-        let errorMessage = 'Please, try again';
+  const onSubmit = async (values) => {
+    setIsDisabled(true);
+    try {
+      await dispatch(
+        updateUserOperation({
+          email: values.email,
+          name: values.name,
+          gender: values.gender,
+          weight: values.weight,
+          dailySportTime: values.activeTime,
+          dailyWaterNorm: values.waterNorm * 1000,
+        }),
+      ).unwrap();
 
-        toast.error(errorMessage, {
-          style: {
-            backgroundColor: 'white',
-            color: 'red',
-          },
-        });
+      toast.success(t('notifications.data_updated'), {
+        style: {
+          backgroundColor: 'white',
+          color: 'green',
+        },
       });
-  };
 
-  const onError = (errors) => {
-     console.log(errors)
-      toast.error(t('errors.try_again'), {
+      onClose(); // Закриваємо лише після успішного запиту
+    } catch (error) {
+      console.log(error);
+      setIsDisabled(false);
+      let errorMessage = t('errors.try_again');
+
+      toast.error(errorMessage, {
         style: {
           backgroundColor: 'white',
           color: 'red',
         },
       });
-  }
-  
+    }
+  };
+
+  const onError = (errors) => {
+    console.log(errors);
+    toast.error(t('errors.try_again'), {
+      style: {
+        backgroundColor: 'white',
+        color: 'red',
+      },
+    });
+  };
+
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit, onError)}>
       <h2 className={s.title}>{t('common.settings')}</h2>
@@ -200,12 +196,22 @@ const UserSettingsForm = ({ onClose }) => {
           <div className={s.formGroup}>
             <p className={s.bold_text}>{t('settingModal.gender_identity')}</p>
             <div className={s.genderWrapper}>
-              <label className={s.radioLabel} htmlFor='woman'>
-                <input id="woman" type="radio" value="woman" {...register('gender')} />
+              <label className={s.radioLabel} htmlFor="woman">
+                <input
+                  id="woman"
+                  type="radio"
+                  value="woman"
+                  {...register('gender')}
+                />
                 {t('settingModal.woman')}
               </label>
-              <label className={s.radioLabel} htmlFor='man'>
-                <input type="radio" id="man" value="man" {...register('gender')} />
+              <label className={s.radioLabel} htmlFor="man">
+                <input
+                  type="radio"
+                  id="man"
+                  value="man"
+                  {...register('gender')}
+                />
                 {t('settingModal.man')}
               </label>
             </div>
@@ -249,23 +255,23 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
 
           {/* Денна норма */}
-          
-            <label htmlFor="waterNorm" className={s.bold_text}>
-              {t('trackerPage.daily_norm')}
-            </label>
+
+          <label htmlFor="waterNorm" className={s.bold_text}>
+            {t('trackerPage.daily_norm')}
+          </label>
 
           {/* Формула */}
           <div className={s.formula_wrap}>
             <div className={s.formula_info_wrapper}>
-            <div className={s.formulaInfo}>
-              <p>{t('settingModal.for_woman')}:</p>
-              <span>V=(M*0,03) + (T*0,4)</span>
+              <div className={s.formulaInfo}>
+                <p>{t('settingModal.for_woman')}:</p>
+                <span>V=(M*0,03) + (T*0,4)</span>
+              </div>
+              <div className={s.formulaInfo}>
+                <p>{t('settingModal.for_man')}:</p>
+                <span>V=(M*0,04) + (T*0,6)</span>
+              </div>
             </div>
-            <div className={s.formulaInfo}>
-              <p>{t('settingModal.for_man')}:</p>
-              <span>V=(M*0,04) + (T*0,6)</span>
-              </div>
-              </div>
             <div></div>
             <p className={s.hint}>
               <span>* </span>
@@ -293,16 +299,16 @@ const UserSettingsForm = ({ onClose }) => {
               {...register('weight', {
                 valueAsNumber: true,
                 min: 1,
-                required: true
+                required: true,
               })}
               onBlur={() => trigger('weight')}
               step="0.01"
               className={s.input}
               onKeyDown={(e) => {
-                    if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
-                      e.preventDefault();
-                    }
-                  }}
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
+              }}
             />
             {errors.weight && (
               <p className={s.errorText}>{errors.weight.message}</p>
@@ -319,15 +325,15 @@ const UserSettingsForm = ({ onClose }) => {
               {...register('activeTime', {
                 valueAsNumber: true,
                 min: 0,
-                required: true
+                required: true,
               })}
               className={s.input}
               onBlur={() => trigger('activeTime')}
               onKeyDown={(e) => {
-                    if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
-                      e.preventDefault();
-                    }
-                  }}
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
+              }}
             />
             {errors.activeTime && (
               <p className={s.errorText}>{errors.activeTime.message}</p>
@@ -335,7 +341,9 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
           <div className={s.recommend_wrap}>
             <p>{t('settingModal.recommend_water_intake')}:</p>
-            <span>{calculatedWaterAmount ? `${calculatedWaterAmount} L` : '1.5 L' }</span>
+            <span>
+              {calculatedWaterAmount ? `${calculatedWaterAmount} L` : '1.5 L'}
+            </span>
           </div>
           {/* Скільки планує пити */}
           <div className={s.formGroup_3}>
@@ -353,13 +361,13 @@ const UserSettingsForm = ({ onClose }) => {
               onBlur={() => trigger('waterNorm')}
               className={s.input}
               onKeyDown={(e) => {
-                    if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
-                      e.preventDefault();
-                    }
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
               }}
               value={watch('waterNorm') ? watch('waterNorm') : ''}
             />
-             {errors.waterNorm && (
+            {errors.waterNorm && (
               <p className={s.errorText}>{errors.waterNorm.message}</p>
             )}
           </div>
@@ -368,8 +376,8 @@ const UserSettingsForm = ({ onClose }) => {
         </div>
       </div>
       {/* Кнопка сабміту */}
-      <button type="submit" className={s.saveButton}>
-        {t('common.save')}
+      <button type="submit" className={s.saveButton} disabled={isDisabled}>
+        {isDisabled ? t('common.saving') : t('common.save')}
       </button>
     </form>
   );

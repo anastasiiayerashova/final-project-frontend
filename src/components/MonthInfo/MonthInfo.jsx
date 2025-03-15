@@ -11,13 +11,17 @@ const MonthInfo = () => {
   const [isCalendar, setIsCalender] = useState(true);
 
   const handleClick = () => {
-        setIsCalender(!isCalendar);
-    };
+    setIsCalender(!isCalendar);
+  };
 
   return (
     <div className={s.MonthInfo}>
       <div className={s.MonthInfoHeader}>
-        <h3 className={s.title}>{t('trackerPage.month_general')}</h3>
+        <h3 className={s.title}>
+          {isCalendar
+            ? t('trackerPage.month_general')
+            : t('trackerPage.statistics')}
+        </h3>
         <CalendarPagination />
         <button className={s.btnChart} type="button" onClick={handleClick}>
           <svg className={s.svgIcon}>
@@ -25,7 +29,7 @@ const MonthInfo = () => {
           </svg>
         </button>
       </div>
-      {isCalendar ? (<Calendar/>) : (<WaterChart/>)}
+      {isCalendar ? <Calendar /> : <WaterChart />}
     </div>
   );
 };
