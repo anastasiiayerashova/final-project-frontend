@@ -2,12 +2,29 @@ import { useMemo } from 'react';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
-export const useValidationSchema = (repeatPassword = false) => {
-  const { t, i18n } = useTranslation();
+export const useValidationSchema = (
+  repeatPassword = false,
+  includeEmail = true,
+) => {
+  const { t } = useTranslation();
 
-  const schema = useMemo(() => {
-    let shape = {
-      email: yup
+  return useMemo(() => {
+    const shape = {
+      password: yup
+        .string()
+        .min(3, t('validation.password_min'))
+        .max(50, t('validation.password_max'))
+        .required(t('validation.password_required')),
+    };
+    if (repeatPassword) {
+      shape.repeatPassword = yup
+        .string()
+        .oneOf([yup.ref('password'), null], t('validation.password_match'))
+        .required(t('validation.password_required'));
+    }
+
+    if (includeEmail) {
+      shape.email = yup
         .string()
         .email(t('validation.invalid_email'))
         .matches(
@@ -16,26 +33,9 @@ export const useValidationSchema = (repeatPassword = false) => {
         )
         .min(3, t('validation.email_min'))
         .max(50, t('validation.email_max'))
-        .required(t('validation.email_required')),
-
-      password: yup
-        .string()
-        .min(3, t('validation.password_min'))
-        .max(50, t('validation.password_max'))
-        .required(t('validation.password_required')),
-    };
-
-    if (repeatPassword) {
-      shape.repeatPassword = yup
-        .string()
-        .min(3, t('validation.password_min'))
-        .max(50, t('validation.password_max'))
-        .oneOf([yup.ref('password'), null], t('validation.password_match'))
-        .required(t('validation.password_required'));
+        .required(t('validation.email_required'));
     }
 
     return yup.object().shape(shape);
-  }, [t, i18n.language, repeatPassword]);
-
-  return schema;
+  }, [t, repeatPassword, includeEmail]);
 };

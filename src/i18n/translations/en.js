@@ -23,6 +23,8 @@ export const en = {
       send_email: 'Send email',
       go_home: 'Go Home',
       delete: 'Delete',
+      deleting: 'Deleting...',
+      change_pwd: 'Change password',
     },
     advantagesSection: {
       customers_text: `{{count}} <span class={{class}}>happy</span> customers`,
@@ -49,6 +51,24 @@ export const en = {
       number_min: 'Amount of water must be at least 50 ml',
       number_max: 'Amount of water cannot exceed 5000 ml',
       water_required: 'Amount of water is required',
+      gender: 'Please select your gender',
+      name_required: 'Name is required',
+      name_contain: 'Name must contain only letters',
+      water_min: 'Daily water norm must be at least 0.5 L',
+      water_max: 'Daily water norm cannot exceed 15 L',
+    },
+
+    commonUserValidation: {
+      number: '{{field}} must be a number',
+      required: '{{field}} is required',
+      positive: '{{field}} must be positive',
+      min: '{{field}} must be at least {{min}}',
+      max: '{{field}} cannot exceed {{max}}',
+    },
+    values: {
+      activeTime: 'Active sport time ',
+      waterNorm: 'Daily water norm',
+      weight: 'Weight',
     },
     notifications: {
       hello: 'Hello, {{user}}!',
@@ -61,6 +81,9 @@ export const en = {
       email_sent: 'Email with password reset instructions sent!',
       water_updated: 'Water record updated successfully!',
       water_added: 'Water record added successfully!',
+      water_deleted: 'Water record successfully deleted!',
+      check_email: 'Please, check your email',
+      changed_password: 'Password changed successfully!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',
@@ -106,12 +129,30 @@ export const en = {
       today: 'Today',
       month_general: 'Month',
     },
+    changePasswordPage: {
+      change_pwd: 'Change your password',
+      new_password: 'New password',
+      enter_new_pwd: 'Enter new password',
+      repeat_new_pwd: 'Repeat new password',
+    },
     errors: {
+      failed_change_pwd: 'Failed to change password. Try again!',
+      Failed_to_send_the_email_please_try_again_later:
+        'Failed to send the email, please try again later',
       try_again: 'Please, try again',
       try_again_wrong: 'Please, try again later, something went wrong',
       Email_is_in_use: 'Email is in use',
       User_not_found: 'User not found',
       no_response: 'No response',
+      Session_not_found: 'Session not found',
+      Session_token_expired: 'Session token expired',
+    },
+    waterList: {
+      cannot_record: 'You cannot record water consumption for future dates.',
+      select_valid_date: 'Please select a valid date.',
+      nothing_here: 'Looks like there is nothing here yet.',
+      click_addWater:
+        "Click 'Add Water' to log your water intake for this day.",
     },
   },
 };

@@ -64,8 +64,14 @@ const SignInForm = () => {
         navigate('/tracker');
       })
       .catch((e) => {
-        let errorMessage =
-          e
+        let errorMessage
+        if (e.response?.status === 404) {
+            errorMessage = t("errors.User_not_found")
+        }
+        else {
+            errorMessage = t(`errors.${formattedErrorKey(e)}`);
+        }
+        
         toast.error(errorMessage, {
           style: {
             backgroundColor: 'white',

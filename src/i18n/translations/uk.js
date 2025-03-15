@@ -22,6 +22,8 @@ export const uk = {
       send_email: 'Відправити імейл',
       go_home: 'На Головну',
       delete: 'Видалити',
+      deleting: 'Видалення...',
+      change_pwd: 'Змінити пароль',
     },
 
     advantagesSection: {
@@ -49,7 +51,26 @@ export const uk = {
       number_min: "Об'єм води не може бути менше 50 мл",
       number_max: "Об'єм води не може перевищувати 5000 мл",
       water_required: "Об'єм води є обов'язковим",
+      gender: 'Будь ласка, оберіть стать',
+      name_required: "Ім'я є обов'язковим",
+      name_contain: "Ім'я повинно містити лише літери",
+      water_min: 'Добова норма води має бути не менше 0,5 л',
+      water_max: 'Добова норма води не може перевищувати 15 л',
     },
+
+    commonUserValidation: {
+      number: '{{field}} має бути числом',
+      required: "{{field}} є обов'язковим полем",
+      positive: '{{field}} має бути додатнім числом',
+      min: '{{field}} має бути не менше {{min}}',
+      max: '{{field}} не може перевищувати {{max}}',
+    },
+    values: {
+      activeTime: 'Час активних занять спортом',
+      waterNorm: 'Добова норма води',
+      weight: 'Вага',
+    },
+
     notifications: {
       hello: 'Привіт, {{user}}!',
       welcome: 'Вітаємо, {{email}}!',
@@ -61,6 +82,9 @@ export const uk = {
       email_sent: 'Імейл з інструкціями щодо зміни паролю надіслано!',
       water_updated: 'Успішно оновлено запис про воду!',
       water_added: 'Запис про воду успішно додано!',
+      check_email: 'Будь ласка, перевірте вашу електронну пошту',
+      changed_password: 'Пароль успішно змінено!',
+      water_deleted: 'Запис про воду успішно видалено!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
@@ -105,13 +129,31 @@ export const uk = {
       delete_entry: 'Видалення запису',
       are_you_sure: 'Ви впевнені, що хочете видалити запис?',
     },
-
+    changePasswordPage: {
+      change_pwd: 'Змініть свій пароль',
+      new_password: 'Новий пароль',
+      enter_new_pwd: 'Введіть новий пароль',
+      repeat_new_pwd: 'Повторіть новий пароль',
+    },
     errors: {
+      failed_change_pwd: 'Не вдалося змінити пароль. Спробуйте ще раз!',
+      Failed_to_send_the_email_please_try_again_later:
+        'Не вдалося відправити імейл, будь ласка, повторіть спробу пізніше',
       try_again: 'Будь ласка, спробуйте ще раз',
       try_again_wrong: 'Будь ласка, спробуйте пізніше, щось пішло не так',
       Email_is_in_use: 'Електронна пошта вже використовується',
       User_not_found: 'Користувача не знайдено',
       no_response: 'Відсутня відповідь',
+      Session_not_found: 'Сесію не знайдено',
+      Session_token_expired: 'Термін дії токену сесії закінчився',
+    },
+    waterList: {
+      cannot_record:
+        'Ви не можете додати запис про споживання води на майбутню дату.',
+      select_valid_date: 'Будь ласка, оберіть дійсну дату.',
+      nothing_here: 'Схоже, тут ще нічого немає.',
+      click_addWater:
+        'Натисніть «Додати воду», щоб зафіксувати споживання води за цей день.',
     },
   },
 };

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth } from '../../redux/water/selectors';
 import { setMonth } from '../../redux/water/slice';
 import { fetchWaterMonthly } from '../../redux/water/operations';
+import i18next from 'i18next';
 
 const CalendarPagination = () => {
   const dispatch = useDispatch();

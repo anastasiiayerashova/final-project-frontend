@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import s from './UserSettingsForm.module.css';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
@@ -20,6 +20,7 @@ import {
 } from '../../redux/user/operations.js';
 import { MODAL_NAME } from '../../constants/index.js';
 import { useTranslation } from 'react-i18next';
+import { useUserValidationSchema } from '../../utils/hooks/useUserValidationSchema.js';
 
 const UserSettingsForm = ({ onClose }) => {
   const svgIcon = '/sprite.svg';
@@ -33,36 +34,7 @@ const UserSettingsForm = ({ onClose }) => {
   const activeTime = useSelector(selectDailySportTime);
   const weight = useSelector(selectWeight);
 
-  const validationSchema = Yup.object().shape({
-    avatar: Yup.mixed(),
-    gender: Yup.string().required('Please select your gender'),
-    name: Yup.string()
-      .required('Name is required')
-      .matches(/^[а-яА-ЯёЁЇїІіЄєҐґa-zA-Z\s]+$/, 'Name must contain only letters'),
-    email: Yup.string()
-      .email('Invalid email address')
-      .matches( /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i, 'Enter valid email')
-      .min(3, 'Email must be at least 3 characters')
-      .max(50, 'Email cannot exceed 50 characters')
-      .required('Email is required'),
-    weight: Yup.number()
-      .typeError('Weight must be a number')
-      .positive('Weight number must be positive')
-      .min(1, 'Weight must be at least 1')
-      .max(500, 'Weight cannot exceed 500')
-      .required('Weight is required'),
-    activeTime: Yup.number()
-      .typeError('Active sport time must be a number')
-      .positive('Active sport time number must be positive')
-      .min(0, 'Active sport time must be at least 0 characters')
-      .max(24, 'Active sport time cannot exceed 24')
-      .required('Active sport time is required'),
-    waterNorm: Yup.number()
-      .typeError('Daily water norm must be a number')
-      .min(0.5, 'Daily water norm must be at least 0.5 L')
-      .max(15, 'Daily water norm cannot exceed 15 L')
-      .required('Daily water norm is required'),
-  });
+  const validationSchema = useUserValidationSchema(t);
 
   const {
     register,

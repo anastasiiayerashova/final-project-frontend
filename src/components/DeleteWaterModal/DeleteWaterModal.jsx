@@ -37,7 +37,7 @@ const DeleteWaterModal = ({ onClose }) => {
       await dispatch(deleteWater(waterId)).unwrap();
       dispatch(clearWaterId());
 
-      toast.success('Water record successfully deleted!');
+      toast.success(t('notifications.water_deleted'));
 
       handleClose();
 
@@ -71,7 +71,7 @@ const DeleteWaterModal = ({ onClose }) => {
           onClick={handleDelete}
           disabled={isBtnDisabled}
         >
-          {isBtnDisabled ? 'Deleting...' : 'Delete'}
+          {isBtnDisabled ? t('common.deleting') : t('common.delete')}
         </button>
         <button className={`${s.button} ${s.cancelBtn}`} onClick={handleClose}>
           {t('common.cancel')}

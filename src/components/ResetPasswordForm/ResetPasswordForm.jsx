@@ -8,24 +8,13 @@ import Logo from '../Logo/Logo.jsx';
 import { api } from '../../utils/axios.config.js';
 import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
-import { useValidationSchema } from '../../utils/hooks/useValidationSchema.js';
-
-// const schema = yup.object().shape({
-//   email: yup
-//     .string()
-//     .email('Invalid email address')
-//     .matches(
-//       /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i,
-//       'Enter a valid email',
-//     )
-//     .min(3, 'Email must be at least 3 characters')
-//     .max(50, 'Email cannot exceed 50 characters')
-//     .required('Email is required'),
-// });
+import { useLastFocusedField } from '../../utils/hooks/useLastFocusedField.js';
+import { useEmailValidationSchema } from '../../utils/hooks/useEmailValidationSchema.js';
 
 const ResetPasswordForm = ({ onEmailSent }) => {
   const { t } = useTranslation();
-  const schema = useValidationSchema();
+  const schema = useEmailValidationSchema();
+  const { restoreFocus } = useLastFocusedField();
   // отправляем email
 
   const emailId = useId();
@@ -34,6 +23,7 @@ const ResetPasswordForm = ({ onEmailSent }) => {
     register,
     handleSubmit,
     reset,
+    getValues,
     trigger,
     watch,
     formState: { errors },
@@ -60,7 +50,16 @@ const ResetPasswordForm = ({ onEmailSent }) => {
       onEmailSent();
     } catch (e) {
       console.log(e);
-      toast.error(t('errors.try_again_wrong'), {
+      
+      let errorMessage
+      if (e.response?.status === 404) {
+          errorMessage = t("errors.User_not_found")
+      }
+      else {
+          errorMessage = t(`errors.${formattedErrorKey(e)}`)
+      }
+      
+      toast.error(errorMessage, {
         style: {
           backgroundColor: 'white',
           color: 'red',
@@ -85,6 +84,14 @@ const ResetPasswordForm = ({ onEmailSent }) => {
       trigger('email');
     }
   }, [emailValue, trigger]);
+
+   useEffect(() => {
+    reset(getValues(), {
+      keepValues: true,
+      keepDirty: true,
+    });
+    restoreFocus();
+  }, [schema, reset, getValues]);
 
   return (
     <div className={s.container}>
