@@ -1,5 +1,5 @@
 export const formattedErrorKey = (e) => {
-  // console.log('ERROR====>>>', e);
+  console.log('ERROR====>>>', e);
   return e
     .replace(/[^\w\s]/g, '_')
     .replace(

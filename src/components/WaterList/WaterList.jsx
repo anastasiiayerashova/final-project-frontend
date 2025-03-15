@@ -9,8 +9,10 @@ import {
 import { useEffect, useMemo } from 'react';
 import { fetchWaterDaily } from '../../redux/water/operations';
 import Loader from '../Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = ({ openWaterModal, setDeleteWaterModal }) => {
+  const { t } = useTranslation();
   const date = useSelector(selectDate);
   const dayWaterList = useSelector(selectDayWaterList);
   const isLoading = useSelector(selectLoading);
@@ -31,8 +33,8 @@ const WaterList = ({ openWaterModal, setDeleteWaterModal }) => {
   if (isFutureDate) {
     return (
       <div className={s.textWrapper}>
-        <p>You cannot record water consumption for future dates.</p>
-        <p>Please select a valid date.</p>
+        <p>{t('waterList.cannot_record')}</p>
+        <p>{t('waterList.select_valid_date')}</p>
       </div>
     );
   }
@@ -44,8 +46,8 @@ const WaterList = ({ openWaterModal, setDeleteWaterModal }) => {
   if (dayWaterList.length === 0) {
     return (
       <div className={s.textWrapper}>
-        <p>Looks like there is nothing here yet.</p>
-        <p>Click "Add Water" to log your water intake for this day.</p>
+        <p>{t('waterList.nothing_here')}</p>
+        <p>{t('waterList.click_addWater')}</p>
       </div>
     );
   }
