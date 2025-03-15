@@ -84,6 +84,7 @@ export const uk = {
       water_added: 'Запис про воду успішно додано!',
       check_email: 'Будь ласка, перевірте вашу електронну пошту',
       changed_password: 'Пароль успішно змінено!',
+      water_deleted: 'Запис про воду успішно видалено!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
@@ -136,11 +137,15 @@ export const uk = {
     },
     errors: {
       failed_change_pwd: 'Не вдалося змінити пароль. Спробуйте ще раз!',
+      Failed_to_send_the_email_please_try_again_later:
+        'Не вдалося відправити імейл, будь ласка, повторіть спробу пізніше',
       try_again: 'Будь ласка, спробуйте ще раз',
       try_again_wrong: 'Будь ласка, спробуйте пізніше, щось пішло не так',
       Email_is_in_use: 'Електронна пошта вже використовується',
       User_not_found: 'Користувача не знайдено',
       no_response: 'Відсутня відповідь',
+      Session_not_found: 'Сесію не знайдено',
+      Session_token_expired: 'Термін дії токену сесії закінчився',
     },
     waterList: {
       cannot_record:

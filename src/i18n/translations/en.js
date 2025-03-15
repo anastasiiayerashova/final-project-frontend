@@ -81,6 +81,7 @@ export const en = {
       email_sent: 'Email with password reset instructions sent!',
       water_updated: 'Water record updated successfully!',
       water_added: 'Water record added successfully!',
+      water_deleted: 'Water record successfully deleted!',
       check_email: 'Please, check your email',
       changed_password: 'Password changed successfully!',
     },
@@ -136,11 +137,15 @@ export const en = {
     },
     errors: {
       failed_change_pwd: 'Failed to change password. Try again!',
+      Failed_to_send_the_email_please_try_again_later:
+        'Failed to send the email, please try again later',
       try_again: 'Please, try again',
       try_again_wrong: 'Please, try again later, something went wrong',
       Email_is_in_use: 'Email is in use',
       User_not_found: 'User not found',
       no_response: 'No response',
+      Session_not_found: 'Session not found',
+      Session_token_expired: 'Session token expired',
     },
     waterList: {
       cannot_record: 'You cannot record water consumption for future dates.',

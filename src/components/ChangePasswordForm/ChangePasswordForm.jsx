@@ -2,7 +2,6 @@ import React, { useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import s from './ChangePasswordForm.module.css';
 import Logo from '../Logo/Logo.jsx';
@@ -58,9 +57,13 @@ const ChangePasswordForm = () => {
       reset();
       navigate('/signin');
     } catch (e) {
-      toast.error(e.response?.data?.message || t('errors.failed_change_pwd'), {
-        style: { backgroundColor: 'white', color: 'red' },
-      });
+      toast.error(
+        t(`errors.${formattedErrorKey(e.response?.data?.message)}`) ||
+          t('errors.failed_change_pwd'),
+        {
+          style: { backgroundColor: 'white', color: 'red' },
+        },
+      );
     }
   };
 

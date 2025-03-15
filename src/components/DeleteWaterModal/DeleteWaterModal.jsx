@@ -28,7 +28,7 @@ const DeleteWaterModal = ({ onClose }) => {
       await dispatch(deleteWater(waterId)).unwrap();
       dispatch(clearWaterId());
 
-      toast.success('Water record successfully deleted!');
+      toast.success(t('notifications.water_deleted'));
 
       await dispatch(fetchWaterDaily(dateFormatted)).unwrap();
 
