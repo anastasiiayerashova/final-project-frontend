@@ -47,8 +47,8 @@ const WaterChart = () => {
                     <AreaChart data={formattedData} margin={{ top: 10, right: 10, left: 0, bottom: 10, }}>
                         <defs>
                             <linearGradient id='colorUv' x1='0' y1='0' x2='0' y2='1'>
-                                <stop offset='0%' stopColor='#9BE1A0' stopOpacity={1} />
-                                <stop offset='100%' stopColor='#9BE1A0' stopOpacity={0} />
+                                <stop offset='0%' stopColor='#87CEEB' stopOpacity={1} />
+                                <stop offset='100%' stopColor='#ADD8E6' stopOpacity={0} />
                             </linearGradient>
                         </defs>
                         <XAxis dataKey='date' tickLine={false} tickMargin={21} />
@@ -65,11 +65,11 @@ const WaterChart = () => {
                         <Area
                             type='monotone'
                             dataKey='originalAmount'
-                            stroke='#87D28D'
+                            stroke='#5B9BD5'
                             fill='url(#colorUv)'
                             dot={{
                                 fill: '#fff',
-                                stroke: '#87D28D',
+                                stroke: '#5B9BD5',
                                 strokeWidth: 2,
                                 r: 8,
                                 fillOpacity: 1,
