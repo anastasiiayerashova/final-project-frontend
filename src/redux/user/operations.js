@@ -136,7 +136,7 @@ export const refreshUserOperation = createAsyncThunk(
 
       setAuthHeader(accessToken);
 
-      return { accessToken };
+      return accessToken
     } catch (error) {
       console.error(
         'Ошибка при обновлении токена:',

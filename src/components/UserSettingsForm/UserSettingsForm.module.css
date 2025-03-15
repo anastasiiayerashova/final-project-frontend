@@ -288,13 +288,14 @@ input[type='radio']:checked {
 
 @media screen and (min-width: 768px) {
   .form {
-    max-width: 500px;
+    max-width: 647px;
     max-height: 80vh;
-    padding: 24px;
+    padding: 30px 40px 40px 40px;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 28px;
+    line-height: 114%;
   }
 
   .avatarImage,
@@ -302,22 +303,129 @@ input[type='radio']:checked {
     width: 100px;
     height: 100px;
   }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .uploadLabel {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .bold_text {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .genderWrapper {
+    gap: 20px;
+  }
+
+  .radioLabel {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .label_bold_text {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .input {
+    padding: 16px 0 16px 16px;
+    font-size: 16px;
+  }
+
+  .formula_wrap {
+    row-gap: 14px;
+  }
+
+  .formula_info_wrapper {
+    display: flex;
+    column-gap: 28px;
+  }
+
+  .formulaInfo {
+    & p {
+      font-size: 16px;
+      line-height: 150%;
+    }
+    & span {
+      font-size: 16px;
+      line-height: 150%;
+    }
+  }
+
+  .hint {
+    margin-top: unset;
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .exclamIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .label_simple {
+    font-size: 16px;
+    line-height: 150%;
+  }
+
+  .recommend_wrap {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    row-gap: unset;
+    & p {
+      font-size: 16px;
+      line-height: 150%;
+    }
+    & span {
+      font-size: 15px;
+      line-height: 149%;
+    }
+  }
+
+  .formGroup_3 {
+    & label {
+      font-size: 18px;
+      line-height: 133%;
+    }
+  }
+
+  .saveButton {
+    width: 141px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .form {
-    max-width: 600px;
+    max-width: 8400px;
     max-height: 85vh;
-    padding: 32px;
+    padding: 20px 40px 40px 40px;
   }
 
   .title {
-    font-size: 26px;
+    font-size: 28px;
+    line-height: 114%;
   }
 
-  .avatarImage,
-  .avatarPlaceholder {
-    width: 120px;
-    height: 120px;
+  .main_wrap {
+    display: flex;
+    column-gap: 40px;
+  }
+
+  .first_wrap {
+    max-width: 400px;
+  }
+
+  .formActive {
+    margin: 14px 0 40px 0;
   }
 }

@@ -12,13 +12,16 @@ api.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config
+        console.log('❌ API Error in interceptors:', error.response.status);
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true
             try {
+                console.log('🔄 Refreshing token...');
                 const accessToken = await store.dispatch(refreshUserOperation()).unwrap()
-                console.log(accessToken)
+                console.log('✅ Token refreshed:', accessToken);
 
                 setAuthHeader(accessToken)
+                console.log('🔄 Updated Authorization header:', api.defaults.headers.common.Authorization);
 
                 store.dispatch(resetToken(accessToken))
 
@@ -27,7 +30,7 @@ api.interceptors.response.use(
                 return api(originalRequest)
             }
             catch (e) {
-                console.log('Error during refreshing', e)
+                console.log('🚨 Error in interceptor during refreshing', e);
                 store.dispatch(refreshError())
             }
         }
@@ -42,7 +45,12 @@ api.interceptors.response.use(
 )
 
 export const setAuthHeader = (token) => {
+    if (typeof token !== 'string') {
+        console.error('🚨 Invalid token format:', token);
+        return;
+    }
     api.defaults.headers.common.Authorization = `Bearer ${token}`
+    console.log('🔄 New Authorization header:', api.defaults.headers.common.Authorization);
 }
 
 export const clearAuthHeader = () => {
