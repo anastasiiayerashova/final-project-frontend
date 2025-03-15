@@ -1,4 +1,4 @@
-import React, { useId, useEffect } from 'react';
+import React, { useId, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,6 +23,13 @@ const ChangePasswordForm = () => {
 
   const pwdId = useId();
   const confirmPwdId = useId();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleRepeatPasswordVisibility = () =>
+  setShowRepeatPassword(!showRepeatPassword);
 
   const {
     register,
@@ -100,7 +107,7 @@ const ChangePasswordForm = () => {
             <label htmlFor={pwdId}>{t('changePasswordPage.new_password')}</label>
             <input
               id={pwdId}
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               {...register('password')}
               placeholder={t('changePasswordPage.enter_new_pwd')}
               className={errors.password ? s.inputError : ''}
@@ -108,13 +115,28 @@ const ChangePasswordForm = () => {
             {errors.password && (
               <p className={s.error}>{errors.password.message}</p>
             )}
+            <button
+                            className={s.eyeIcon}
+                            onClick={togglePasswordVisibility}
+                            type="button"
+                          >
+                            {showPassword ? (
+                              <svg width="20" height="20">
+                                <use href="/sprite.svg#eye-off" />
+                              </svg>
+                            ) : (
+                              <svg width="20" height="20">
+                                <use href="/sprite.svg#eye" />
+                              </svg>
+                            )}
+                          </button>
           </div>
 
           <div className={s.inputGroup}>
             <label htmlFor={confirmPwdId}>{t('common.repeat_password_label')}</label>
             <input
               id={confirmPwdId}
-              type="password"
+              type={showRepeatPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
               placeholder={t('changePasswordPage.repeat_new_pwd')}
               className={errors.repeatPassword ? s.inputError : ''}
@@ -122,6 +144,21 @@ const ChangePasswordForm = () => {
             {errors.repeatPassword && (
               <p className={s.error}>{errors.repeatPassword.message}</p>
             )}
+             <button
+                            type="button"
+                            className={s.eyeIcon}
+                            onClick={toggleRepeatPasswordVisibility}
+                          >
+                            {showRepeatPassword ? (
+                              <svg width="20" height="20">
+                                <use href="../../../public/sprite.svg#eye-off" />
+                              </svg>
+                            ) : (
+                              <svg width="20" height="20">
+                                <use href="../../../public/sprite.svg#eye" />
+                              </svg>
+                            )}
+                          </button>
           </div>
 
           <button type="submit" className={s.button}>
