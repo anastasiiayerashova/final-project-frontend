@@ -12,6 +12,7 @@ import LogOutModal from '../../components/LogOutModal/LogOutModal.jsx';
 import UserSettingsModal from '../../components/UserSettingsModal/UserSettingsModal.jsx';
 import { Toaster } from 'react-hot-toast';
 import Loader from '../../components/Loader/Loader.jsx';
+import Tour from 'reactour';
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,45 @@ function TrackerPage() {
   const [isSettingsModalOpen, setSettingsModal] = useState(false);
   const [isDeleteWaterModalOpen, setDeleteWaterModal] = useState(false);
   const [isLogoutModalOpen, setLogoutModal] = useState(false);
+
+  const [isTourOpen, setIsTourOpen] = useState(true);
+
+  useEffect(() => {
+    const isFirstVisit = !localStorage.getItem('aquaTrackOnboarding');
+    if (isFirstVisit) {
+      setIsTourOpen(true);
+      localStorage.setItem('aquaTrackOnboarding', 'completed');
+    }
+  }, []);
+
+  const tourSteps = [
+    {
+      selector: '.logo',
+      content: 'Welcome to AquaTrack – your personal water tracking assistant!',
+    },
+    {
+      selector: '.normal',
+      content: 'Here is your daily water goal. Try to reach it every day!',
+    },
+    {
+      selector: '.progress',
+      content: 'This shows your current water intake for today.',
+    },
+
+    {
+      selector: '.calendar',
+      content:
+        'Track your monthly progress – each circle shows your daily intake.',
+    },
+    {
+      selector: '.userPanel',
+      content: 'Manage your profile and settings here.',
+    },
+    {
+      selector: '.btn',
+      content: 'Click this button to add a new portion of water.',
+    },
+  ];
 
   const dispatch = useDispatch();
 
@@ -44,6 +84,11 @@ function TrackerPage() {
 
   const openWaterModal = ({ isOpen, type }) => {
     setIsWaterModal({ isOpen: true, type });
+
+    // Закриття туру при відкритті модального вікна
+    if (isTourOpen) {
+      setIsTourOpen(false);
+    }
   };
 
   const closeWaterModal = (isOpen) => {
@@ -64,7 +109,9 @@ function TrackerPage() {
 
   return (
     <div>
-      {isLoading ? (<Loader />) : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <div className={s.tracker_page}>
           <WaterMainInfo
             isWaterModal={isWaterModal}
@@ -79,7 +126,10 @@ function TrackerPage() {
           <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
             <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
           </Modal>
-          <Modal isOpen={isDeleteWaterModalOpen} onClose={closeDeleteWaterModal}>
+          <Modal
+            isOpen={isDeleteWaterModalOpen}
+            onClose={closeDeleteWaterModal}
+          >
             <DeleteWaterModal onClose={closeDeleteWaterModal} />
           </Modal>
           <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
@@ -89,6 +139,13 @@ function TrackerPage() {
             <UserSettingsModal onClose={closeSettingsModal} />
           </Modal>
           <Toaster position="top-right" />
+
+          <Tour
+            steps={tourSteps}
+            isOpen={isTourOpen}
+            onRequestClose={() => setIsTourOpen(false)}
+            closeWithMask={false}
+          />
         </div>
       )}
     </div>

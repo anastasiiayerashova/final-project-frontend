@@ -21,7 +21,7 @@ const WaterMainInfo = ({ openWaterModal }) => {
       </div>
 
       <WaterDailyNorma />
-      <div className={s.progress}>
+      <div className={`${s.progress} progress`}>
         <WaterProgressBar />
       </div>
       <div className={s.btn}>

@@ -8,7 +8,7 @@ const MonthInfo = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={s.MonthInfo}>
+    <div className={`${s.MonthInfo} calendar`}>
       <div className={s.MonthInfoHeader}>
         <h3 className={s.title}>{t('trackerPage.month_general')}</h3>
         <CalendarPagination />

@@ -29,7 +29,9 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
   ) : (
     <button
       type="button"
-      className={`${s.detailsAddBtn} ${isFutureDate ? s.inactive : ''}`}
+      className={`${(s.detailsAddBtn, 'btn')} ${
+        isFutureDate ? s.inactive : ''
+      }`}
       onClick={onClick}
     >
       <div className={s.iconContainer}>

@@ -1,32 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectName, selectAvatar } from '../../redux/user/selectors'; //перевірити селектори
+import {
+  selectIsLoggedIn,
+  selectName,
+  selectAvatar,
+} from '../../redux/user/selectors'; //перевірити селектори
 import sprite from '../../../public/sprite.svg';
 import s from './UserBar.module.css';
 
 const UserBar = ({ setLogoutModal, setSettingsModal }) => {
-  
-  const [isPopoverOpen, setPopoverOpen] = useState(false)
-  const buttonRef = useRef(null)
-  const popoverRef = useRef(null)
-  
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const buttonRef = useRef(null);
+  const popoverRef = useRef(null);
 
   const isLoggedIn = useSelector(selectIsLoggedIn); //перевірити селектори
   const nameUser = useSelector(selectName); //перевірити селектори
   const avatar = useSelector(selectAvatar); //перевірити селектори
 
- const togglePopover = (e) => {
-    setPopoverOpen((prev) => !prev); 
+  const togglePopover = (e) => {
+    setPopoverOpen((prev) => !prev);
   };
 
   const handleClickOutside = (event) => {
     if (
-      popoverRef.current && 
-      !popoverRef.current.contains(event.target) && 
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target) &&
       !buttonRef.current.contains(event.target)
     ) {
-      setPopoverOpen(false); 
+      setPopoverOpen(false);
     }
   };
 
@@ -38,7 +40,7 @@ const UserBar = ({ setLogoutModal, setSettingsModal }) => {
   }, []);
 
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} userPanel`}>
       <button className={s.btn} onClick={togglePopover} ref={buttonRef}>
         <p className={s.nameUser}>{isLoggedIn ? nameUser : 'User'}</p>
         {!isLoggedIn ? (
@@ -64,11 +66,19 @@ const UserBar = ({ setLogoutModal, setSettingsModal }) => {
         )}
         <svg className={s.icon}>
           <use
-            href={isPopoverOpen ? `${sprite}#chevron-up` : `${sprite}#chevron-down`}
+            href={
+              isPopoverOpen ? `${sprite}#chevron-up` : `${sprite}#chevron-down`
+            }
           ></use>
         </svg>
       </button>
-      {isPopoverOpen && <UserBarPopover setLogoutModal={setLogoutModal} popoverRef={popoverRef} setSettingsModal={setSettingsModal} />}
+      {isPopoverOpen && (
+        <UserBarPopover
+          setLogoutModal={setLogoutModal}
+          popoverRef={popoverRef}
+          setSettingsModal={setSettingsModal}
+        />
+      )}
     </div>
   );
 };

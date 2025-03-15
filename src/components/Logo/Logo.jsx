@@ -14,7 +14,7 @@ const Logo = () => {
         ]}
         animationSpeed={7}
         showBorder={false}
-        className={s.logo}
+        className={`${s.logo} logo`}
       >
         AQUATRACK
       </GradientText>

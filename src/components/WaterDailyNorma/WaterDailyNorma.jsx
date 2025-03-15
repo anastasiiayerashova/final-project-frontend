@@ -10,7 +10,7 @@ const WaterDailyNorma = () => {
   const dailyWaterNormInLiters = (dailyWaterNorm / 1000).toFixed(1);
 
   return (
-    <div className={s.container}>
+    <div className={`${s.container} normal`}>
       <p className={s.normal}>
         {t('trackerPage.daily_norm_value', { dailyWaterNormInLiters })}
       </p>
