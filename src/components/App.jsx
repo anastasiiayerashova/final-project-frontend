@@ -11,6 +11,7 @@ const SignUpPage = lazy(() => import('./../pages/SignUpPage/SignUpPage'));
 const SignInPage = lazy(() => import('./../pages/SignInPage/SignInPage'));
 const TrackerPage = lazy(() => import('./../pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./../pages/NotFoundPage/NotFoundPage'));
+const GooglePage = lazy(() => import('./../pages/GooglePage/GooglePage'));
 const ResetPasswordPage = lazy(() =>
   import('./../pages/ResetPasswordPage/ResetPasswordPage'),
 );
@@ -74,6 +75,7 @@ export function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
+            <Route path="/users/tracker" element={<GooglePage />} />
           </Routes>
         </Suspense>
       </SharedLayout>

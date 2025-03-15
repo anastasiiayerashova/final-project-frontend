@@ -12,7 +12,7 @@ const UserPanel = ({ setLogoutModal, setSettingsModal }) => {
   return (
     <div className={s.userPanel}>
       <h2 className={s.greetings}>
-        {t('notifications.hello', { user: !isLoggedIn ? 'USER' : nameUser })}
+        <span>{t('notifications.hello', { user: !isLoggedIn ? 'USER' : nameUser })}</span>
       </h2>
       <UserBar
         setLogoutModal={setLogoutModal}
