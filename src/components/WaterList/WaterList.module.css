@@ -8,6 +8,10 @@
     gap: 32px;
   }
 
+  @media screen and (min-width: 1440px) {
+    max-width: 608px;
+  }
+
   &::-webkit-scrollbar {
     height: 8px;
   }

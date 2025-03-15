@@ -46,7 +46,7 @@ function TrackerPage() {
     fetchCurrentUserData();
   }, [dispatch]);
 
-   useEffect(() => {
+  useEffect(() => {
     // Якщо користувач не вибирав дату з календаря
     if (!isDaySelected) {
       const checkDate = () => {
@@ -93,7 +93,9 @@ function TrackerPage() {
 
   return (
     <div>
-      {isLoading ? (<Loader />) : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <div className={s.tracker_page}>
           <WaterMainInfo
             isWaterModal={isWaterModal}
@@ -108,7 +110,10 @@ function TrackerPage() {
           <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
             <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
           </Modal>
-          <Modal isOpen={isDeleteWaterModalOpen} onClose={closeDeleteWaterModal}>
+          <Modal
+            isOpen={isDeleteWaterModalOpen}
+            onClose={closeDeleteWaterModal}
+          >
             <DeleteWaterModal onClose={closeDeleteWaterModal} />
           </Modal>
           <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>

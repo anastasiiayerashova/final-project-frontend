@@ -4,7 +4,7 @@ import s from './WaterList.module.css';
 import {
   selectDate,
   selectDayWaterList,
-  selectLoading,
+  selectLoadingDaily,
 } from '../../redux/water/selectors';
 import { useEffect, useMemo } from 'react';
 import { fetchWaterDaily } from '../../redux/water/operations';
@@ -13,7 +13,7 @@ import Loader from '../Loader/Loader';
 const WaterList = ({ openWaterModal, setDeleteWaterModal }) => {
   const date = useSelector(selectDate);
   const dayWaterList = useSelector(selectDayWaterList);
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector(selectLoadingDaily);
   const dispatch = useDispatch();
 
   const today = new Date();
