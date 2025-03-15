@@ -265,6 +265,7 @@ const UserSettingsForm = ({ onClose }) => {
 
           {/* Формула */}
           <div className={s.formula_wrap}>
+            <div className={s.formula_info_wrapper}>
             <div className={s.formulaInfo}>
               <p>{t('settingModal.for_woman')}:</p>
               <span>V=(M*0,03) + (T*0,4)</span>
@@ -272,7 +273,8 @@ const UserSettingsForm = ({ onClose }) => {
             <div className={s.formulaInfo}>
               <p>{t('settingModal.for_man')}:</p>
               <span>V=(M*0,04) + (T*0,6)</span>
-            </div>
+              </div>
+              </div>
             <div></div>
             <p className={s.hint}>
               <span>* </span>
@@ -290,7 +292,7 @@ const UserSettingsForm = ({ onClose }) => {
         </div>
         <div className={s.second_wrap}>
           {/* Вага */}
-          <div className={s.formGroup}>
+          <div className={s.formGroup_2}>
             <label htmlFor="weight" className={s.label_simple}>
               {t('settingModal.weight')}:
             </label>
@@ -316,7 +318,7 @@ const UserSettingsForm = ({ onClose }) => {
             )}
           </div>
 
-          <div className={s.formGroup}>
+          <div className={s.formGroup_2}>
             <label htmlFor="sport" className={s.label_simple}>
               {t('settingModal.sport_time')}:
             </label>
@@ -347,8 +349,8 @@ const UserSettingsForm = ({ onClose }) => {
             </span>
           </div>
           {/* Скільки планує пити */}
-          <div className={s.formGroup}>
-            <label htmlFor="dailyWater" className={s.bold_text}>
+          <div className={s.formGroup_3}>
+            <label htmlFor="dailyWater">
               {t('settingModal.how_much_will_drink')}:
             </label>
             <input
