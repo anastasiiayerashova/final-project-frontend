@@ -3,8 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-width: 320px;
-  max-width: 343px;
+  max-width: 311px;
   max-height: 740px;
   padding: 40px 20px 40px 20px;
   border-radius: 15px;
@@ -12,16 +11,24 @@
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (min-width: 375px) {
+  .container {
+    max-width: 343px;
+    min-width: 320px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
     max-height: 690px;
-    padding: 40px 20px 40px 40px;
+    padding: unset;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 920px;
+    max-height: unset;
   }
 }
