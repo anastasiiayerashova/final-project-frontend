@@ -8,6 +8,22 @@
   overflow-x: hidden;
 }
 
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9be1a0;
+  border-radius: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='radio']:checked {
+  box-shadow: inset 0 0 0 4px white;
+  background-color: #9be1a0;
+}
+
 .title {
   font-size: 20px;
   font-weight: 700;
@@ -224,6 +240,13 @@
 
 .saveButton:hover {
   background-color: var(--green-hover);
+}
+
+.saveButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--grey);
+  color: var(--black);
 }
 
 @media screen and (min-width: 375px) {

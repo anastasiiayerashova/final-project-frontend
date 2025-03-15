@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import s from './CalendarPagination.module.css';
+import i18next from 'i18next';
 
 const CalendarPagination = () => {
   const svgIcon = '/sprite.svg';
@@ -8,9 +9,9 @@ const CalendarPagination = () => {
   // useState - це тимчасове рішення
   const [date, setDate] = useState(new Date());
   const formatDate = (date) => {
-    const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
-      date,
-    );
+    const month = new Intl.DateTimeFormat(i18next.language, {
+      month: 'long',
+    }).format(date);
     const year = date.getFullYear();
     return `${month}, ${year}`;
   };

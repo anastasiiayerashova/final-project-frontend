@@ -148,10 +148,20 @@ const WaterForm = ({ onClose }) => {
     }
   };
 
-  const isLoading = useSelector(selectLoading);
+    const isLoading = useSelector(selectLoading);
+    
+    const onError = (errors) => {
+     console.log(errors)
+      toast.error(t('errors.try_again'), {
+        style: {
+          backgroundColor: 'white',
+          color: 'red',
+        },
+      });
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <div className={s.inputGroup}>
         <label htmlFor="amount" className={s.descrAmount}>
           {t('waterModal.water_amount')}:

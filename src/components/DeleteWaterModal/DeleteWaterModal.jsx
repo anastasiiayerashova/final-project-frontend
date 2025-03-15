@@ -61,7 +61,7 @@ const DeleteWaterModal = ({ onClose }) => {
           onClick={handleDelete}
           disabled={isBtnDisabled}
         >
-          {isBtnDisabled ? 'Deleting...' : 'Delete'}
+          {isBtnDisabled ? t('common.deleting') : t('common.delete')}
         </button>
         <button className={`${s.button} ${s.cancelBtn}`} onClick={handleClose}>
           {t('common.cancel')}

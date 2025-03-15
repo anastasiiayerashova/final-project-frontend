@@ -64,8 +64,7 @@ const SignInForm = () => {
         navigate('/tracker');
       })
       .catch((e) => {
-        let errorMessage =
-          t(`errors.${formattedErrorKey(e)}`) || t('errors.try_again');
+        let errorMessage = t(`errors.${formattedErrorKey(e)}`);
         toast.error(errorMessage, {
           style: {
             backgroundColor: 'white',

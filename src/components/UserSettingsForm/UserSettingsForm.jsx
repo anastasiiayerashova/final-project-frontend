@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import s from './UserSettingsForm.module.css';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
@@ -20,6 +20,7 @@ import {
 } from '../../redux/user/operations.js';
 import { MODAL_NAME } from '../../constants/index.js';
 import { useTranslation } from 'react-i18next';
+import { useUserValidationSchema } from '../../utils/hooks/useUserValidationSchema.js';
 
 const UserSettingsForm = ({ onClose }) => {
   const svgIcon = '/sprite.svg';
@@ -33,43 +34,7 @@ const UserSettingsForm = ({ onClose }) => {
   const activeTime = useSelector(selectDailySportTime);
   const weight = useSelector(selectWeight);
 
-  const validationSchema = Yup.object().shape({
-    avatar: Yup.mixed(),
-    gender: Yup.string().required('Please select your gender'),
-    name: Yup.string()
-      .required('Name is required')
-      .matches(
-        /^[а-яА-ЯёЁЇїІіЄєҐґa-zA-Z\s]+$/,
-        'Name must contain only letters',
-      ),
-    email: Yup.string()
-      .email('Invalid email address')
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@(gmail\.com|meta\.ua|ukr\.net)$/i,
-        'Enter valid email',
-      )
-      .min(3, 'Email must be at least 3 characters')
-      .max(50, 'Email cannot exceed 50 characters')
-      .required('Email is required'),
-    weight: Yup.number()
-      .typeError('Weight must be a number')
-      .positive('Weight number must be positive')
-      .min(0, 'Weight must be at least 0 kg')
-      .max(500, 'Weight cannot exceed 50 kg')
-      .required('Weight is required'),
-    activeTime: Yup.number()
-      .typeError('Active sport time must be a number')
-      .positive('Active sport time number must be positive')
-      .min(0, 'Active sport time must be at least 0 characters')
-      .max(24, 'Active sport time cannot exceed 24 hours')
-      .required('Active sport time is required'),
-    waterNorm: Yup.number()
-      .typeError('Daily water norm must be a number')
-      .positive('Daily water norm number must be positive')
-      .min(500, 'Daily water norm must be at least 500 ml')
-      .max(5000, 'Daily water norm cannot exceed 5000 ml')
-      .required('Daily water norm is required'),
-  });
+  const validationSchema = useUserValidationSchema(t);
 
   const {
     register,
@@ -82,11 +47,12 @@ const UserSettingsForm = ({ onClose }) => {
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
+
     defaultValues: {
       gender,
       name,
       email,
-      weight: weight || 0,
+      weight,
       activeTime,
       waterNorm: waterNorm ? waterNorm / 1000 : 0,
     },
@@ -108,6 +74,12 @@ const UserSettingsForm = ({ onClose }) => {
   const watchedWeight = watch('weight');
   const watchedSportTime = watch('activeTime');
   const watchedGender = watch('gender');
+
+  useEffect(() => {
+    if (watchedSportTime) {
+      trigger('activeTime');
+    }
+  }, [watchedSportTime, trigger]);
 
   useEffect(() => {
     const waterNorm = calculateWaterNorm(
@@ -137,6 +109,8 @@ const UserSettingsForm = ({ onClose }) => {
   };
 
   const onSubmit = (values) => {
+    setIsDisabled(true);
+    console.log(values);
     dispatch(
       updateUserOperation({
         email: values.email,
@@ -144,11 +118,12 @@ const UserSettingsForm = ({ onClose }) => {
         gender: values.gender,
         weight: values.weight,
         dailySportTime: values.activeTime,
-        dailyWaterNorm: values.waterNorm,
+        dailyWaterNorm: values.waterNorm * 1000,
       }),
     )
       .unwrap()
       .then((res) => {
+        console.log(res);
         toast.success('Your data was successfully updated', {
           style: {
             backgroundColor: 'white',
@@ -157,9 +132,10 @@ const UserSettingsForm = ({ onClose }) => {
         });
       })
       .catch((e) => {
-        let errorMessage = e.message || 'Please, try again';
+        setIsDisabled(false);
+        console.log(e);
+        let errorMessage = 'Please, try again';
 
-        setIsSubmitting(false);
         toast.error(errorMessage, {
           style: {
             backgroundColor: 'white',
@@ -169,8 +145,18 @@ const UserSettingsForm = ({ onClose }) => {
       });
   };
 
+  const onError = (errors) => {
+    console.log(errors);
+    toast.error(t('errors.try_again'), {
+      style: {
+        backgroundColor: 'white',
+        color: 'red',
+      },
+    });
+  };
+
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.form} onSubmit={handleSubmit(onSubmit, onError)}>
       <h2 className={s.title}>{t('common.settings')}</h2>
 
       {/* Аватар */}
@@ -213,12 +199,22 @@ const UserSettingsForm = ({ onClose }) => {
           <div className={s.formGroup}>
             <p className={s.bold_text}>{t('settingModal.gender_identity')}</p>
             <div className={s.genderWrapper}>
-              <label className={s.radioLabel}>
-                <input type="radio" value="female" {...register('gender')} />
+              <label className={s.radioLabel} htmlFor="woman">
+                <input
+                  id="woman"
+                  type="radio"
+                  value="woman"
+                  {...register('gender')}
+                />
                 {t('settingModal.woman')}
               </label>
-              <label className={s.radioLabel}>
-                <input type="radio" value="male" {...register('gender')} />
+              <label className={s.radioLabel} htmlFor="man">
+                <input
+                  type="radio"
+                  id="man"
+                  value="man"
+                  {...register('gender')}
+                />
                 {t('settingModal.man')}
               </label>
             </div>
@@ -236,6 +232,7 @@ const UserSettingsForm = ({ onClose }) => {
               id="name"
               type="text"
               {...register('name')}
+              onBlur={() => trigger('name')}
               className={s.input}
             />
             {errors.name && (
@@ -252,6 +249,7 @@ const UserSettingsForm = ({ onClose }) => {
               id="email"
               type="email"
               {...register('email')}
+              onBlur={() => trigger('name')}
               className={s.input}
             />
             {errors.email && (
@@ -260,21 +258,10 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
 
           {/* Денна норма */}
-          <div className={s.formGroup}>
-            <label htmlFor="waterNorm" className={s.bold_text}>
-              {t('trackerPage.daily_norm')}
-            </label>
-            <input
-              id="waterNorm"
-              type="number"
-              step="0.1"
-              {...register('waterNorm')}
-              className={s.input}
-            />
-            {errors.waterNorm && (
-              <p className={s.errorText}>{errors.waterNorm.message}</p>
-            )}
-          </div>
+
+          <label htmlFor="waterNorm" className={s.bold_text}>
+            {t('trackerPage.daily_norm')}
+          </label>
 
           {/* Формула */}
           <div className={s.formula_wrap}>
@@ -309,11 +296,14 @@ const UserSettingsForm = ({ onClose }) => {
             </label>
             <input
               id="weight"
-              type="number"
+              type="text"
               {...register('weight', {
                 valueAsNumber: true,
-                setValueAs: (v) => (v === '' ? 0 : v), // Авто-замена пустого значения на 0
+                min: 1,
+                required: true,
               })}
+              onBlur={() => trigger('weight')}
+              step="0.01"
               className={s.input}
               onKeyDown={(e) => {
                 if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
@@ -333,16 +323,28 @@ const UserSettingsForm = ({ onClose }) => {
             <input
               id="sport"
               type="number"
-              {...register('activeTime')}
+              {...register('activeTime', {
+                valueAsNumber: true,
+                min: 0,
+                required: true,
+              })}
               className={s.input}
+              onBlur={() => trigger('activeTime')}
+              onKeyDown={(e) => {
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
+              }}
             />
-            {errors.weight && (
+            {errors.activeTime && (
               <p className={s.errorText}>{errors.activeTime.message}</p>
             )}
           </div>
           <div className={s.recommend_wrap}>
             <p>{t('settingModal.recommend_water_intake')}:</p>
-            <span>1.5 L</span>
+            <span>
+              {calculatedWaterAmount ? `${calculatedWaterAmount} L` : '1.5 L'}
+            </span>
           </div>
           {/* Скільки планує пити */}
           <div className={s.formGroup}>
@@ -351,11 +353,24 @@ const UserSettingsForm = ({ onClose }) => {
             </label>
             <input
               id="dailyWater"
-              type="number"
-              step="0.1"
-              {...register('waterNorm')}
+              type="text"
+              step="0.01"
+              {...register('waterNorm', {
+                min: 0.5,
+                required: true,
+              })}
+              onBlur={() => trigger('waterNorm')}
               className={s.input}
+              onKeyDown={(e) => {
+                if (!/[0-9.]/.test(e.key) && e.key !== 'Backspace') {
+                  e.preventDefault();
+                }
+              }}
+              value={watch('waterNorm') ? watch('waterNorm') : ''}
             />
+            {errors.waterNorm && (
+              <p className={s.errorText}>{errors.waterNorm.message}</p>
+            )}
           </div>
 
           {/* Рекомендація */}

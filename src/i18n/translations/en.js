@@ -23,6 +23,7 @@ export const en = {
       send_email: 'Send email',
       go_home: 'Go Home',
       delete: 'Delete',
+      deleting: 'Deleting...',
       change_pwd: 'Change password',
     },
     advantagesSection: {
@@ -50,6 +51,24 @@ export const en = {
       number_min: 'Amount of water must be at least 50 ml',
       number_max: 'Amount of water cannot exceed 5000 ml',
       water_required: 'Amount of water is required',
+      gender: 'Please select your gender',
+      name_required: 'Name is required',
+      name_contain: 'Name must contain only letters',
+      water_min: 'Daily water norm must be at least 0.5 L',
+      water_max: 'Daily water norm cannot exceed 15 L',
+    },
+
+    commonUserValidation: {
+      number: '{{field}} must be a number',
+      required: '{{field}} is required',
+      positive: '{{field}} must be positive',
+      min: '{{field}} must be at least {{min}}',
+      max: '{{field}} cannot exceed {{max}}',
+    },
+    values: {
+      activeTime: 'Active sport time ',
+      waterNorm: 'Daily water norm',
+      weight: 'Weight',
     },
     notifications: {
       hello: 'Hello, {{user}}!',
@@ -122,6 +141,13 @@ export const en = {
       Email_is_in_use: 'Email is in use',
       User_not_found: 'User not found',
       no_response: 'No response',
+    },
+    waterList: {
+      cannot_record: 'You cannot record water consumption for future dates.',
+      select_valid_date: 'Please select a valid date.',
+      nothing_here: 'Looks like there is nothing here yet.',
+      click_addWater:
+        "Click 'Add Water' to log your water intake for this day.",
     },
   },
 };
