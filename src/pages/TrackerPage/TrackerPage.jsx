@@ -107,6 +107,7 @@ function TrackerPage() {
             setDeleteWaterModal={setDeleteWaterModal}
             setSettingsModal={setSettingsModal}
           />
+
           <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
             <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
           </Modal>

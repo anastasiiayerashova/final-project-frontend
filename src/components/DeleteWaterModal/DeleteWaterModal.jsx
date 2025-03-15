@@ -41,8 +41,10 @@ const DeleteWaterModal = ({ onClose }) => {
 
       handleClose();
 
-      await dispatch(fetchWaterDaily(dateFormatted)).unwrap();
-      dispatch(fetchWaterMonthly(month)).unwrap();
+      await Promise.all([
+        dispatch(fetchWaterDaily(dateFormatted)).unwrap(),
+        dispatch(fetchWaterMonthly(month)).unwrap(),
+      ]);
     } catch (error) {
       if (error?.response?.status !== 404) {
         toast.error(`Error deleting record: ${error.message || error}`);

@@ -18,7 +18,11 @@ const CalendarItem = ({ date, percentage, loading }) => {
   };
 
   return (
-    <button type="button" className={s.dayBtn} onClick={handleDate}>
+    <button
+      type="button"
+      className={`${s.dayBtn} ${day > today ? s.disabled : ''}`}
+      onClick={handleDate}
+    >
       <div
         className={`${s.dayNumber} ${day === today ? s.today : ''} ${
           selectedDate === fullDay ? s.selected : ''

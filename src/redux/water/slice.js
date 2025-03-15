@@ -22,6 +22,8 @@ const initialState = {
   loadingDaily: false,
   loadingMonthly: false,
   error: null,
+  errorDaily: null,
+  errorMonthly: null,
   waterId: null, // Для видалення або редагування конкретного запису про воду
 };
 
@@ -53,15 +55,16 @@ const slice = createSlice({
     builder
       .addCase(fetchWaterDaily.pending, (state) => {
         state.loadingDaily = true;
+        state.errorDaily = null;
       })
       .addCase(fetchWaterDaily.fulfilled, (state, action) => {
         state.loadingDaily = false;
-        state.error = null;
+        state.errorDaily = null;
         state.dayWaterList = action.payload;
       })
       .addCase(fetchWaterDaily.rejected, (state, action) => {
         state.loadingDaily = false;
-        state.error = action.payload;
+        state.errorDaily = action.payload;
       })
       .addCase(addWater.fulfilled, (state) => {
         state.loading = false;
@@ -85,15 +88,16 @@ const slice = createSlice({
       })
       .addCase(fetchWaterMonthly.pending, (state) => {
         state.loadingMonthly = true;
+        state.errorMonthly = null;
       })
       .addCase(fetchWaterMonthly.fulfilled, (state, action) => {
         state.loadingMonthly = false;
-        state.error = null;
+        state.errorMonthly = null;
         state.monthData = action.payload;
       })
       .addCase(fetchWaterMonthly.rejected, (state, action) => {
         state.loadingMonthly = false;
-        state.error = action.payload;
+        state.errorMonthly = action.payload;
       })
       // При logoutі користвуача очищаємо всі дані в стейті
       .addCase(logoutUserOperation.fulfilled, () => {

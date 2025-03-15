@@ -107,6 +107,7 @@ export const uk = {
       daily_norm: 'Денна норма',
       today: 'Сьогодні',
       month_general: 'Місяць',
+      statistics: 'Статистика',
     },
     settingModal: {
       no_img: 'Фото відсутнє',
