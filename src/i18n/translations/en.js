@@ -71,7 +71,8 @@ export const en = {
       weight: 'Weight',
     },
     notifications: {
-      hello: 'Hello, {{user}}!',
+      hello: 'Hello, ',
+      user_name: '{{user}}!',
       welcome: 'Welcome, {{email}}!',
       enter_email: 'Enter your email',
       enter_password: 'Enter your password',

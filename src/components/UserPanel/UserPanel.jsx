@@ -12,7 +12,8 @@ const UserPanel = ({ setLogoutModal, setSettingsModal }) => {
   return (
     <div className={s.userPanel}>
       <h2 className={s.greetings}>
-        <span>{t('notifications.hello', { user: !isLoggedIn ? 'USER' : nameUser })}</span>
+        <span>{t('notifications.hello')}</span>
+        <span className={s.bold_span}>{t('notifications.user_name', { user: !isLoggedIn ? 'USER' : nameUser })}</span>
       </h2>
       <UserBar
         setLogoutModal={setLogoutModal}

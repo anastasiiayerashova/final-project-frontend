@@ -13,7 +13,7 @@
   color: var(--light-black);
 }
 
-.greetings span {
+.bold_span {
   font-weight: 700;
 }
 

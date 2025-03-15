@@ -72,7 +72,8 @@ export const uk = {
     },
 
     notifications: {
-      hello: 'Привіт, {{user}}!',
+      hello: 'Привіт, ',
+      user_name: '{{user}}!',
       welcome: 'Вітаємо, {{email}}!',
       enter_email: 'Введіть свою електронну пошту',
       enter_password: 'Введіть свій пароль',
