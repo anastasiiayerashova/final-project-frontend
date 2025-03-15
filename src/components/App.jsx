@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 import { SharedLayout } from './SharedLayout/SharedLayout.jsx';
 import RestrictedRoute from './RestrictedRoute.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
-import ChangePasswordPage from '../pages/ChangePasswordPage/ChangePasswordPage.jsx';
+import '../i18n/index.js';
 
 const HomePage = lazy(() => import('./../pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./../pages/SignUpPage/SignUpPage'));
@@ -12,10 +12,8 @@ const SignInPage = lazy(() => import('./../pages/SignInPage/SignInPage'));
 const TrackerPage = lazy(() => import('./../pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./../pages/NotFoundPage/NotFoundPage'));
 const GooglePage = lazy(() => import('./../pages/GooglePage/GooglePage'));
-const ResetPasswordPage = lazy(() =>
-  import('./../pages/ResetPasswordPage/ResetPasswordPage'),
-);
-import '../i18n/index.js';
+const ResetPasswordPage = lazy(() => import('./../pages/ResetPasswordPage/ResetPasswordPage'));
+const ChangePasswordPage = lazy(() => import('./../pages/ChangePasswordPage/ChangePasswordPage'));
 
 export function App() {
   return (

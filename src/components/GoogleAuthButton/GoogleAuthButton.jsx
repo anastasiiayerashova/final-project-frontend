@@ -14,6 +14,7 @@ const GoogleAuthButton = ({ text }) => {
     useEffect(() => {
         async function getData() {
             const { data: { data } } = await getUrl()
+            console.log('🔍 Google OAuth URL:', data.url);
             setUrl(data.url)
         }
         getData()
@@ -22,7 +23,7 @@ const GoogleAuthButton = ({ text }) => {
     const googleSignIn = async (token) => {
         try {
             const { data } = await api.post('/auth/confirm-oauth', { token })
-            localStorage.setItem('googleToken', data.token)
+            localStorage.setItem('token', data.token)
             navigate('/tracker')
         }
         catch (e) {

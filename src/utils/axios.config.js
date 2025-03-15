@@ -27,6 +27,8 @@ api.interceptors.response.use(
 
                 originalRequest.headers['Authorization'] = `Bearer ${accessToken}`
 
+                console.log('🔄 Retrying request:', originalRequest)
+
                 return api(originalRequest)
             }
             catch (e) {
@@ -39,6 +41,7 @@ api.interceptors.response.use(
             error.response.status === 409 ||
             error.response.status === 500 
         ) {
+            console.log(Promise.reject(error))
             return Promise.reject(error)
         }
     }
