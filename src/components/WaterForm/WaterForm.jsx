@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -25,7 +26,7 @@ const WaterForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const timeId = useId();
   const amountId = useId();
-
+  const { t } = useTranslation();
   const waterId = useSelector(selectWaterId);
   const dayWaterList = useSelector(selectDayWaterList);
   const date = useSelector(selectDate);
@@ -36,15 +37,15 @@ const WaterForm = ({ onClose }) => {
   const schema = yup.object().shape({
     time: yup
       .string()
-      .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Enter a valid time format')
-      .required('Time is required'),
+      .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, t('validation.valid_time'))
+      .required(t('validation.time_required')),
     amount: yup
       .number()
-      .typeError('Amount must be a number')
-      .positive('Amount must be greater than 0')
-      .min(50, 'Amount of water must be at least 50 ml')
-      .max(5000, 'Amount of water cannot exceed 5000 ml')
-      .required('Amount of water is required'),
+      .typeError(t('validation.number_amount'))
+      .positive(t('validation.number_positive'))
+      .min(50, t('validation.number_min'))
+      .max(5000, t('validation.number_max'))
+      .required(t('validation.water_required')),
   });
 
   const {
@@ -124,11 +125,11 @@ const WaterForm = ({ onClose }) => {
       if (waterId) {
         // Якщо waterId є, значить редагуємо
         await dispatch(editWater({ waterId, newData: requestData })).unwrap();
-        toast.success('Water record updated successfully!');
+        toast.success(t('notifications.water_updated'));
       } else {
         // Якщо waterId немає, значить додаємо
         await dispatch(addWater(requestData)).unwrap();
-        toast.success('Water record added successfully!');
+        toast.success(t('notifications.water_added'));
       }
 
       reset({
@@ -146,17 +147,27 @@ const WaterForm = ({ onClose }) => {
       await dispatch(fetchWaterDaily(dateFormatted)).unwrap();
       dispatch(fetchWaterMonthly(month)).unwrap();
     } catch (error) {
-      toast.error(`Error: ${error}`);
+      toast.error(`Error: ${error}`); /*TRANSLATE THIS */
     }
   };
 
-  const isLoading = useSelector(selectLoading);
+    const isLoading = useSelector(selectLoading);
+    
+    const onError = (errors) => {
+     console.log(errors)
+      toast.error(t('errors.try_again'), {
+        style: {
+          backgroundColor: 'white',
+          color: 'red',
+        },
+      });
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <div className={s.inputGroup}>
         <label htmlFor="amount" className={s.descrAmount}>
-          Amount of water:
+          {t('waterModal.water_amount')}:
         </label>
         <div className={s.controls}>
           <button
@@ -190,7 +201,7 @@ const WaterForm = ({ onClose }) => {
 
       <div className={s.inputGroup}>
         <label htmlFor={timeId} className={s.timeLabel}>
-          Recording time:
+          {t('waterModal.record_time')}:
         </label>
         <input
           className={`${s.timeInput} ${errors.time ? s.inputError : ''}`}
@@ -204,7 +215,7 @@ const WaterForm = ({ onClose }) => {
 
       <div className={s.inputGroup}>
         <label htmlFor={amountId} className={s.manualInput}>
-          Enter the value of the water used:
+          {t('waterModal.enter_water_value')}:
         </label>
         <input
           type="number"
@@ -228,7 +239,7 @@ const WaterForm = ({ onClose }) => {
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? 'Saving...' : 'Save'}
+        {t(isLoading ? 'common.saving' : 'common.save')}
       </button>
     </form>
   );

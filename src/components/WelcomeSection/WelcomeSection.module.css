@@ -41,6 +41,9 @@ h1 {
 .container_link {
   display: flex;
   gap: 10px;
+  @media (max-width: 374px) {
+    gap: 4px;
+  }
 }
 .link {
   border: 1px solid var(--green);

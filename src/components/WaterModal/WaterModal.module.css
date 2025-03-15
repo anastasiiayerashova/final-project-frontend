@@ -17,7 +17,7 @@
 
 .waterModal {
   width: 343px;
-  height: 514px;
+  height: auto;
   background: white;
   border-radius: 20px;
   padding: 40px 20px;

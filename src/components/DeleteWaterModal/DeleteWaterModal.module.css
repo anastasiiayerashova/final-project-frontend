@@ -51,7 +51,8 @@
 
 .button {
   display: flex;
-  padding: 14px;
+  padding: 14px 0px;
+  width: 304px;
   justify-content: center;
   border-radius: 30px;
   font-size: 14px;
@@ -116,6 +117,7 @@
 
   .button {
     padding: 18px 59px;
+    width: fit-content;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;

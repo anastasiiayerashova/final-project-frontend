@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from "redux-persist"
-import { getCurrentUserDataOperation, loginUserOperation, logoutUserOperation, refreshUserOperation, registerUserOperation } from "./operations.js"
+import { getCurrentUserDataOperation, loginUserOperation, logoutUserOperation, refreshUserOperation, registerUserOperation, updateUserAvatarOperation, updateUserOperation } from "./operations.js"
 
 const initialState = {
     user: {
@@ -21,11 +21,15 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-    //   logoutUser: (state) => {
-    //   state.token = null;
-    //   state.isLoggedIn = false;
-    //   state.user = initialState.user;
-    // }
+        resetToken: (state, { payload }) => {
+            state.token = payload
+            if (!payload || !payload.length) state.isLoggedIn = false
+            else state.isLoggedIn = true
+        },
+        refreshError: (state) => {
+            state.isLoggedIn = false
+            state.token = null
+        }
     },
     extraReducers: (builder) =>
         builder
@@ -54,6 +58,12 @@ const userSlice = createSlice({
                 state.isLoggedIn = false;
                 state.user = initialState.user;
             })       
+            .addCase(updateUserAvatarOperation.fulfilled, (state, {payload}) => {
+                state.user.avatar = payload
+            })
+            .addCase(updateUserOperation.fulfilled, (state, { payload }) => {
+                state.user = {...state.user, ...payload}
+            })
 }
 )
 
@@ -64,4 +74,4 @@ const persistConfig = {
 }
 
 export const authReducer = persistReducer(persistConfig, userSlice.reducer)
-export const { resetToken, logoutUser } = userSlice.actions;
+export const { resetToken, refreshError } = userSlice.actions;

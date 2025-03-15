@@ -8,9 +8,27 @@
   overflow-x: hidden;
 }
 
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9be1a0;
+  border-radius: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='radio']:checked {
+  box-shadow: inset 0 0 0 4px white;
+  background-color: #9be1a0;
+}
+
 .title {
-  font-size: 20px;
   font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
   margin-bottom: 20px;
   color: var(--black);
   text-align: left;
@@ -26,11 +44,10 @@
 }
 
 .avatarImage {
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
 }
 
 .avatarPlaceholder {
@@ -41,6 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: #999;
   font-size: 14px;
 }
@@ -73,6 +91,31 @@
 
 .formGroup {
   margin-bottom: 24px;
+}
+
+.formGroup:nth-child(2) {
+  margin-bottom: 14px;
+}
+
+.formGroup_2 {
+  margin-bottom: 14px;
+}
+
+.formGroup_2:nth-child(2) {
+  margin-bottom: 24px;
+}
+
+.formGroup_3 {
+  margin-bottom: 40px;
+  & label {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--black);
+    display: block;
+  }
 }
 
 .formActive {
@@ -143,6 +186,10 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .formula_wrap {
@@ -194,6 +241,7 @@
   row-gap: 5px;
   & p {
     font-size: 14px;
+    font-weight: 400;
     line-height: 129%;
     letter-spacing: -0.01em;
   }
@@ -213,7 +261,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   border-radius: 30px;
-  padding: 14px 40px;
+  padding: 14px 0px;
   width: 116px;
   height: 46px;
   cursor: pointer;
@@ -223,6 +271,13 @@
 
 .saveButton:hover {
   background-color: var(--green-hover);
+}
+
+.saveButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--grey);
+  color: var(--black);
 }
 
 @media screen and (min-width: 375px) {
