@@ -86,7 +86,8 @@ export const uk = {
       check_email: 'Будь ласка, перевірте вашу електронну пошту',
       changed_password: 'Пароль успішно змінено!',
       water_deleted: 'Запис про воду успішно видалено!',
-      data_updated: 'Ваші дані успішно збережені!'
+      data_updated: 'Ваші дані успішно збережені!',
+      Password_was_successfully_reset_: 'Пароль успішно змінено!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
@@ -149,6 +150,10 @@ export const uk = {
       no_response: 'Відсутня відповідь',
       Session_not_found: 'Сесію не знайдено',
       Session_token_expired: 'Термін дії токену сесії закінчився',
+      error_deleting_record: 'Помилка видалення запису: {{error}}',
+      Request_failed_with_status_code_404:
+        'Запит виконано невдало з кодом стану 404',
+      Water_record_not_found: 'Запис про воду не знайдено',
     },
     waterList: {
       cannot_record:
@@ -158,19 +163,24 @@ export const uk = {
       click_addWater:
         'Натисніть «Додати воду», щоб зафіксувати споживання води за цей день.',
     },
+    notFoundPage: {
+      not_found: 'Сторінку Не Знайдено',
+      sorry: 'На жаль, сторінка, яку ви шукаєте, не існує.',
+      go_home: 'Повернутися На Головну',
+    },
     months: {
-    January: "Січень",
-    February: "Лютий",
-    March: "Березень",
-    April: "Квітень",
-    May: "Травень",
-    June: "Червень",
-    July: "Липень",
-    August: "Серпень",
-    September: "Вересень",
-    October: "Жовтень",
-    November: "Листопад",
-    December: "Грудень"
-  },
+      January: 'Січень',
+      February: 'Лютий',
+      March: 'Березень',
+      April: 'Квітень',
+      May: 'Травень',
+      June: 'Червень',
+      July: 'Липень',
+      August: 'Серпень',
+      September: 'Вересень',
+      October: 'Жовтень',
+      November: 'Листопад',
+      December: 'Грудень',
+    },
   },
 };

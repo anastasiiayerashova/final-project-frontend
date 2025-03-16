@@ -34,15 +34,15 @@ export const loginUserOperation = createAsyncThunk(
         data: {
           data: { accessToken },
         },
-      } = await api.post('/auth/login', cred);
+      } = await api.post('/auth/login'); /* , cred */
 
       setAuthHeader(accessToken);
 
       return { accessToken: accessToken };
     } catch (e) {
-      console.log(e.response.status)
+      console.log(e.response.status);
       if (e.response.status === 401) {
-        return thunkAPI.rejectWithValue('Wrong password')
+        return thunkAPI.rejectWithValue('Wrong password');
       }
       return thunkAPI.rejectWithValue(e.response.data.data.message);
     }
@@ -96,26 +96,33 @@ export const updateUserOperation = createAsyncThunk(
   'user/updateUser',
   async (cred, thunkAPI) => {
     try {
-      const { data: { data } } = await api.patch('/auth/data', cred)
-      
-      return data
+      const {
+        data: { data },
+      } = await api.patch('/auth/data', cred);
+
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.errors?.message ||
+          'Error during updating  avatar',
+      );
     }
-    catch (e) {
-      return thunkAPI.rejectWithValue(error.response?.data?.errors?.message || 'Error during updating  avatar')
-    }
-  }
+  },
 );
 
 export const updateUserAvatarOperation = createAsyncThunk(
   'user/updateAvatar',
   async (file, thunkAPI) => {
     try {
-      const { data: {data} } = await api.put('/auth/data-avatar-load', file)
-      
-      return data
-    }
-    catch (e) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error during updating  avatar')
+      const {
+        data: { data },
+      } = await api.put('/auth/data-avatar-load', file);
+
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || 'Error during updating  avatar',
+      );
     }
   },
 );
@@ -124,7 +131,7 @@ export const refreshUserOperation = createAsyncThunk(
   'user/refresh',
   async (_, thunkAPI) => {
     try {
-      const response = await api.post('/auth/refresh');
+      const response = await api.post('/auth/refresh', cred);
 
       console.log('Token refreshed', response.data);
 
@@ -136,7 +143,7 @@ export const refreshUserOperation = createAsyncThunk(
 
       setAuthHeader(accessToken);
 
-      return accessToken
+      return accessToken;
     } catch (error) {
       console.error(
         'Ошибка при обновлении токена:',

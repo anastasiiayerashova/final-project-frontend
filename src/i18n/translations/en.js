@@ -85,7 +85,8 @@ export const en = {
       water_deleted: 'Water record successfully deleted!',
       check_email: 'Please, check your email',
       changed_password: 'Password changed successfully!',
-      data_updated: 'Your data was successfully updated!'
+      data_updated: 'Your data was successfully updated!',
+      Password_was_successfully_reset_: 'Password was successfully reset!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',
@@ -149,6 +150,10 @@ export const en = {
       no_response: 'No response',
       Session_not_found: 'Session not found',
       Session_token_expired: 'Session token expired',
+      error_deleting_record: 'Error deleting record: {{error}}',
+      Request_failed_with_status_code_404:
+        'Request failed with status code 404',
+      Water_record_not_found: 'Water record not found',
     },
     waterList: {
       cannot_record: 'You cannot record water consumption for future dates.',
@@ -157,19 +162,25 @@ export const en = {
       click_addWater:
         "Click 'Add Water' to log your water intake for this day.",
     },
+    notFoundPage: {
+      not_found: 'Page Not Found',
+      sorry: "Sorry, the page you're looking for doesn't exist.",
+      go_home: 'Go to Home',
+    },
+
     months: {
-    January: "January",
-    February: "February",
-    March: "March",
-    April: "April",
-    May: "May",
-    June: "June",
-    July: "July",
-    August: "August",
-    September: "September",
-    October: "October",
-    November: "November",
-    December: "December"
-  },
+      January: 'January',
+      February: 'February',
+      March: 'March',
+      April: 'April',
+      May: 'May',
+      June: 'June',
+      July: 'July',
+      August: 'August',
+      September: 'September',
+      October: 'October',
+      November: 'November',
+      December: 'December',
+    },
   },
 };

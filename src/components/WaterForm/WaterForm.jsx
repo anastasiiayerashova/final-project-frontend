@@ -149,7 +149,7 @@ const WaterForm = ({ onClose }) => {
         dispatch(fetchWaterMonthly(month)).unwrap(),
       ]);
     } catch (error) {
-      toast.error(`Error: ${error}`); /*TRANSLATE THIS */
+      toast.error(t(`errors.${formattedErrorKey(e)}`));
     }
   };
 
