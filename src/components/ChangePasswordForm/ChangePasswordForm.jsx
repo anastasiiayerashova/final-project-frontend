@@ -17,7 +17,7 @@ const ChangePasswordForm = () => {
   const { t } = useTranslation();
   const { restoreFocus } = useLastFocusedField();
   const schema = useValidationSchema(true, false);
-  
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -27,10 +27,10 @@ const ChangePasswordForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-  
+
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const toggleRepeatPasswordVisibility = () =>
-  setShowRepeatPassword(!showRepeatPassword);
+    setShowRepeatPassword(!showRepeatPassword);
 
   const {
     register,
@@ -79,19 +79,19 @@ const ChangePasswordForm = () => {
 
   const pwdValue = watch('password');
   const confirmPwdValue = watch('repeatPassword');
-  
-    useEffect(() => {
-      if (pwdValue) {
-        trigger('password');
-      }
-    }, [pwdValue, trigger]);
-  
-    useEffect(() => {
-      if (confirmPwdValue) {
-        trigger('repeatPassword');
-      }
-    }, [confirmPwdValue, trigger]);
-  
+
+  useEffect(() => {
+    if (pwdValue) {
+      trigger('password');
+    }
+  }, [pwdValue, trigger]);
+
+  useEffect(() => {
+    if (confirmPwdValue) {
+      trigger('repeatPassword');
+    }
+  }, [confirmPwdValue, trigger]);
+
   useEffect(() => {
     reset(getValues(), {
       keepValues: true,
@@ -104,13 +104,16 @@ const ChangePasswordForm = () => {
     <div className={s.container}>
       <div className={s.logo_container}>
         <Logo />
+        <LanguageButtons />
       </div>
 
       <div className={s.menu_container}>
         <h2 className={s.title}>{t('changePasswordPage.change_pwd')}</h2>
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div className={s.inputGroup}>
-            <label htmlFor={pwdId}>{t('changePasswordPage.new_password')}</label>
+            <label htmlFor={pwdId}>
+              {t('changePasswordPage.new_password')}
+            </label>
             <input
               id={pwdId}
               type={showPassword ? 'text' : 'password'}
@@ -122,24 +125,26 @@ const ChangePasswordForm = () => {
               <p className={s.error}>{errors.password.message}</p>
             )}
             <button
-                            className={s.eyeIcon}
-                            onClick={togglePasswordVisibility}
-                            type="button"
-                          >
-                            {showPassword ? (
-                              <svg width="20" height="20">
-                                <use href="/sprite.svg#eye-off" />
-                              </svg>
-                            ) : (
-                              <svg width="20" height="20">
-                                <use href="/sprite.svg#eye" />
-                              </svg>
-                            )}
-                          </button>
+              className={s.eyeIcon}
+              onClick={togglePasswordVisibility}
+              type="button"
+            >
+              {showPassword ? (
+                <svg width="20" height="20">
+                  <use href="/sprite.svg#eye-off" />
+                </svg>
+              ) : (
+                <svg width="20" height="20">
+                  <use href="/sprite.svg#eye" />
+                </svg>
+              )}
+            </button>
           </div>
 
           <div className={s.inputGroup}>
-            <label htmlFor={confirmPwdId}>{t('common.repeat_password_label')}</label>
+            <label htmlFor={confirmPwdId}>
+              {t('common.repeat_password_label')}
+            </label>
             <input
               id={confirmPwdId}
               type={showRepeatPassword ? 'text' : 'password'}
@@ -150,21 +155,21 @@ const ChangePasswordForm = () => {
             {errors.repeatPassword && (
               <p className={s.error}>{errors.repeatPassword.message}</p>
             )}
-             <button
-                            type="button"
-                            className={s.eyeIcon}
-                            onClick={toggleRepeatPasswordVisibility}
-                          >
-                            {showRepeatPassword ? (
-                              <svg width="20" height="20">
-                                <use href="../../../public/sprite.svg#eye-off" />
-                              </svg>
-                            ) : (
-                              <svg width="20" height="20">
-                                <use href="../../../public/sprite.svg#eye" />
-                              </svg>
-                            )}
-                          </button>
+            <button
+              type="button"
+              className={s.eyeIcon}
+              onClick={toggleRepeatPasswordVisibility}
+            >
+              {showRepeatPassword ? (
+                <svg width="20" height="20">
+                  <use href="../../../public/sprite.svg#eye-off" />
+                </svg>
+              ) : (
+                <svg width="20" height="20">
+                  <use href="../../../public/sprite.svg#eye" />
+                </svg>
+              )}
+            </button>
           </div>
 
           <button type="submit" className={s.button}>
