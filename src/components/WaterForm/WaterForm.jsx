@@ -38,7 +38,21 @@ const WaterForm = ({ onClose }) => {
     time: yup
       .string()
       .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, t('validation.valid_time'))
-      .required(t('validation.time_required')),
+      .required(t('validation.time_required'))
+      .test('is-not-future', t('validation.future_time_error'), (value) => {
+        if (!value) return false;
+
+        const [hours, minutes] = value.split(':').map(Number);
+        const inputTime = new Date();
+        inputTime.setHours(hours, minutes, 0, 0);
+
+        const now = new Date();
+
+        // Перевіряємо, що поточна дата та введена дата збігаються
+        const isToday = dateFormatted === now.toISOString().split('T')[0];
+
+        return isToday ? inputTime <= now : true;
+      }),
     amount: yup
       .number()
       .typeError(t('validation.number_amount'))
