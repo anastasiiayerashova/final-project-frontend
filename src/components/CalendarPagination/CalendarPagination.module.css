@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: unset;
 
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: 375px) {
     gap: 16px;
   }
 

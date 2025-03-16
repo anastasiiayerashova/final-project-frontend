@@ -54,8 +54,8 @@ export const en = {
       gender: 'Please select your gender',
       name_required: 'Name is required',
       name_contain: 'Name must contain only letters',
-      water_min: 'Daily water norm must be at least 0.5 L',
-      water_max: 'Daily water norm cannot exceed 15 L',
+      water_min: 'Daily water norm must be at least {{min}} L',
+      water_max: 'Daily water norm cannot exceed {{max}} L',
     },
 
     commonUserValidation: {
@@ -85,12 +85,14 @@ export const en = {
       water_deleted: 'Water record successfully deleted!',
       check_email: 'Please, check your email',
       changed_password: 'Password changed successfully!',
-      data_updated: 'Your data was successfully updated!'
+      data_updated: 'Your data was successfully updated!',
+      Password_was_successfully_reset_: 'Password was successfully reset!',
     },
     signInForm: {
       without_account: 'Don’t have an account?',
       help: 'Need help?',
       reset_password: 'Reset your password',
+      wrong_pwd_in_signin: 'Wrong password, please try again',
     },
     signUpForm: {
       with_account: 'Already have an account?',
@@ -131,6 +133,8 @@ export const en = {
       today: 'Today',
       month_general: 'Month',
       statistics: 'Statistics',
+      currentWeek: 'Current week',
+      week: 'Week {{weekNumber}}',
     },
     changePasswordPage: {
       change_pwd: 'Change your password',
@@ -149,6 +153,10 @@ export const en = {
       no_response: 'No response',
       Session_not_found: 'Session not found',
       Session_token_expired: 'Session token expired',
+      error_deleting_record: 'Error deleting record: {{error}}',
+      Request_failed_with_status_code_404:
+        'Request failed with status code 404',
+      Water_record_not_found: 'Water record not found',
     },
     waterList: {
       cannot_record: 'You cannot record water consumption for future dates.',
@@ -156,6 +164,11 @@ export const en = {
       nothing_here: 'Looks like there is nothing here yet.',
       click_addWater:
         "Click 'Add Water' to log your water intake for this day.",
+    },
+    notFoundPage: {
+      not_found: 'Page Not Found',
+      sorry: "Sorry, the page you're looking for doesn't exist.",
+      go_home: 'Go to Home',
     },
     months: {
     January: "January",

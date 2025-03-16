@@ -54,8 +54,8 @@ export const uk = {
       gender: 'Будь ласка, оберіть стать',
       name_required: "Ім'я є обов'язковим",
       name_contain: "Ім'я повинно містити лише літери",
-      water_min: 'Добова норма води має бути не менше 0,5 л',
-      water_max: 'Добова норма води не може перевищувати 15 л',
+      water_min: 'Добова норма води має бути не менше {{min}} л',
+      water_max: 'Добова норма води не може перевищувати {{max}} л',
     },
 
     commonUserValidation: {
@@ -86,12 +86,14 @@ export const uk = {
       check_email: 'Будь ласка, перевірте вашу електронну пошту',
       changed_password: 'Пароль успішно змінено!',
       water_deleted: 'Запис про воду успішно видалено!',
-      data_updated: 'Ваші дані успішно збережені!'
+      data_updated: 'Ваші дані успішно збережені!',
+      Password_was_successfully_reset_: 'Пароль успішно змінено!',
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
       help: 'Допомогти?',
       reset_password: 'Скинути пароль',
+      wrong_pwd_in_signin: 'Невірний пароль, будь ласка спробуйте ще раз',
     },
     signUpForm: {
       with_account: 'Вже маєте акаунт?',
@@ -110,6 +112,8 @@ export const uk = {
       today: 'Сьогодні',
       month_general: 'Місяць',
       statistics: 'Статистика',
+      currentWeek: 'Поточний тиждень',
+      week: 'Тиждень {{weekNumber}}',
     },
     settingModal: {
       no_img: 'Фото відсутнє',
@@ -149,6 +153,10 @@ export const uk = {
       no_response: 'Відсутня відповідь',
       Session_not_found: 'Сесію не знайдено',
       Session_token_expired: 'Термін дії токену сесії закінчився',
+      error_deleting_record: 'Помилка видалення запису: {{error}}',
+      Request_failed_with_status_code_404:
+        'Запит виконано невдало з кодом стану 404',
+      Water_record_not_found: 'Запис про воду не знайдено',
     },
     waterList: {
       cannot_record:
@@ -157,6 +165,11 @@ export const uk = {
       nothing_here: 'Схоже, тут ще нічого немає.',
       click_addWater:
         'Натисніть «Додати воду», щоб зафіксувати споживання води за цей день.',
+    },
+    notFoundPage: {
+      not_found: 'Сторінку Не Знайдено',
+      sorry: 'На жаль, сторінка, яку ви шукаєте, не існує.',
+      go_home: 'Повернутися На Головну',
     },
     months: {
     January: "Січень",

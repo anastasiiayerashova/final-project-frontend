@@ -14,6 +14,7 @@ import {
   fetchWaterMonthly,
 } from '../../redux/water/operations.js';
 import { useTranslation } from 'react-i18next';
+import { formattedErrorKey } from '../../i18n/utils/formattedErrorKey.js';
 
 const DeleteWaterModal = ({ onClose }) => {
   const { t } = useTranslation();
@@ -46,8 +47,11 @@ const DeleteWaterModal = ({ onClose }) => {
         dispatch(fetchWaterMonthly(month)).unwrap(),
       ]);
     } catch (error) {
+        console.dir(error)
       if (error?.response?.status !== 404) {
-        toast.error(`Error deleting record: ${error.message || error}`);
+        toast.error(t('errors.error_deleting_record', {
+            error: error.message || t(`errors.${formattedErrorKey(error)}`),
+          }));
       }
     } finally {
       setBtnDisabled(false);

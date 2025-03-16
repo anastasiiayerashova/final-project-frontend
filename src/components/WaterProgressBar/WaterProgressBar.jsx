@@ -46,7 +46,7 @@ const WaterProgressBar = () => {
           className={s.progressBarFill}
           style={{
             width: `${displayedPercentage}%`,
-            backgroundColor: displayedPercentage >= 100 ? '#7fffd4' : '#9be1a0',
+            backgroundColor: displayedPercentage >= 100 ? '#1E90FF' : '#9be1a0',
           }}
         >
           {displayedPercentage < 100 && (
@@ -62,13 +62,13 @@ const WaterProgressBar = () => {
             style={{
               width: `${displayedPercentage}%`,
               backgroundColor:
-                displayedPercentage >= 100 ? '#7fffd4' : '#9be1a0',
+                displayedPercentage >= 100 ? '#1E90FF' : '#9be1a0',
             }}
           >
             {exceededPercentage > 100 && (
               <p
                 className={s.percentNumber}
-                style={{ color: '#9BE1A0', zIndex: 1 }}
+                style={{ color: '#1E90FF', zIndex: 1 }}
               >
                 {`${exceededPercentage}%`}{' '}
                 {/* Показуємо проценти, якщо більше 100% */}
@@ -83,7 +83,7 @@ const WaterProgressBar = () => {
             left: `${displayedPercentage}%`,
             border:
               displayedPercentage >= 100
-                ? 'solid 1px #7fffd4'
+                ? 'solid 1px #1E90FF'
                 : 'solid 1px #9BE1A0',
             transform: `translate(-50%, -50%)`,
           }}

@@ -23,7 +23,7 @@ export const useUserValidationSchema = (t) => {
       .typeError(getLocalizedMessage(t, 'number', 'weight'))
       .positive(getLocalizedMessage(t, 'positive', 'weight'))
       .min(1, getLocalizedMessage(t, 'min', 'weight', { min: 1 }))
-      .max(500, getLocalizedMessage(t, 'max', 'weight', { min: 500 }))
+      .max(500, getLocalizedMessage(t, 'max', 'weight', { max: 500 }))
       .required(getLocalizedMessage(t, 'required', 'weight')),
     activeTime: Yup.number()
       .typeError(getLocalizedMessage(t, 'number', 'activeTime'))
@@ -33,8 +33,8 @@ export const useUserValidationSchema = (t) => {
       .required(getLocalizedMessage(t, 'required', 'activeTime')),
     waterNorm: Yup.number()
       .typeError(getLocalizedMessage(t, 'number', 'waterNorm'))
-      .min(0.5, 'Daily water norm must be at least 0.5 L')
-      .max(15, 'Daily water norm cannot exceed 15 L')
+      .min(0.5, t('validation.water_min', { min: 0.5 }))
+      .max(15, t('validation.water_max', { max: 15 }))
       .required(getLocalizedMessage(t, 'required', 'waterNorm')),
   });
 };

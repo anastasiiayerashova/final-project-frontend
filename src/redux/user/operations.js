@@ -146,10 +146,11 @@ export const refreshUserOperation = createAsyncThunk(
       clearAuthHeader();
 
       thunkAPI.dispatch(logoutUser()); // логаут
+      throw error
 
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || 'Ошибка при обновлении токена',
-      );
+      // return thunkAPI.rejectWithValue(
+      //   error.response?.data?.message || 'Ошибка при обновлении токена',
+      // );
     }
   },
 );

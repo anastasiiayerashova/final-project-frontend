@@ -11,6 +11,7 @@ import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
 import { useValidationSchema } from '../../utils/hooks/useValidationSchema.js';
 import { useLastFocusedField } from '../../utils/hooks/useLastFocusedField.js';
+import { formattedErrorKey } from '../../i18n/utils/formattedErrorKey.js';
 
 const ChangePasswordForm = () => {
   const { t } = useTranslation();
@@ -55,15 +56,20 @@ const ChangePasswordForm = () => {
         password: values.password,
       });
 
-      toast.success(response.data.message || t('notifications.changed_password'), {
-        style: { backgroundColor: 'white', color: 'green' },
-      });
+      toast.success(
+        t(`notifications.${formattedErrorKey(response.data.message)}`) ||
+          t('notifications.changed_password'),
+        {
+          style: { backgroundColor: 'white', color: 'green' },
+        },
+      );
 
       reset();
       navigate('/signin');
     } catch (e) {
       toast.error(
-        t(`errors.${formattedErrorKey(e.response?.data?.message)}`) || t('errors.failed_change_pwd'),
+        t(`errors.${formattedErrorKey(e.response?.data?.message)}`) ||
+          t('errors.failed_change_pwd'),
         {
           style: { backgroundColor: 'white', color: 'red' },
         },
