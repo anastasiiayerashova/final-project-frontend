@@ -54,8 +54,8 @@ export const en = {
       gender: 'Please select your gender',
       name_required: 'Name is required',
       name_contain: 'Name must contain only letters',
-      water_min: 'Daily water norm must be at least 0.5 L',
-      water_max: 'Daily water norm cannot exceed 15 L',
+      water_min: 'Daily water norm must be at least {{min}} L',
+      water_max: 'Daily water norm cannot exceed {{max}} L',
     },
 
     commonUserValidation: {
@@ -132,6 +132,8 @@ export const en = {
       today: 'Today',
       month_general: 'Month',
       statistics: 'Statistics',
+      currentWeek: 'Current week',
+      week: 'Week {{weekNumber}}',
     },
     changePasswordPage: {
       change_pwd: 'Change your password',

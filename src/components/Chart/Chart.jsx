@@ -11,8 +11,10 @@ import s from './Chart.module.css';
 import { useSelector } from 'react-redux';
 import { selectDate, selectMonthData } from '../../redux/water/selectors.js';
 import Dot from '../ChartDot/ChartDot.jsx';
+import { useTranslation } from 'react-i18next';
 
 const WaterChart = () => {
+  const { t } = useTranslation();
   const waterData = useSelector(selectMonthData);
   const currentDate = useSelector(selectDate);
   const svgIcon = '/sprite.svg';
@@ -102,7 +104,9 @@ const WaterChart = () => {
           </svg>
         </button>
         <div className={s.week}>
-          {isCurrentWeek ? 'Current week' : `Week ${currentWeek + 1}`}
+          {isCurrentWeek
+            ? t('trackerPage.currentWeek')
+            : t('trackerPage.week', { weekNumber: currentWeek + 1 })}
         </div>
         <button
           type="button"

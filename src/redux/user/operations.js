@@ -34,7 +34,7 @@ export const loginUserOperation = createAsyncThunk(
         data: {
           data: { accessToken },
         },
-      } = await api.post('/auth/login'); /* , cred */
+      } = await api.post('/auth/login', cred);
 
       setAuthHeader(accessToken);
 

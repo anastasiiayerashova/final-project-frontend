@@ -2,9 +2,11 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   margin-bottom: 24px;
-
+  @media screen and (min-width: 375px) {
+    gap: 16px;
+  }
   @media screen and (min-width: 768px) {
     gap: 20px;
   }

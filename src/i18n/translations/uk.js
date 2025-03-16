@@ -54,8 +54,8 @@ export const uk = {
       gender: 'Будь ласка, оберіть стать',
       name_required: "Ім'я є обов'язковим",
       name_contain: "Ім'я повинно містити лише літери",
-      water_min: 'Добова норма води має бути не менше 0,5 л',
-      water_max: 'Добова норма води не може перевищувати 15 л',
+      water_min: 'Добова норма води має бути не менше {{min}} л',
+      water_max: 'Добова норма води не може перевищувати {{max}} л',
     },
 
     commonUserValidation: {
@@ -111,6 +111,8 @@ export const uk = {
       today: 'Сьогодні',
       month_general: 'Місяць',
       statistics: 'Статистика',
+      currentWeek: 'Поточний тиждень',
+      week: 'Тиждень {{weekNumber}}',
     },
     settingModal: {
       no_img: 'Фото відсутнє',
