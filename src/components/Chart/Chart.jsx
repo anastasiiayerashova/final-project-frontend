@@ -1,87 +1,171 @@
+import { useState, useMemo, useEffect } from 'react';
 import {
-    Area,
-    XAxis,
-    YAxis,
-    Tooltip,
-    ResponsiveContainer,
-    AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  AreaChart,
 } from 'recharts';
-import s from './Chart.module.css'
+import s from './Chart.module.css';
 import { useSelector } from 'react-redux';
-import { selectMonthData } from '../../redux/water/selectors.js';
+import { selectDate, selectMonthData } from '../../redux/water/selectors.js';
 import Dot from '../ChartDot/ChartDot.jsx';
 
 const WaterChart = () => {
-    
-    const waterData = useSelector(selectMonthData);
-    console.log(waterData)
-  
-    const formattedData = waterData
-    .filter((item) => item.totalAmount > 0)
-    .map((item) => {
-        const [year, month, day] = item.date.split('-'); 
-        return {
-            date: `${month}.${day}`, 
-            day: Number(day), 
-            originalAmount: item.totalAmount,
-        };
-    })
-    .sort((a, b) => a.day - b.day);
+  const waterData = useSelector(selectMonthData);
+  const currentDate = useSelector(selectDate);
+  const svgIcon = '/sprite.svg';
 
-    const totalAmount = formattedData.reduce(
-        (acc, obj) => acc + obj.originalAmount,
-        0
-    );
+  const today = new Date();
+  const currentDay = today.getDate();
+  const currentMonth = today.getMonth() + 1;
+  const currentYear = today.getFullYear();
 
-    const formatYAxisTick = (tick, index) => {
-        if (index === 0) {
-            return '0l';
-        }
-        return `${(tick / 1000).toFixed(1)} l`;
-    };
+  const selectedDay = currentDate ? new Date(currentDate).getDate() : 1;
 
-    return (
-        <div className={s.graphic_wrapper}>
-            {totalAmount > 0 ? (
-                <ResponsiveContainer width='100%' height='100%'>
-                    <AreaChart data={formattedData} margin={{ top: 10, right: 10, left: 0, bottom: 10, }}>
-                        <defs>
-                            <linearGradient id='colorUv' x1='0' y1='0' x2='0' y2='1'>
-                                <stop offset='0%' stopColor='#87CEEB' stopOpacity={1} />
-                                <stop offset='100%' stopColor='#ADD8E6' stopOpacity={0} />
-                            </linearGradient>
-                        </defs>
-                        <XAxis dataKey='date' tickLine={false} tickMargin={21} />
-                        <YAxis
-                            domain={[0, 'auto']}
-                            tickCount={6}
-                            tickFormatter={formatYAxisTick}
-                            label={{ angle: -90, position: 'insideLeft' }}
-                            tickLine={false}
-                            tickMargin={53}
-                            tick={{ textAnchor: 'start' }}
-                        />
-                        <Tooltip cursor={false} position={{ y: -30 }} content={<Dot />} />
-                        <Area
-                            type='monotone'
-                            dataKey='originalAmount'
-                            stroke='#5B9BD5'
-                            fill='url(#colorUv)'
-                            dot={{
-                                fill: '#fff',
-                                stroke: '#5B9BD5',
-                                strokeWidth: 2,
-                                r: 8,
-                                fillOpacity: 1,
-                            }}
-                        />
-                    </AreaChart>
-                </ResponsiveContainer>
-            ) : (
-                <p className={s.without_data}>No data yet</p>
-            )}
+  // Визначаємо рік і місяць із даних або використовуємо поточні
+  const [year, month] =
+    waterData.length > 0
+      ? waterData[0].date.split('-').map(Number)
+      : [new Date().getFullYear(), new Date().getMonth() + 1];
+
+  // Визначаємо кількість днів на місяці
+  const daysInMonth = new Date(year, month, 0).getDate();
+
+  // Формуємо масив даних, заповнюючи відсутні дні нулями
+  const formattedData = useMemo(() => {
+    return Array.from({ length: daysInMonth }, (_, i) => {
+      const day = i + 1;
+      const formattedDay = String(day).padStart(2, '0');
+      const entry = waterData.find(
+        (item) => Number(item.date.split('-')[2]) === day,
+      );
+
+      return {
+        date: formattedDay,
+        amount: entry ? entry.totalAmount : 0,
+      };
+    });
+  }, [waterData, daysInMonth]);
+
+  // Розбиваємо дані на тижні
+  const weeks = useMemo(() => {
+    const weeksArray = [];
+    for (let i = 0; i < formattedData.length; i += 7) {
+      weeksArray.push(formattedData.slice(i, i + 7));
+    }
+    return weeksArray;
+  }, [formattedData]);
+
+  // Визначаємо початковий тиждень
+  const initialWeekIndex = Math.floor((selectedDay - 1) / 7);
+
+  const [currentWeek, setCurrentWeek] = useState(0);
+
+  // Встановлюємо правильний тиждень після завантаження
+  useEffect(() => {
+    if (initialWeekIndex >= 0 && initialWeekIndex < weeks.length) {
+      setCurrentWeek(initialWeekIndex);
+    }
+  }, [initialWeekIndex, weeks.length]);
+
+  // Перемикання тижнів
+  const prevWeek = () => {
+    if (currentWeek > 0) setCurrentWeek(currentWeek - 1);
+  };
+
+  const nextWeek = () => {
+    if (
+      currentWeek < weeks.length - 1 &&
+      (year !== currentYear ||
+        month !== currentMonth ||
+        (currentWeek + 1) * 7 < currentDay)
+    ) {
+      setCurrentWeek(currentWeek + 1);
+    }
+  };
+
+  // Перевіряємо, чи є поточний тиждень "активним" (поточний тиждень поточного місяця)
+  const isCurrentWeek =
+    year === currentYear &&
+    month === currentMonth &&
+    currentDay >= currentWeek * 7 + 1 &&
+    currentDay <= (currentWeek + 1) * 7;
+
+  return (
+    <div className={s.chartWrap}>
+      <div className={s.controls}>
+        <button type="button" onClick={prevWeek} disabled={currentWeek === 0}>
+          <svg className={s.svgIconLeft}>
+            <use href={`${svgIcon}#chevron-down`} />
+          </svg>
+        </button>
+        <div className={s.week}>
+          {isCurrentWeek ? 'Current week' : `Week ${currentWeek + 1}`}
         </div>
-    );
+        <button
+          type="button"
+          onClick={nextWeek}
+          disabled={currentWeek === weeks.length - 1 || isCurrentWeek}
+        >
+          <svg className={s.svgIconRight}>
+            <use href={`${svgIcon}#chevron-up`} />
+          </svg>
+        </button>
+      </div>
+
+      {weeks.length > 0 && weeks[currentWeek] ? (
+        <ResponsiveContainer width="100%" height={300}>
+          <AreaChart
+            data={weeks[currentWeek]}
+            margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+          >
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#9BE1A0" stopOpacity={1} />
+                <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis
+              dataKey="date"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={10}
+              tick={{ fill: '#323f47' }}
+              padding={{ left: 20 }}
+            />
+            <YAxis
+              domain={[0, 'auto']}
+              tickCount={6}
+              tickLine={false}
+              axisLine={false}
+              tick={{ fill: '#323f47' }}
+              tickFormatter={(tick) => `${(tick / 1000).toFixed(1)} L`}
+              padding={{ bottom: 10 }}
+            />
+            <Tooltip cursor={false} content={<Dot />} />
+            <Area
+              type="linear"
+              dataKey="amount"
+              stroke="#87d28d"
+              strokeWidth="2px"
+              fill="url(#colorUv)"
+              dot={{
+                fill: '#fff',
+                stroke: '#87d28d',
+                fillOpacity: 1,
+                strokeWidth: 2,
+                r: 6,
+              }}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      ) : (
+        <p className={s.without_data}>No data yet</p>
+      )}
+    </div>
+  );
 };
 
 export default WaterChart;
