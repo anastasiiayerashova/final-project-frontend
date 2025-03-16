@@ -1,0 +1,32 @@
+.tooltip {
+  background: white;
+  font-weight: 700;
+  line-height: 1.86667;
+  color: #323f47;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  white-space: nowrap;
+  border-radius: 13px;
+  padding: 11px 8px;
+  font-size: 10px;
+
+  @media screen and (min-width: 768px) {
+    border-radius: 15px;
+    padding: 10px 17px;
+    font-size: 12px;
+  }
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+}
