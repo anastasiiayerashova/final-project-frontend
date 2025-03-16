@@ -21,6 +21,12 @@ const WaterItem = ({ openWaterModal, setDeleteWaterModal, data }) => {
       })
     : 'N/A';
 
+  // Преобразование значения объема воды
+  const formattedValue =
+    data.value >= 1000
+      ? `${(data.value / 1000).toFixed(1)} L`
+      : `${data.value} ml`;
+
   const handleOpenEditWaterModal = () => {
     dispatch(setWaterId(data._id));
     openWaterModal({ isOpen: true, type: TYPE.EDIT_WATER });
@@ -39,7 +45,7 @@ const WaterItem = ({ openWaterModal, setDeleteWaterModal, data }) => {
         </svg>
       </div>
       <div className={s.info}>
-        <p className={s.volume}>{data?.value || '0'} ml</p>
+        <p className={s.volume}>{formattedValue}</p>
         <p className={s.time}>{formattedTime}</p>
       </div>
       <div className={s.buttons}>
