@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectDailyWaterNorm } from '../../redux/user/selectors.js';
 import { useTranslation } from 'react-i18next';
 import { selectDate, selectDayWaterList } from '../../redux/water/selectors.js';
+import i18next from 'i18next';
 
 const WaterProgressBar = () => {
   const { t } = useTranslation();
@@ -14,11 +15,12 @@ const WaterProgressBar = () => {
 
   const formatDate = (isoDate) => {
     const dateObj = new Date(isoDate);
-    const day = dateObj.getUTCDate();
-    const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
+    const day = String(dateObj.getUTCDate()).padStart(2, '0');
+    const month = new Intl.DateTimeFormat(i18next.language, { month: 'long' }).format(
       dateObj,
     );
-    return `${day}, ${month}`;
+    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1)
+    return `${day}, ${capitalizedMonth}`;
   };
   const dateFormatted = formatDate(date);
 

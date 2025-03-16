@@ -85,6 +85,7 @@ export const en = {
       water_deleted: 'Water record successfully deleted!',
       check_email: 'Please, check your email',
       changed_password: 'Password changed successfully!',
+      data_updated: 'Your data was successfully updated!'
     },
     signInForm: {
       without_account: 'Don’t have an account?',
@@ -156,5 +157,19 @@ export const en = {
       click_addWater:
         "Click 'Add Water' to log your water intake for this day.",
     },
+    months: {
+    January: "January",
+    February: "February",
+    March: "March",
+    April: "April",
+    May: "May",
+    June: "June",
+    July: "July",
+    August: "August",
+    September: "September",
+    October: "October",
+    November: "November",
+    December: "December"
+  },
   },
 };

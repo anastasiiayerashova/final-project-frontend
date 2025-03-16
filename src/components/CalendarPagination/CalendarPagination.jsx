@@ -24,12 +24,13 @@ const CalendarPagination = () => {
   const formatMonth = (monthString) => {
     const [year, month] = monthString.split('-');
     const date = new Date(year, month - 1);
-    const formattedMonth = new Intl.DateTimeFormat('en-US', {
+    const formattedMonth = new Intl.DateTimeFormat(i18next.language, {
       month: 'long',
     }).format(date);
-    return `${formattedMonth}, ${year}`;
+    const capitalizedMonth = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
+    return `${capitalizedMonth}, ${year}`;
   };
-  const formattedDate = useMemo(() => formatMonth(monthRedux), [monthRedux]);
+  const formattedDate = useMemo(() => formatMonth(monthRedux), [monthRedux, i18next.language]);
 
   const handlePreviousMonth = () => {
     const [year, month] = monthRedux.split('-').map(Number);
@@ -58,6 +59,7 @@ const CalendarPagination = () => {
   useEffect(() => {
     dispatch(fetchWaterMonthly(monthRedux));
   }, [dispatch, monthRedux]);
+
 
   return (
     <div className={s.CalendarPagination}>

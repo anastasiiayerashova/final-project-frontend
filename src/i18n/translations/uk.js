@@ -86,6 +86,7 @@ export const uk = {
       check_email: 'Будь ласка, перевірте вашу електронну пошту',
       changed_password: 'Пароль успішно змінено!',
       water_deleted: 'Запис про воду успішно видалено!',
+      data_updated: 'Ваші дані успішно збережені!'
     },
     signInForm: {
       without_account: 'Не маєте акаунту?',
@@ -157,5 +158,19 @@ export const uk = {
       click_addWater:
         'Натисніть «Додати воду», щоб зафіксувати споживання води за цей день.',
     },
+    months: {
+    January: "Січень",
+    February: "Лютий",
+    March: "Березень",
+    April: "Квітень",
+    May: "Травень",
+    June: "Червень",
+    July: "Липень",
+    August: "Серпень",
+    September: "Вересень",
+    October: "Жовтень",
+    November: "Листопад",
+    December: "Грудень"
+  },
   },
 };
