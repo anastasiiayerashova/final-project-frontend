@@ -4,7 +4,7 @@ import { resetToken, refreshError } from "../redux/user/slice.js"
 import { loginUserOperation, refreshUserOperation } from "../redux/user/operations.js"
 
 export const api = axios.create({
-    baseURL: 'https://aquatrack-bd.onrender.com',
+    baseURL: import.meta.env.VITE_SERVER_URL,
     withCredentials: true 
 })
 

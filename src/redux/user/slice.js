@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from "redux-persist"
-import { getCurrentUserDataOperation, loginUserOperation, logoutUserOperation, refreshUserOperation, registerUserOperation, updateUserAvatarOperation, updateUserOperation } from "./operations.js"
+import { getCurrentUserDataOperation, loginUserOperation, logoutUserOperation, refreshUserOperation, registerUserOperation, updateUserAvatarOperation, updateUserOperation, loginWithGoogleOperation } from "./operations.js"
 
 const initialState = {
     user: {
@@ -63,6 +63,18 @@ const userSlice = createSlice({
             })
             .addCase(updateUserOperation.fulfilled, (state, { payload }) => {
                 state.user = {...state.user, ...payload}
+            })
+            .addCase(loginWithGoogleOperation.pending, (state) => {
+                state.token = null
+                state.isLoggedIn = false
+            })
+            .addCase(loginWithGoogleOperation.fulfilled, (state, { payload }) => {
+                state.token = payload.accessToken
+                state.isLoggedIn = true
+            })
+            .addCase(loginWithGoogleOperation.rejected, (state) => {
+                state.isLoggedIn = false
+                state.token = null
             })
 }
 )

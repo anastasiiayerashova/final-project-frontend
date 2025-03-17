@@ -23,6 +23,7 @@ import {
 import { clearWaterId } from '../../redux/water/slice';
 
 const WaterForm = ({ onClose }) => {
+  const svgIcon = '/sprite.svg';
   const dispatch = useDispatch();
   const timeId = useId();
   const amountId = useId();
@@ -193,7 +194,7 @@ const WaterForm = ({ onClose }) => {
             disabled={amount <= 50}
           >
             <svg className={s.iconMinus}>
-              <use href="../../../public/sprite.svg#minus-plus"></use>
+              <use href={`${svgIcon}#minus-plus`}></use>
             </svg>
           </button>
           <input
@@ -209,7 +210,7 @@ const WaterForm = ({ onClose }) => {
             disabled={amount >= 5000}
           >
             <svg className={s.iconPlus}>
-              <use href="../../../public/sprite.svg#plus-minus"></use>
+              <use href={`${svgIcon}#plus-minus`}></use>
             </svg>
           </button>
         </div>
