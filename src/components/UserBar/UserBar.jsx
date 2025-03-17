@@ -38,7 +38,7 @@ const UserBar = ({ setLogoutModal, setSettingsModal }) => {
   }, []);
 
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} fourth-step`}>
       <button className={s.btn} onClick={togglePopover} ref={buttonRef}>
         <p className={s.nameUser}>{isLoggedIn ? nameUser : 'User'}</p>
         {!isLoggedIn ? (

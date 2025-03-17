@@ -62,7 +62,7 @@ const CalendarPagination = () => {
 
 
   return (
-    <div className={s.CalendarPagination}>
+    <div className={`${s.CalendarPagination} sixth-step`}>
       <button
         className={s.btnArrow}
         type="button"

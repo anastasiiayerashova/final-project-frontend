@@ -23,7 +23,7 @@ const MonthInfo = () => {
             : t('trackerPage.statistics')}
         </h3>
         <CalendarPagination />
-        <button className={s.btnChart} type="button" onClick={handleClick}>
+        <button className={`${s.btnChart} seventh-step`} type="button" onClick={handleClick}>
           <svg className={s.svgIcon}>
             <use href={`${svgIcon}#pie-chart-colour`} />
           </svg>

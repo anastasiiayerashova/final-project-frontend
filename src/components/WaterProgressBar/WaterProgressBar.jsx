@@ -37,7 +37,7 @@ const WaterProgressBar = () => {
   );
 
   return (
-    <div className={s.container}>
+    <div className={`${s.container} second-step`}>
       <div className={s.data}>
         <p>{date === today ? t('trackerPage.today') : dateFormatted}</p>
       </div>

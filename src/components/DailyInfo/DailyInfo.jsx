@@ -14,7 +14,7 @@ const DailyInfo = ({ openWaterModal, setDeleteWaterModal }) => {
   };
 
   return (
-    <div className={s.dailyInfo}>
+    <div className={`${s.dailyInfo} fifth-step`}>
       <div className={s.dateAndBtnWrapper}>
         <ChooseDate />
         <AddWaterBtn inDailyInfo={true} onClick={handleAddWater} />

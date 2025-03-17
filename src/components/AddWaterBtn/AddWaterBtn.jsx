@@ -32,7 +32,7 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
       className={`${s.detailsAddBtn} ${isFutureDate ? s.inactive : ''}`}
       onClick={onClick}
     >
-      <div className={s.iconContainer}>
+      <div className={`${s.iconContainer} third-step`}>
         <svg className={s.icon}>
           <use href={`${svgIcon}#plus-green`} />
         </svg>
