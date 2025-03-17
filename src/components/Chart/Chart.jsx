@@ -145,7 +145,9 @@ const WaterChart = () => {
               tickLine={false}
               axisLine={false}
               tick={{ fill: '#323f47' }}
-              tickFormatter={(tick) => `${(tick / 1000).toFixed(1)} L`}
+              tickFormatter={(tick) =>
+                t('trackerPage.liters', { value: (tick / 1000).toFixed(1) })
+              }
               padding={{ bottom: 10 }}
             />
             <Tooltip cursor={false} content={<Dot />} />

@@ -116,6 +116,7 @@ export const uk = {
       statistics: 'Статистика',
       currentWeek: 'Поточний тиждень',
       week: 'Тиждень {{weekNumber}}',
+      liters: '{{value}} Л',
     },
     settingModal: {
       no_img: 'Фото відсутнє',

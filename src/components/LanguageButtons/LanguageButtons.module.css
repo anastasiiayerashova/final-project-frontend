@@ -2,17 +2,23 @@
   display: flex;
   gap: 5px;
   max-width: 60px;
+  border-radius: 10px;
+  padding: 2px 4px;
 }
 
 .btn {
-  background-color: transparent;
   font-size: 14px;
   line-height: 1.5;
   padding: 2px 4px;
-  color: var(--black);
+  border-radius: 8px;
+  border: 1px solid rgb(143, 140, 140);
+  background-color: var(--green);
+  color: var(--white);
+  transition: all 150ms linear;
   &:disabled {
-    border: 1px solid var(--green);
-    border-radius: 8px;
+    background-color: transparent;
+    color: grey;
+    border: 1px solid transparent;
   }
 }
 
