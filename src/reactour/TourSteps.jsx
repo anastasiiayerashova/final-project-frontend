@@ -71,7 +71,7 @@ const TourSteps = ({ children, onFinish }) => {
             defaultOpen={tourFinished !== true && isOnTrackerPage}
             badgeContent={({ totalSteps, currentStep }) => currentStep + 1 + "/" + totalSteps}
             beforeClose={handleCloseTour}
-            // afterOpen={() => { disableBody() }}
+            afterOpen={() => { disableBody() }}
         >
             {children}
         </TourProvider>
