@@ -37,7 +37,25 @@
   align-items: center;
   width: 89%;
 }
-
+.tour_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tour_btn {
+  font-weight: 700;
+  font-size: 14px;
+  max-width: 90px;
+  border: 1px solid var(--light-black);
+  padding: 2px 4px;
+  border-radius: 30px;
+  background-color: var(--light-black);
+  color: var(--white);
+  cursor: pointer;
+  &:hover {
+    color: #9be1a0;
+  }
+}
 .btn {
   position: absolute;
   bottom: 32px;

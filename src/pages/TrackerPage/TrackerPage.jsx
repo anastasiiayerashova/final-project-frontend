@@ -92,55 +92,60 @@ function TrackerPage() {
     setSettingsModal(false);
   };
 
-  const [isTour, setIsTour] = useState(false)
+  const [isTour, setIsTour] = useState(false);
 
   useEffect(() => {
-    const tourFinished = localStorage.getItem('tourFinished')
+    const tourFinished = localStorage.getItem('tourFinished');
 
     if (!tourFinished || tourFinished === 'false') {
-      setIsTour(true)
+      setIsTour(true);
     }
-  }, [])
+  }, []);
 
   const handleCloseTour = () => {
-    localStorage.setItem('tourFinished', 'true')
-    setIsTour(false)
-  }
+    localStorage.setItem('tourFinished', 'true');
+    setIsTour(false);
+  };
+  const handleSwitchTour = () => {
+    localStorage.setItem('tourFinished', 'false');
+    setIsTour(true);
+  };
 
   return (
     <div>
       {isLoading ? (
         <Loader />
       ) : (
-          <div className={s.tracker_page}>
-            {isTour ? (
-              <TourSteps onFinish={handleCloseTour}>
-                <WaterMainInfo
-            isWaterModal={isWaterModal}
-            openWaterModal={openWaterModal}
-          />
-          <WaterDetailedInfo
-            openWaterModal={openWaterModal}
-            setLogoutModal={setLogoutModal}
-            setDeleteWaterModal={setDeleteWaterModal}
-            setSettingsModal={setSettingsModal}
-          />
-               </TourSteps>
-            ) :
-              (
-                <>
+        <div className={s.tracker_page}>
+          {isTour ? (
+            <TourSteps onFinish={handleCloseTour}>
               <WaterMainInfo
-            isWaterModal={isWaterModal}
-            openWaterModal={openWaterModal}
-          />
-          <WaterDetailedInfo
-            openWaterModal={openWaterModal}
-            setLogoutModal={setLogoutModal}
-            setDeleteWaterModal={setDeleteWaterModal}
-            setSettingsModal={setSettingsModal}
-          />
-           </>   )
-          }
+                tourOn={handleSwitchTour}
+                isWaterModal={isWaterModal}
+                openWaterModal={openWaterModal}
+              />
+              <WaterDetailedInfo
+                openWaterModal={openWaterModal}
+                setLogoutModal={setLogoutModal}
+                setDeleteWaterModal={setDeleteWaterModal}
+                setSettingsModal={setSettingsModal}
+              />
+            </TourSteps>
+          ) : (
+            <>
+              <WaterMainInfo
+                tourOn={handleSwitchTour}
+                isWaterModal={isWaterModal}
+                openWaterModal={openWaterModal}
+              />
+              <WaterDetailedInfo
+                openWaterModal={openWaterModal}
+                setLogoutModal={setLogoutModal}
+                setDeleteWaterModal={setDeleteWaterModal}
+                setSettingsModal={setSettingsModal}
+              />
+            </>
+          )}
 
           <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
             <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />

@@ -25,6 +25,7 @@ export const en = {
       delete: 'Delete',
       deleting: 'Deleting...',
       change_pwd: 'Change password',
+      help: 'Help',
     },
     advantagesSection: {
       customers_text: `{{count}} <span class={{class}}>happy</span> customers`,
