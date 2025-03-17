@@ -126,11 +126,16 @@ const WaterChart = () => {
             margin={{ top: 10, right: 15, left: 0, bottom: 5 }}
           >
             <defs>
+              <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <rect width="30" height="30" fill="none" />
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="lightgray" strokeWidth="1" />
+              </pattern>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#9BE1A0" stopOpacity={1} />
                 <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
               </linearGradient>
             </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#grid)" />
             <XAxis
               dataKey="date"
               tickLine={false}
@@ -145,7 +150,9 @@ const WaterChart = () => {
               tickLine={false}
               axisLine={false}
               tick={{ fill: '#323f47' }}
-              tickFormatter={(tick) => `${(tick / 1000).toFixed(1)} L`}
+               tickFormatter={(tick) =>
+                t('trackerPage.liters', { value: (tick / 1000).toFixed(1) })
+              }
               padding={{ bottom: 10 }}
             />
             <Tooltip cursor={false} content={<Dot />} />
