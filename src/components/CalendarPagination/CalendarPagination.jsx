@@ -27,10 +27,14 @@ const CalendarPagination = () => {
     const formattedMonth = new Intl.DateTimeFormat(i18next.language, {
       month: 'long',
     }).format(date);
-    const capitalizedMonth = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
+    const capitalizedMonth =
+      formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
     return `${capitalizedMonth}, ${year}`;
   };
-  const formattedDate = useMemo(() => formatMonth(monthRedux), [monthRedux, i18next.language]);
+  const formattedDate = useMemo(
+    () => formatMonth(monthRedux),
+    [monthRedux, i18next.language],
+  );
 
   const handlePreviousMonth = () => {
     const [year, month] = monthRedux.split('-').map(Number);
@@ -60,9 +64,8 @@ const CalendarPagination = () => {
     dispatch(fetchWaterMonthly(monthRedux));
   }, [dispatch, monthRedux]);
 
-
   return (
-    <div className={`${s.CalendarPagination} sixth-step`}>
+    <div className={s.CalendarPagination}>
       <button
         className={s.btnArrow}
         type="button"

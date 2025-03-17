@@ -187,5 +187,23 @@ export const en = {
       November: 'November',
       December: 'December',
     },
+    tourSteps: {
+      thank_you: 'Thank you for signing up!',
+      track_water: 'Track your water consumption easily with us!',
+      built:
+        'Built with passion by a team of talented developers, just for you!',
+      daily_water_goal:
+        'Here is your daily water goal. Try to reach it every day!',
+      current_water_intake:
+        'This shows your current water intake for today or selected date',
+      add_new_portion: 'Click here to add a new portion of water!',
+      or_add_new_portion: 'Or click here to add a new portion of water!',
+
+      settings: 'Click here to manage your profile and settings!',
+      consumed_water: "Here you can see the amount of water you've consumed!",
+      monthly_progress:
+        'Track your monthly progress – each circle shows your daily intake.',
+      consumption_chart: 'Click here to view your water consumption chart!',
+    },
   },
 };

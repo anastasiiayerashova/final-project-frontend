@@ -15,7 +15,7 @@ const MonthInfo = () => {
   };
 
   return (
-    <div className={s.MonthInfo}>
+    <div className={`${s.MonthInfo} sixth-step`}>
       <div className={s.MonthInfoHeader}>
         <h3 className={s.title}>
           {isCalendar
@@ -23,7 +23,11 @@ const MonthInfo = () => {
             : t('trackerPage.statistics')}
         </h3>
         <CalendarPagination />
-        <button className={`${s.btnChart} seventh-step`} type="button" onClick={handleClick}>
+        <button
+          className={`${s.btnChart} seventh-step`}
+          type="button"
+          onClick={handleClick}
+        >
           <svg className={s.svgIcon}>
             <use href={`${svgIcon}#pie-chart-colour`} />
           </svg>
