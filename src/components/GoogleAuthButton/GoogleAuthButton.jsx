@@ -6,8 +6,10 @@ const GoogleAuthButton = ({ text }) => {
     
         const handleGoogleLogin = async () => {
             try {
-                const res = await api.get('/auth/get-oauth-url')
-                const {url} = res.data.data
+                const { data: { data } } = await api.get('/auth/get-oauth-url')
+                
+                const { url } = data
+                
                 window.location.href = url
             }
             catch (e) {

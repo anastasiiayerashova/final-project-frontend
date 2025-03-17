@@ -179,23 +179,3 @@ export const sendEmailOperation = createAsyncThunk(
     }
   },
 );
-
-export const loginWithGoogleOperation = createAsyncThunk(
-  'user/loginWithGoogle',
-  async (code, thunkAPI) => {
-    try {
-      const res = await api.post('/auth/confirm-oauth', { code })
-      
-      const { accessToken } = res.data.data
-
-      setAuthHeader(accessToken)
-      
-      localStorage.setItem('token', accessToken)
-
-      return accessToken
-    }
-    catch (e) {
-      return thunkAPI.rejectWithValue(e.response.data.message);
-    }
-  }
-)

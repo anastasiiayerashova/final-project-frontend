@@ -1,29 +1,26 @@
 import { useDispatch } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { api } from '../../utils/axios.config.js'
 import { resetToken } from '../../redux/user/slice.js'
 import Loader from '../../components/Loader/Loader.jsx'
-import { loginWithGoogleOperation } from '../../redux/user/operations.js'
 
 const GooglePage = () => {
 
     const navigate = useNavigate()
-    const location = useLocation()
     const dispatch = useDispatch()
-
-    const code = searchParams.get('code')
+    const [searchParams] = useSearchParams()
 
     useEffect(() => {
-        const fetch = () => {
+        async function fetch () {
             try {
-                const queryParams = new URLSearchParams(location.search)
-                const code = queryParams.get('code')
+                const code = searchParams.get('code')
+
+                const { data: { data } } = await api.post('auth/confirm-oauth', {code})
 
                 if (code) {
-                    dispatch(loginWithGoogleOperation()).then(() => {
-                        navigate('/tracker')
-                    })
+                    dispatch(resetToken(data.accessToken))
+                    navigate('/tracker')
                 }
             }
             catch (e) {
@@ -32,7 +29,7 @@ const GooglePage = () => {
             }
         }
         fetch()
-    }, [location, navigate])
+    }, [searchParams, dispatch, navigate])
 
     return (
         <div>
