@@ -85,6 +85,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   color: var(--black);
+  outline: none;
 }
 
 .manualInput {

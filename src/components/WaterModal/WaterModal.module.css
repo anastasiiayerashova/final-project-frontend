@@ -18,15 +18,7 @@
 .waterModal {
   width: 343px;
   height: auto;
-  background: white;
-  border-radius: 20px;
   padding: 40px 20px;
-}
-
-@media screen and (max-width: 375px) {
-  .waterModal {
-    width: 311px;
-  }
 }
 
 @media (min-width: 768px) {
@@ -49,7 +41,5 @@
     border-radius: 15px;
     padding: 40px;
     width: 518px;
-    height: auto;
-    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   }
 }
