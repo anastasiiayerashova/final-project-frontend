@@ -72,8 +72,8 @@ export function App() {
                 />
               }
             />
+            <Route path="/confirm-google-oauth" element={<GooglePage />} />
             <Route path="*" element={<NotFoundPage />} />
-            <Route path="/users/tracker" element={<GooglePage />} />
           </Routes>
         </Suspense>
       </SharedLayout>
