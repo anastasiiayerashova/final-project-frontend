@@ -13,7 +13,7 @@ const GoogleAuthButton = ({ text }) => {
                 window.location.href = url
             }
             catch (e) {
-                console.log('Error during getting oauth url:', e)
+                console.log('Error during getting OAuth url:', e)
             }
         }
        
