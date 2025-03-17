@@ -168,11 +168,11 @@ const SignUpForm = () => {
               >
                 {showPassword ? (
                   <svg width="20" height="20">
-                    <use href="../../../public/sprite.svg#eye" />
+                    <use href="/sprite.svg#eye" />
                   </svg>
                 ) : (
                   <svg width="20" height="20">
-                    <use href="../../../public/sprite.svg#eye-off" />
+                    <use href="/sprite.svg#eye-off" />
                   </svg>
                 )}
               </button>
