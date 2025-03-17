@@ -1,6 +1,6 @@
 .delete_wrapper {
   display: flex;
-  padding: 40px 14px;
+  padding: 40px 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -10,9 +10,15 @@
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (min-width: 375px) {
   .delete_wrapper {
-    width: 311px;
+    width: 344px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .delete_wrapper {
+    width: 516px;
   }
 }
 
@@ -45,6 +51,7 @@
 .delete_btns {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   row-gap: 9px;
   width: 100%;
 }
@@ -52,7 +59,6 @@
 .button {
   display: flex;
   padding: 14px 0px;
-  /* width: 304px; */
   justify-content: center;
   border-radius: 30px;
   font-size: 14px;
