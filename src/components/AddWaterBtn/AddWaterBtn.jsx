@@ -20,7 +20,7 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
   return !inDailyInfo ? (
     <button
       type="button"
-      className={clsx(small ? s.small : s.btn)}
+      className={clsx(small ? s.small : s.btn, 'third-step-1')}
       onClick={onClick}
     >
       <span className={s.plus}></span>
@@ -32,7 +32,7 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
       className={`${s.detailsAddBtn} ${isFutureDate ? s.inactive : ''}`}
       onClick={onClick}
     >
-      <div className={`${s.iconContainer} third-step`}>
+      <div className={`${s.iconContainer} third-step-2`}>
         <svg className={s.icon}>
           <use href={`${svgIcon}#plus-green`} />
         </svg>
