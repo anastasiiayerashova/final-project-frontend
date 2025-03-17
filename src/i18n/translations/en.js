@@ -137,6 +137,7 @@ export const en = {
       statistics: 'Statistics',
       currentWeek: 'Current week',
       week: 'Week {{weekNumber}}',
+      liters: '{{value}} L',
     },
     changePasswordPage: {
       change_pwd: 'Change your password',
