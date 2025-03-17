@@ -18,16 +18,19 @@ api.interceptors.response.use(
             try {
                 console.log('🔄 Refreshing token...');
                 const accessToken = await store.dispatch(refreshUserOperation()).unwrap()
-                console.log('✅ Token refreshed:', accessToken);
+                // console.log('✅ Token refreshed:', accessToken);
+                console.log('✅ Token refreshed:');
 
                 setAuthHeader(accessToken)
-                console.log('🔄 Updated Authorization header:', api.defaults.headers.common.Authorization);
+                // console.log('🔄 Updated Authorization header:', api.defaults.headers.common.Authorization);
+                console.log('🔄 Updated Authorization header');
 
                 store.dispatch(resetToken(accessToken))
 
                 originalRequest.headers['Authorization'] = `Bearer ${accessToken}`
 
-                console.log('🔄 Retrying request:', originalRequest)
+                // console.log('🔄 Retrying request:', originalRequest)
+                console.log('🔄 Retrying request...')
 
                 return api(originalRequest)
             }
@@ -41,7 +44,7 @@ api.interceptors.response.use(
             error.response.status === 409 ||
             error.response.status === 500 
         ) {
-            console.log(Promise.reject(error))
+            // console.log(Promise.reject(error))
             return Promise.reject(error)
         }
     }
@@ -53,7 +56,8 @@ export const setAuthHeader = (token) => {
         return;
     }
     api.defaults.headers.common.Authorization = `Bearer ${token}`
-    console.log('🔄 New Authorization header:', api.defaults.headers.common.Authorization);
+    // console.log('🔄 New Authorization header:', api.defaults.headers.common.Authorization);
+    console.log('🔄 New Authorization header:');
 }
 
 export const clearAuthHeader = () => {
