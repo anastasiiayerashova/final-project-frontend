@@ -162,11 +162,11 @@ const ChangePasswordForm = () => {
             >
               {showRepeatPassword ? (
                 <svg width="20" height="20">
-                  <use href="../../../public/sprite.svg#eye-off" />
+                  <use href="/sprite.svg#eye-off" />
                 </svg>
               ) : (
                 <svg width="20" height="20">
-                  <use href="../../../public/sprite.svg#eye" />
+                  <use href="/sprite.svg#eye" />
                 </svg>
               )}
             </button>
