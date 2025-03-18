@@ -16,10 +16,10 @@ const WaterProgressBar = () => {
   const formatDate = (isoDate) => {
     const dateObj = new Date(isoDate);
     const day = String(dateObj.getUTCDate()).padStart(2, '0');
-    const month = new Intl.DateTimeFormat(i18next.language, { month: 'long' }).format(
-      dateObj,
-    );
-    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1)
+    const month = new Intl.DateTimeFormat(i18next.language, {
+      month: 'long',
+    }).format(dateObj);
+    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
     return `${day}, ${capitalizedMonth}`;
   };
   const dateFormatted = formatDate(date);

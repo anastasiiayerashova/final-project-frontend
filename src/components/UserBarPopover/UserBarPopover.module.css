@@ -49,7 +49,10 @@
   line-height: 129%;
   color: rgba(50, 63, 71, 0.4);
 }
-
+.barBtn:hover > .logOut,
+.barBtn:hover > .barPopoverIconLogOut {
+  color: var(--black);
+}
 .barPopoverIcon {
   color: var(--light-black);
 }
