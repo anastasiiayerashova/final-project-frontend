@@ -16,7 +16,7 @@ export default function Modal({ isOpen, onClose, children, setState }) {
     >
       <button className={css.closeBtn} onClick={onClose}>
         <svg className={css.iconX}>
-          <use href="/public/sprite.svg#x"></use>
+          <use href="/sprite.svg#x"></use>
         </svg>
       </button>
       {children}

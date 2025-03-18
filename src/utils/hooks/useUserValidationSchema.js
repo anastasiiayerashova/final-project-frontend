@@ -9,7 +9,9 @@ export const useUserValidationSchema = (t) => {
     gender: Yup.string().required(t('validation.gender')),
     name: Yup.string()
       .required(t('validation.name_required'))
-      .matches(/^[а-яА-ЯёЁЇїІіЄєҐґa-zA-Z\s]+$/, t('validation.name_contain')),
+      .matches(/^[а-яА-ЯёЁЇїІіЄєҐґa-zA-Z\s]+$/, t('validation.name_contain'))
+      .min(3, t('validation.settings_name_min'))
+      .max(12, t('validation.settings_name_max')),
     email: Yup.string()
       .email(t('validation.invalid_email'))
       .matches(

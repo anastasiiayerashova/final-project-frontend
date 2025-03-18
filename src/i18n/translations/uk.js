@@ -59,6 +59,8 @@ export const uk = {
       name_contain: "Ім'я повинно містити лише літери",
       water_min: 'Добова норма води має бути не менше {{min}} л',
       water_max: 'Добова норма води не може перевищувати {{max}} л',
+      settings_name_min: "Ім'я не може бути менше ніж 3 символи",
+      settings_name_max: "Ім'я не може перевищувати 12 символів",
     },
 
     commonUserValidation: {

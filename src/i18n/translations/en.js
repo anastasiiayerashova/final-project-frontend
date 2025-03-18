@@ -59,6 +59,8 @@ export const en = {
       name_contain: 'Name must contain only letters',
       water_min: 'Daily water norm must be at least {{min}} L',
       water_max: 'Daily water norm cannot exceed {{max}} L',
+      settings_name_min: 'Name must be at least 3 characters',
+      settings_name_max: 'Name cannot exceed 12 characters',
     },
 
     commonUserValidation: {

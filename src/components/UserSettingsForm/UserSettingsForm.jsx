@@ -72,6 +72,13 @@ const UserSettingsForm = ({ onClose }) => {
   const watchedWeight = watch('weight');
   const watchedSportTime = watch('activeTime');
   const watchedGender = watch('gender');
+  const watchedName = watch('name');
+
+   useEffect(() => {
+    if (watchedName) {
+      trigger('name');
+    }
+  }, [watchedName, trigger]);
 
   useEffect(() => {
     if (watchedSportTime) {
