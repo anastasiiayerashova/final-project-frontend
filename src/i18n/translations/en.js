@@ -191,7 +191,7 @@ export const en = {
       December: 'December',
     },
     tourSteps: {
-      thank_you: 'Thank you for signing up!',
+      thank_you: "Welcome! This guide will help you explore the app's features",
       track_water: 'Track your water consumption easily with us!',
       built:
         'Built with passion by a team of talented developers, just for you!',

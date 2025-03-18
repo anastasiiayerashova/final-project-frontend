@@ -15,7 +15,7 @@ const TourSteps = ({ children, onFinish }) => {
     {
       content: (
         <div style={{ margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ marginBottom: '10px', fontWeight: 700 }}>
+          <h2 style={{ marginBottom: '10px', fontWeight: 700, fontSize: '18px' }}>
             {t('tourSteps.thank_you')}
           </h2>
           <p style={{ fontWeight: 400 }}>{t('tourSteps.track_water')}</p>
