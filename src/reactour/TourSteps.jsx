@@ -75,6 +75,7 @@ const TourSteps = ({ children, onFinish }) => {
     <TourProvider
       steps={steps}
       scrollSmooth
+      disableInteraction={true}
       styles={tourStepsStyles}
       defaultOpen={tourFinished !== true && isOnTrackerPage}
       badgeContent={({ totalSteps, currentStep }) =>
