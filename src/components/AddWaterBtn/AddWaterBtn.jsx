@@ -20,7 +20,7 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
   return !inDailyInfo ? (
     <button
       type="button"
-      className={clsx(small ? s.small : s.btn, 'third-step-1')}
+      className={clsx(small ? s.small : s.btn, 'third-step-1', isFutureDate && s.inactive)}
       onClick={onClick}
     >
       <span className={s.plus}></span>
