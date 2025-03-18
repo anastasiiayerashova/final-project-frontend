@@ -81,14 +81,14 @@ const SignInForm = () => {
       });
   };
 
-  const onError = (errors) => {
-    toast.error(t('errors.try_again'), {
-      style: {
-        backgroundColor: 'white',
-        color: 'red',
-      },
-    });
-  };
+  // const onError = (errors) => {
+  //   toast.error(t('errors.try_again'), {
+  //     style: {
+  //       backgroundColor: 'white',
+  //       color: 'red',
+  //     },
+  //   });
+  // };
 
   const emailValue = watch('email');
   const pwdValue = watch('password');
@@ -122,7 +122,7 @@ const SignInForm = () => {
 
       <div className={s.menu_container}>
         <h2 className={s.title}>{t('common.sign_in')}</h2>
-        <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div className={s.inputGroup}>
             <label htmlFor={emailId}>{t('common.email_label')}</label>
             <input
