@@ -24,11 +24,15 @@ const WaterProgressBar = () => {
   };
   const dateFormatted = formatDate(date);
 
-  const totalWaterDrunk = dayWaterList.reduce(
-    (total, item) => total + item.value,
-    0,
-  );
-  const displayedPercentage = Math.min(
+  const isFutureDate = date > today;
+
+  const totalWaterDrunk = isFutureDate
+    ? 0
+    : dayWaterList.reduce((total, item) => total + item.value, 0);
+  
+  const displayedPercentage = isFutureDate
+    ? 0
+    : Math.min(
     Math.round((totalWaterDrunk / dailyWaterNorm) * 100),
     100,
   );
