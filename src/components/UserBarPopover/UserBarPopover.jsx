@@ -22,11 +22,8 @@ const UserBarPopover = ({ setLogoutModal, popoverRef, setSettingsModal }) => {
       </button>
 
       <button className={s.barBtn} onClick={setLogoutModal}>
-        <svg width="16" height="16">
-          <use
-            href={`${sprite}#log-out`}
-            className={s.barPopoverIconLogOut}
-          ></use>
+        <svg className={s.barPopoverIconLogOut} width="16" height="16">
+          <use href={`${sprite}#log-out`}></use>
         </svg>
         <p className={s.logOut}>{t('common.log_out')}</p>
       </button>

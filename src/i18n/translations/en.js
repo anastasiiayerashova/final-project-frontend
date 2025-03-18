@@ -103,8 +103,8 @@ export const en = {
       with_account: 'Already have an account?',
     },
     waterModal: {
-      entered_data: 'Correct entered data:',
-      choose_value: 'Choose a value',
+      choose_value: 'Correct entered data:',
+      entered_data: 'Choose a value',
       edit_entered_amount: 'Edit the entered amount <br /> of water',
       water_amount: 'Amount of water',
       record_time: 'Recording time',

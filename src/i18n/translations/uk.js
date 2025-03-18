@@ -104,8 +104,8 @@ export const uk = {
       with_account: 'Вже маєте акаунт?',
     },
     waterModal: {
-      entered_data: 'Виправте введені дані:',
-      choose_value: 'Оберіть значення',
+      choose_value: 'Редагуйте введені дані:',
+      entered_data: 'Оберіть значення',
       edit_entered_amount: "Редагуйте введений об'єм <br /> води",
       water_amount: "Об'єм води",
       record_time: 'Час запису',
