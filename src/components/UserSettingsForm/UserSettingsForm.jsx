@@ -4,19 +4,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-hot-toast';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectDailySportTime,
-  selectDailyWaterNorm,
-  selectEmail,
-  selectGender,
-  selectName,
-  selectWeight,
-  selectAvatar,
-} from '../../redux/user/selectors';
-import {
-  updateUserAvatarOperation,
-  updateUserOperation,
-} from '../../redux/user/operations.js';
+import { selectDailySportTime, selectDailyWaterNorm, selectEmail, selectGender, selectName, selectWeight, selectAvatar } from '../../redux/user/selectors';
+import { updateUserAvatarOperation, updateUserOperation } from '../../redux/user/operations.js';
 import { useTranslation } from 'react-i18next';
 import { useUserValidationSchema } from '../../utils/hooks/useUserValidationSchema.js';
 
@@ -45,7 +34,6 @@ const UserSettingsForm = ({ onClose }) => {
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
-
     defaultValues: {
       gender,
       name,
@@ -66,6 +54,7 @@ const UserSettingsForm = ({ onClose }) => {
     } else if (gender === 'man') {
       return (weight * 0.04 + time * 0.6).toFixed(2);
     }
+
     return null;
   };
 
@@ -115,6 +104,7 @@ const UserSettingsForm = ({ onClose }) => {
 
   const onSubmit = async (values) => {
     setIsDisabled(true);
+
     try {
       await dispatch(
         updateUserOperation({
@@ -134,10 +124,12 @@ const UserSettingsForm = ({ onClose }) => {
         },
       });
 
-      onClose(); // Закриваємо лише після успішного запиту
-    } catch (error) {
+      onClose(); 
+    }
+    catch (error) {
       console.log(error);
       setIsDisabled(false);
+
       let errorMessage = t('errors.try_again');
 
       toast.error(errorMessage, {
@@ -166,11 +158,7 @@ const UserSettingsForm = ({ onClose }) => {
       {/* Аватар */}
       <div className={s.avatarContainer}>
         {avatarPreview ? (
-          <img
-            src={avatarPreview}
-            alt="Avatar Preview"
-            className={s.avatarImage}
-          />
+          <img src={avatarPreview} alt="Avatar Preview" className={s.avatarImage}/>
         ) : (
           <div className={s.avatarPlaceholder}>{t('settingModal.no_img')}</div>
         )}
@@ -178,9 +166,7 @@ const UserSettingsForm = ({ onClose }) => {
           <svg className={s.icon}>
             <use href={`${svgIcon}#upload`} />
           </svg>
-          <label htmlFor="avatar" className={s.uploadLabel}>
-            {t('settingModal.upload_img')}
-          </label>
+          <label htmlFor="avatar" className={s.uploadLabel}>{t('settingModal.upload_img')}</label>
           <input
             type="file"
             id="avatar"
@@ -199,6 +185,7 @@ const UserSettingsForm = ({ onClose }) => {
       </div>
       <div className={s.main_wrap}>
         <div className={s.first_wrap}>
+
           {/* Гендер */}
           <div className={s.formGroup}>
             <p className={s.bold_text}>{t('settingModal.gender_identity')}</p>
@@ -262,10 +249,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
 
           {/* Денна норма */}
-
-          <label htmlFor="waterNorm" className={s.bold_text}>
-            {t('trackerPage.daily_norm')}
-          </label>
+          <label htmlFor="waterNorm" className={s.bold_text}>{t('trackerPage.daily_norm')}</label>
 
           {/* Формула */}
           <div className={s.formula_wrap}>
@@ -281,9 +265,7 @@ const UserSettingsForm = ({ onClose }) => {
             </div>
             <div></div>
             <p className={s.hint}>
-              <span>* </span>
-              {t('settingModal.v_m_t_description')}
-            </p>
+              <span>* </span>{t('settingModal.v_m_t_description')}</p>
           </div>
 
           {/* Час активності */}
@@ -297,9 +279,7 @@ const UserSettingsForm = ({ onClose }) => {
         <div className={s.second_wrap}>
           {/* Вага */}
           <div className={s.formGroup_2}>
-            <label htmlFor="weight" className={s.label_simple}>
-              {t('settingModal.weight')}:
-            </label>
+            <label htmlFor="weight" className={s.label_simple}>{t('settingModal.weight')}:</label>
             <input
               id="weight"
               type="text"
@@ -323,9 +303,7 @@ const UserSettingsForm = ({ onClose }) => {
           </div>
 
           <div className={s.formGroup_2}>
-            <label htmlFor="sport" className={s.label_simple}>
-              {t('settingModal.sport_time')}:
-            </label>
+            <label htmlFor="sport" className={s.label_simple}>{t('settingModal.sport_time')}:</label>
             <input
               id="sport"
               type="number"
@@ -352,11 +330,10 @@ const UserSettingsForm = ({ onClose }) => {
               {calculatedWaterAmount ? `${calculatedWaterAmount} L` : '1.5 L'}
             </span>
           </div>
+
           {/* Скільки планує пити */}
           <div className={s.formGroup_3}>
-            <label htmlFor="dailyWater">
-              {t('settingModal.how_much_will_drink')}:
-            </label>
+            <label htmlFor="dailyWater">{t('settingModal.how_much_will_drink')}:</label>
             <input
               id="dailyWater"
               type="text"
@@ -378,11 +355,8 @@ const UserSettingsForm = ({ onClose }) => {
               <p className={s.errorText}>{errors.waterNorm.message}</p>
             )}
           </div>
-
-          {/* Рекомендація */}
         </div>
       </div>
-      {/* Кнопка сабміту */}
       <button type="submit" className={s.saveButton} disabled={isDisabled}>
         {isDisabled ? t('common.saving') : t('common.save')}
       </button>

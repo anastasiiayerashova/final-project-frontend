@@ -1,11 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import {
-  addWater,
-  deleteWater,
-  editWater,
-  fetchWaterDaily,
-  fetchWaterMonthly,
-} from './operations';
+import { addWater, deleteWater, editWater, fetchWaterDaily, fetchWaterMonthly } from './operations';
 import { logoutUserOperation } from '../user/operations';
 
 const getMonthFromDate = (dateString) => {
@@ -15,7 +9,7 @@ const getMonthFromDate = (dateString) => {
 const initialState = {
   date: new Date().toISOString(),
   month: getMonthFromDate(new Date().toISOString()),
-  isDaySelected: false, // Якщо користувач обрав днь з календаря
+  isDaySelected: false, // Якщо користувач обрав день з календаря
   dayWaterList: [],
   monthData: [],
   loading: false,
@@ -120,13 +114,6 @@ const slice = createSlice({
   },
 });
 
-export const {
-  setWaterId,
-  clearWaterId,
-  updateDate,
-  setMonth,
-  setDaySelected,
-  setDate,
-} = slice.actions;
+export const { setWaterId, clearWaterId, updateDate, setMonth, setDaySelected, setDate } = slice.actions;
 
 export const waterReducer = slice.reducer;

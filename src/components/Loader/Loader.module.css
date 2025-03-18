@@ -17,6 +17,7 @@
   border-radius: 0 0 4px 4px;
   transform: perspective(140px) rotateX(-45deg);
 }
+
 .loader::after {
   content: '';
   box-sizing: border-box;
@@ -29,6 +30,7 @@
   width: 28px;
   height: 6px;
 }
+
 .loader::before {
   content: '';
   box-sizing: border-box;

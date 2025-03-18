@@ -125,6 +125,7 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
+
 .icon {
   position: relative;
   display: flex;
@@ -196,6 +197,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
+
   .inputGroup input {
     font-size: 16px;
     line-height: 1.5;
@@ -235,6 +237,7 @@
   .inputGroup {
     width: 436px;
   }
+
   .form {
     width: 100%;
   }

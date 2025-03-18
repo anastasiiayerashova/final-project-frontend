@@ -1,12 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import {
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  AreaChart,
-} from 'recharts';
+import { Area, XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart } from 'recharts';
 import s from './Chart.module.css';
 import { useSelector } from 'react-redux';
 import { selectDate, selectMonthData } from '../../redux/water/selectors.js';
@@ -48,15 +41,18 @@ const WaterChart = () => {
         date: formattedDay,
         amount: entry ? entry.totalAmount : 0,
       };
+
     });
   }, [waterData, daysInMonth]);
 
   // Розбиваємо дані на тижні
   const weeks = useMemo(() => {
     const weeksArray = [];
+
     for (let i = 0; i < formattedData.length; i += 7) {
       weeksArray.push(formattedData.slice(i, i + 7));
     }
+
     return weeksArray;
   }, [formattedData]);
 

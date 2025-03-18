@@ -23,6 +23,7 @@ export const useLastFocusedField = () => {
       const inputElement = document.querySelector(
         `[name="${lastFocusedField}"]`,
       );
+      
       if (inputElement) inputElement.focus();
     }
   };

@@ -21,17 +21,15 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
     <button
       type="button"
       className={clsx(small ? s.small : s.btn, 'third-step-1', isFutureDate && s.inactive)}
-      onClick={onClick}
-    >
-      <span className={s.plus}></span>
+      onClick={onClick}>
+         <span className={s.plus}></span>
       {t('common.add_water')}
     </button>
   ) : (
     <button
       type="button"
       className={`${s.detailsAddBtn} ${isFutureDate ? s.inactive : ''}`}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       <div className={`${s.iconContainer} third-step-2`}>
         <svg className={s.icon}>
           <use href={`${svgIcon}#plus-green`} />
@@ -41,4 +39,5 @@ const AddWaterBtn = ({ onClick, small, inDailyInfo }) => {
     </button>
   );
 };
-export default AddWaterBtn;
+
+export default AddWaterBtn

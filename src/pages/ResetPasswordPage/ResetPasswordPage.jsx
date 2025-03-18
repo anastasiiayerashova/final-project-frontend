@@ -28,10 +28,7 @@ const ResetPasswordPage = () => {
         <AdvantagesSection />
       </div>
       {isResetPasswordModalOpen && (
-        <Modal
-          isOpen={isResetPasswordModalOpen}
-          onClose={closeResetPasswordModal}
-        >
+        <Modal isOpen={isResetPasswordModalOpen} onClose={closeResetPasswordModal}>
           <ResetPasswordModal onClose={closeResetPasswordModal} />
         </Modal>
       )}

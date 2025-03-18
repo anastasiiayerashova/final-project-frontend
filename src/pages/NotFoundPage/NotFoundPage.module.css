@@ -7,11 +7,13 @@
   width: 100%;
   margin: 0 auto;
 }
+
 .logo_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .container_text {
   display: flex;
   flex-direction: column;
@@ -67,12 +69,15 @@
   .container {
     padding: 32px;
   }
+
   .text_title_err {
     font-size: 36px;
   }
+
   .text_message {
     font-size: 16px;
   }
+
   .link_home {
     font-size: 16px;
     padding: 16px 22px;

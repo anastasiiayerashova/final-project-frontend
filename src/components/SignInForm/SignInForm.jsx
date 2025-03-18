@@ -2,7 +2,6 @@ import React, { useState, useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import s from './SignInForm.module.css';
 import Logo from '../Logo/Logo.jsx';
 import { loginUserOperation } from '../../redux/user/operations.js';
@@ -64,7 +63,9 @@ const SignInForm = () => {
         navigate('/tracker');
       })
       .catch((e) => {
+
         let errorMessage
+
         if (e.response?.status === 404) {
             errorMessage = t("errors.User_not_found")
         }
@@ -110,6 +111,7 @@ const SignInForm = () => {
       keepValues: true,
       keepDirty: true,
     });
+
     restoreFocus();
   }, [schema, reset, getValues]);
 
@@ -132,7 +134,6 @@ const SignInForm = () => {
               placeholder={t('notifications.enter_email')}
               className={errors.email ? `${s.inputError}` : ''}
             />
-
             {errors.email && <p className={s.error}>{errors.email.message}</p>}
           </div>
 
@@ -149,11 +150,7 @@ const SignInForm = () => {
               {errors.password && (
                 <p className={s.error}>{errors.password.message}</p>
               )}
-              <button
-                className={s.eyeIcon}
-                onClick={togglePasswordVisibility}
-                type="button"
-              >
+              <button className={s.eyeIcon} onClick={togglePasswordVisibility} type="button">
                 {showPassword ? (
                   <svg width="20" height="20">
                     <use href="/sprite.svg#eye-off" />
@@ -167,24 +164,18 @@ const SignInForm = () => {
             </div>
           </div>
           <div className={s.buttonWrapper}>
-            <button type="submit" className={s.button}>
-              {t('common.sign_in')}
-            </button>
+            <button type="submit" className={s.button}>{t('common.sign_in')}</button>
             <GoogleAuthButton text={t('common.sign_in_google')} />
           </div>
         </form>
         <div className={s.helpersWrapper}>
           <div className={s.wrapperUp}>
             <p className={s.account}>{t('signInForm.without_account')}&nbsp;</p>
-            <a href="/signup" className={s.signup}>
-              {t('common.sign_up')}
-            </a>
+            <a href="/signup" className={s.signup}>{t('common.sign_up')}</a>
           </div>
           <div className={s.wrapperUp}>
             <p className={s.account}>{t('signInForm.help')}&nbsp;</p>
-            <a href="/reset-pwd-email" className={s.signup}>
-              {t('signInForm.reset_password')}
-            </a>
+            <a href="/reset-pwd-email" className={s.signup}>{t('signInForm.reset_password')}</a>
           </div>
         </div>
       </div>
@@ -192,4 +183,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignInForm

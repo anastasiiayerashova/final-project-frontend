@@ -1,7 +1,7 @@
 import axios from "axios"
 import { store } from "../redux/store.js"
 import { resetToken, refreshError } from "../redux/user/slice.js"
-import { loginUserOperation, refreshUserOperation } from "../redux/user/operations.js"
+import { refreshUserOperation } from "../redux/user/operations.js"
 
 export const api = axios.create({
     baseURL: import.meta.env.VITE_SERVER_URL,

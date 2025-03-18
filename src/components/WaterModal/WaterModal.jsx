@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import s from './WaterModal.module.css';
 import WaterForm from '../WaterForm/WaterForm.jsx';
-import { TYPE, MODAL_NAME } from '../../constants/index.js';
+import { TYPE} from '../../constants/index.js';
 import { useTranslation } from 'react-i18next';
 
 const WaterModal = ({ onClose, type }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
+
   return (
     <div className={s.waterModal}>
       <h2 className={s.title}>

@@ -1,7 +1,6 @@
 .wrapper {
-  position: relative; /* Робимо відносне позиціонування, щоб поповер прив’язувався до цього контейнера */
+  position: relative;
   display: flex;
-  /* Щоб контейнер займав лише необхідний розмір */
 }
 
 .btn {
@@ -64,7 +63,4 @@
     width: 20px;
     height: 20px;
   }
-}
-
-@media (min-width: 1440px) {
 }

@@ -21,16 +21,14 @@ const CalendarItem = ({ date, percentage, loading }) => {
     <button
       type="button"
       className={`${s.dayBtn} ${day > today ? s.disabled : ''}`}
-      onClick={handleDate}
-    >
-      <div
-        className={`${s.dayNumber} ${day === today ? s.today : ''} ${
+      onClick={handleDate}>
+        <div
+          className={`${s.dayNumber} ${day === today ? s.today : ''} ${
           selectedDate === fullDay ? s.selected : ''
-        } ${percentage === 100 ? s.completed : ''} ${loading ? s.loading : ''}`}
-      >
-        {dayNumber}
-      </div>
-      <div className={s.percent}>{percentage}%</div>
+          } ${percentage === 100 ? s.completed : ''} ${loading ? s.loading : ''}`}>
+             {dayNumber}
+        </div>
+        <div className={s.percent}>{percentage}%</div>
     </button>
   );
 };

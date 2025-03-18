@@ -2,17 +2,9 @@ import { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import s from './DeleteWaterModal.module.css';
-import {
-  selectWaterId,
-  selectDate,
-  selectMonth,
-} from '../../redux/water/selectors.js';
+import { selectWaterId, selectDate, selectMonth } from '../../redux/water/selectors.js';
 import { clearWaterId } from '../../redux/water/slice.js';
-import {
-  deleteWater,
-  fetchWaterDaily,
-  fetchWaterMonthly,
-} from '../../redux/water/operations.js';
+import { deleteWater, fetchWaterDaily, fetchWaterMonthly } from '../../redux/water/operations.js';
 import { useTranslation } from 'react-i18next';
 import { formattedErrorKey } from '../../i18n/utils/formattedErrorKey.js';
 
@@ -46,14 +38,16 @@ const DeleteWaterModal = ({ onClose }) => {
         dispatch(fetchWaterDaily(dateFormatted)).unwrap(),
         dispatch(fetchWaterMonthly(month)).unwrap(),
       ]);
-    } catch (error) {
+    }
+    catch (error) {
         console.dir(error)
       if (error?.response?.status !== 404) {
         toast.error(t('errors.error_deleting_record', {
             error: error.message || t(`errors.${formattedErrorKey(error)}`),
           }));
       }
-    } finally {
+    }
+    finally {
       setBtnDisabled(false);
     }
   };
@@ -72,16 +66,10 @@ const DeleteWaterModal = ({ onClose }) => {
         <p>{t('deleteWaterModal.are_you_sure')}</p>
       </div>
       <div className={s.delete_btns}>
-        <button
-          className={`${s.button} ${s.delete_btn}`}
-          onClick={handleDelete}
-          disabled={isBtnDisabled}
-        >
+        <button className={`${s.button} ${s.delete_btn}`} onClick={handleDelete} disabled={isBtnDisabled}>
           {isBtnDisabled ? t('common.deleting') : t('common.delete')}
         </button>
-        <button className={`${s.button} ${s.cancelBtn}`} onClick={handleClose}>
-          {t('common.cancel')}
-        </button>
+        <button className={`${s.button} ${s.cancelBtn}`} onClick={handleClose}>{t('common.cancel')}</button>
       </div>
     </div>
   );

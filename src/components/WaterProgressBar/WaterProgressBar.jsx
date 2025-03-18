@@ -16,12 +16,11 @@ const WaterProgressBar = () => {
   const formatDate = (isoDate) => {
     const dateObj = new Date(isoDate);
     const day = String(dateObj.getUTCDate()).padStart(2, '0');
-    const month = new Intl.DateTimeFormat(i18next.language, {
-      month: 'long',
-    }).format(dateObj);
+    const month = new Intl.DateTimeFormat(i18next.language, {month: 'long'}).format(dateObj);
     const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
     return `${day}, ${capitalizedMonth}`;
   };
+
   const dateFormatted = formatDate(date);
 
   const isFutureDate = date > today;
@@ -35,7 +34,8 @@ const WaterProgressBar = () => {
     : Math.min(
     Math.round((totalWaterDrunk / dailyWaterNorm) * 100),
     100,
-  );
+    );
+  
   const exceededPercentage = Math.min(
     Math.round((totalWaterDrunk / dailyWaterNorm) * 100),
   );
@@ -54,10 +54,7 @@ const WaterProgressBar = () => {
           }}
         >
           {displayedPercentage < 100 && (
-            <p
-              className={s.percentNumber}
-              style={{ color: '#9BE1A0', zIndex: 1 }}
-            >
+            <p className={s.percentNumber} style={{ color: '#9BE1A0', zIndex: 1 }}>
               {`${displayedPercentage}%`}
             </p>
           )}
@@ -70,17 +67,13 @@ const WaterProgressBar = () => {
             }}
           >
             {exceededPercentage > 100 && (
-              <p
-                className={s.percentNumber}
-                style={{ color: '#1E90FF', zIndex: 1 }}
-              >
+              <p className={s.percentNumber} style={{ color: '#1E90FF', zIndex: 1 }}>
                 {`${exceededPercentage}%`}{' '}
                 {/* Показуємо проценти, якщо більше 100% */}
               </p>
             )}
           </div>
         </div>
-
         <div
           className={s.slider}
           style={{
