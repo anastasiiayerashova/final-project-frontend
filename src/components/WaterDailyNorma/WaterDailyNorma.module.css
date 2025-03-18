@@ -12,14 +12,12 @@
   flex-direction: column;
   row-gap: 6px;
 }
-
 .normal {
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   color: #323f47;
 }
-
 .text {
   font-weight: 400;
   font-size: 10px;
@@ -38,13 +36,11 @@
     box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
     row-gap: 4px;
   }
-
   .normal {
     font-weight: 700;
     font-size: 15px;
     line-height: 149%;
   }
-
   .text {
     font-weight: 400;
     font-size: 12px;
@@ -62,13 +58,11 @@
     box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
     left: 64px;
   }
-
   .normal {
     font-weight: 700;
     font-size: 15px;
     line-height: 149%;
   }
-
   .text {
     font-weight: 400;
     font-size: 12px;

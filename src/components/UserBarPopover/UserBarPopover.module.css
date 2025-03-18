@@ -1,7 +1,9 @@
 .barPopover {
-  position: absolute;
-  top: calc(100% + 4px);
-  z-index: 10;
+  position: absolute; /* Випадає зверху, не займає місце */
+  top: calc(100% + 4px); /* Відстань 4рх від верхн кнопки */
+  /* transform: translateY(-14px); Зміна по відношенню до top */
+  z-index: 10; /* Щоб поповер був над іншими елементами */
+  /* width: 100%; */
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
@@ -26,7 +28,7 @@
 }
 
 .barBtn > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0; /* Зменшуємо відступ для останнього елемента */
 }
 
 .setting {
@@ -36,7 +38,6 @@
   line-height: 129%;
   color: var(--light-black);
 }
-
 .barPopoverIconSettings {
   color: var(--light-black);
 }
@@ -48,12 +49,10 @@
   line-height: 129%;
   color: rgba(50, 63, 71, 0.4);
 }
-
 .barBtn:hover > .logOut,
 .barBtn:hover > .barPopoverIconLogOut {
   color: var(--black);
 }
-
 .barPopoverIcon {
   color: var(--light-black);
 }
@@ -64,7 +63,7 @@
 
 @media (min-width: 768px) {
   .barPopover {
-    top: calc(100% + 8px);
+    top: calc(100% + 8px); /* Відстань 4рх від верхн кнопки */
     width: 157px;
     height: 82px;
     font-size: 15px;

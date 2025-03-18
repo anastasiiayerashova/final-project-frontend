@@ -1,6 +1,7 @@
 .container {
   background-color: var(--grey);
   border-radius: 30px;
+  /* height: 100vh; */
   padding-top: 24px;
 }
 
@@ -117,7 +118,6 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
-
 .icon {
   position: relative;
   display: flex;
@@ -165,6 +165,7 @@
   .container {
     max-width: 768px;
     padding-top: 32px;
+    /* height: 100vh; */
   }
 
   .logo_container {
@@ -188,7 +189,6 @@
     font-size: 16px;
     line-height: 1.5;
   }
-
   .inputGroup input {
     font-size: 16px;
     line-height: 1.5;
@@ -224,7 +224,6 @@
   .inputGroup {
     width: 436px;
   }
-
   .form {
     width: 100%;
   }

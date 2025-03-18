@@ -5,8 +5,7 @@ import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
 
 const WelcomeSection = () => {
-  const { t } = useTranslation()
-  
+  const { t } = useTranslation();
   return (
     <div className={s.container}>
       <div className={s.logo_container}>

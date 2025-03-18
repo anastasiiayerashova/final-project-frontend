@@ -1,7 +1,8 @@
-import React, { useId, useEffect } from 'react';
+import React, { useState, useId, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import s from './ResetPasswordForm.module.css';
 import Logo from '../Logo/Logo.jsx';
 import { api } from '../../utils/axios.config.js';
@@ -47,12 +48,10 @@ const ResetPasswordForm = ({ onEmailSent }) => {
 
       reset();
       onEmailSent();
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
       
       let errorMessage
-
       if (e.response?.status === 404) {
           errorMessage = t("errors.User_not_found")
       }
@@ -114,7 +113,9 @@ const ResetPasswordForm = ({ onEmailSent }) => {
             />
             {errors.email && <p className={s.error}>{errors.email.message}</p>}
           </div>
-          <button type="submit" className={s.button}>{t('common.send_email')}</button>
+          <button type="submit" className={s.button}>
+            {t('common.send_email')}
+          </button>
         </form>
         <div className={s.helpersWrapper}>
           <div className={s.wrapperUp}>

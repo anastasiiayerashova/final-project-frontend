@@ -1,13 +1,25 @@
-import { useState, useEffect, useMemo, useId } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater, fetchWaterDaily, editWater, fetchWaterMonthly } from '../../redux/water/operations';
+import {
+  addWater,
+  fetchWaterDaily,
+  editWater,
+  fetchWaterMonthly,
+} from '../../redux/water/operations';
 import s from './WaterForm.module.css';
-import { selectDate, selectDayWaterList, selectLoading, selectMonth, selectWaterId } from '../../redux/water/selectors';
+import { useId } from 'react';
+import {
+  selectDate,
+  selectDayWaterList,
+  selectLoading,
+  selectMonth,
+  selectWaterId,
+} from '../../redux/water/selectors';
 import { clearWaterId } from '../../redux/water/slice';
 
 const WaterForm = ({ onClose }) => {
@@ -61,7 +73,10 @@ const WaterForm = ({ onClose }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      time: new Date().toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit',}),
+      time: new Date().toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       amount: 50,
     },
     mode: 'onChange',
@@ -74,7 +89,6 @@ const WaterForm = ({ onClose }) => {
   useEffect(() => {
     if (waterId) {
       const waterRecord = dayWaterList.find((item) => item._id === waterId);
-
       if (waterRecord) {
         const formattedTime = new Date(waterRecord.date).toLocaleTimeString(
           'en-GB',
@@ -88,7 +102,10 @@ const WaterForm = ({ onClose }) => {
     } else {
       // Якщо waterId немає, скидаємо значення форми
       reset({
-        time: new Date().toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit',}),
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
         amount: 50,
       });
       setAmount(50);
@@ -131,7 +148,10 @@ const WaterForm = ({ onClose }) => {
       }
 
       reset({
-        time: new Date().toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit',}),
+        time: new Date().toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
         amount: 50,
       });
 
@@ -143,8 +163,7 @@ const WaterForm = ({ onClose }) => {
         dispatch(fetchWaterDaily(dateFormatted)).unwrap(),
         dispatch(fetchWaterMonthly(month)).unwrap(),
       ]);
-    }
-    catch (error) {
+    } catch (error) {
       toast.error(t(`errors.${formattedErrorKey(e)}`));
     }
   };
@@ -164,7 +183,9 @@ const WaterForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       <div className={s.inputGroup}>
-        <label htmlFor="amount" className={s.descrAmount}>{t('waterModal.water_amount')}:</label>
+        <label htmlFor="amount" className={s.descrAmount}>
+          {t('waterModal.water_amount')}:
+        </label>
         <div className={s.controls}>
           <button
             className={s.minusButton}
@@ -196,7 +217,9 @@ const WaterForm = ({ onClose }) => {
       </div>
 
       <div className={s.inputGroup}>
-        <label htmlFor={timeId} className={s.timeLabel}>{t('waterModal.record_time')}:</label>
+        <label htmlFor={timeId} className={s.timeLabel}>
+          {t('waterModal.record_time')}:
+        </label>
         <input
           className={`${s.timeInput} ${errors.time ? s.inputError : ''}`}
           id={timeId}
@@ -208,7 +231,9 @@ const WaterForm = ({ onClose }) => {
       </div>
 
       <div className={s.inputGroup}>
-        <label htmlFor={amountId} className={s.manualInput}>{t('waterModal.enter_water_value')}:</label>
+        <label htmlFor={amountId} className={s.manualInput}>
+          {t('waterModal.enter_water_value')}:
+        </label>
         <input
           type="number"
           id={amountId}
@@ -225,6 +250,7 @@ const WaterForm = ({ onClose }) => {
         />
         {errors.amount && <p className={s.error}>{errors.amount.message}</p>}
       </div>
+
       <button
         className={`${s.saveBtn} ${isLoading ? s.loading : ''}`}
         type="submit"

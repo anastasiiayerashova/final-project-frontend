@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { api } from '../../utils/axios.config.js'
+import { resetToken } from '../../redux/user/slice.js'
 import Loader from '../../components/Loader/Loader.jsx'
 
 const GooglePage = () => {

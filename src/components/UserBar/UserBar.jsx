@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectName, selectAvatar } from '../../redux/user/selectors';
+import { selectIsLoggedIn, selectName, selectAvatar } from '../../redux/user/selectors'; //перевірити селектори
 import sprite from '../../../public/sprite.svg';
 import s from './UserBar.module.css';
 

@@ -25,7 +25,6 @@
   row-gap: 16px;
   padding-top: 74px;
 }
-
 h2 {
   font-weight: 400;
   font-size: 14px;
@@ -33,7 +32,6 @@ h2 {
   letter-spacing: 0.06em;
   color: #2f2f2f;
 }
-
 h1 {
   font-weight: 700;
   font-size: 38px;
@@ -41,7 +39,6 @@ h1 {
   letter-spacing: -0.01em;
   color: #323f47;
 }
-
 .container_link {
   display: flex;
   gap: 10px;
@@ -49,7 +46,6 @@ h1 {
     gap: 4px;
   }
 }
-
 .link {
   border: 1px solid var(--green);
   background-color: var(--green);
@@ -84,7 +80,6 @@ h1 {
   transition: color cubic-bezier(0.39, 0.575, 0.565, 1),
     border cubic-bezier(0.39, 0.575, 0.565, 1);
 }
-
 .link:hover {
   background-color: var(--green-hover);
   border: 1px solid var(--green-hover);
@@ -94,7 +89,6 @@ h1 {
   color: var(--green);
   border: 1px solid var(--green);
 }
-
 .welcome_section {
   display: flex;
   flex-direction: column;
@@ -121,39 +115,32 @@ h1 {
     flex-direction: column;
     row-gap: 32px;
   }
-
   .title_container {
     padding-top: 50px;
     padding-left: 32px;
     padding-right: 32px;
   }
-
   h2 {
     font-size: 16px;
     line-height: 1.5;
   }
-
   h1 {
     font-size: 64px;
     line-height: 1.09;
   }
-
   .container_link {
     gap: 16px;
     padding-left: 32px;
     padding-bottom: 18px;
   }
-
   .link {
     font-size: 16px;
     line-height: 1.5;
     padding: 18px 40px;
   }
-
   .link_2 {
     padding: 18px 40px;
   }
-
   .hero_section {
     padding-top: unset;
   }
@@ -164,12 +151,10 @@ h1 {
     width: 672px;
     padding: 32px;
   }
-
   h1 {
     font-size: 80px;
     line-height: 0.95;
   }
-
   .title_container {
     padding-top: 132px;
   }

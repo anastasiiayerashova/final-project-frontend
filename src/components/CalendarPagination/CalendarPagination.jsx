@@ -24,11 +24,13 @@ const CalendarPagination = () => {
   const formatMonth = (monthString) => {
     const [year, month] = monthString.split('-');
     const date = new Date(year, month - 1);
-    const formattedMonth = new Intl.DateTimeFormat(i18next.language, { month: 'long', }).format(date);
-    const capitalizedMonth = formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
+    const formattedMonth = new Intl.DateTimeFormat(i18next.language, {
+      month: 'long',
+    }).format(date);
+    const capitalizedMonth =
+      formattedMonth.charAt(0).toUpperCase() + formattedMonth.slice(1);
     return `${capitalizedMonth}, ${year}`;
   };
-
   const formattedDate = useMemo(
     () => formatMonth(monthRedux),
     [monthRedux, i18next.language],
@@ -38,7 +40,6 @@ const CalendarPagination = () => {
     const [year, month] = monthRedux.split('-').map(Number);
     let newMonth = month - 1;
     let newYear = year;
-
     if (newMonth < 1) {
       newMonth = 12;
       newYear -= 1;
@@ -51,12 +52,10 @@ const CalendarPagination = () => {
     const [year, month] = monthRedux.split('-').map(Number);
     let newMonth = month + 1;
     let newYear = year;
-
     if (newMonth > 12) {
       newMonth = 1;
       newYear += 1;
     }
-
     dispatch(setMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`));
   };
 
@@ -70,23 +69,25 @@ const CalendarPagination = () => {
       <button
         className={s.btnArrow}
         type="button"
-        onClick={handlePreviousMonth}>
-          <svg className={s.svgIconLeft}>
-            <use href={`${svgIcon}#chevron-down`} />
-          </svg>
+        onClick={handlePreviousMonth}
+      >
+        <svg className={s.svgIconLeft}>
+          <use href={`${svgIcon}#chevron-down`} />
+        </svg>
       </button>
       <div className={s.date}>{formattedDate}</div>
       <button
         className={s.btnArrow}
         type="button"
         onClick={handleNextMonth}
-        disabled={monthRedux === currentMonth}>
-          <svg className={s.svgIconRight}>
-            <use href={`${svgIcon}#chevron-up`} />
-          </svg>
+        disabled={monthRedux === currentMonth}
+      >
+        <svg className={s.svgIconRight}>
+          <use href={`${svgIcon}#chevron-up`} />
+        </svg>
       </button>
     </div>
   );
 };
 
-export default CalendarPagination
+export default CalendarPagination;

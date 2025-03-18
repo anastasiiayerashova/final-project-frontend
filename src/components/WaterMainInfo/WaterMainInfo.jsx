@@ -15,7 +15,9 @@ const WaterMainInfo = ({ tourOn, openWaterModal }) => {
 
   return (
     <div className={s.waterContainer}>
-      <button className={s.tour_btn} onClick={tourOn}>{t('common.help')}</button>
+      <button className={s.tour_btn} onClick={tourOn}>
+            {t('common.help')}
+          </button>
       <div className={s.logo}>
         <Logo />
         <LanguageButtons />

@@ -47,7 +47,6 @@
   width: 26px;
   height: 28px;
 }
-
 .customers_img_second {
   content: image-set(
     url('../../../public/happy_images/happy_second_boy_mob-min.png') 1x,
@@ -58,7 +57,6 @@
   width: 26px;
   height: 28px;
 }
-
 .customers_img_third {
   content: image-set(
     url('../../../public/happy_images/heppy-third-women-mob-min.png') 1x,
@@ -69,24 +67,20 @@
   width: 26px;
   height: 28px;
 }
-
 .customers_text {
   font-weight: 700;
   font-size: 12px;
   line-height: 1.17;
 }
-
 .customers_text_happy {
   color: #9be1a0;
 }
-
 .container_benefits {
   width: 168px;
   height: 56px;
   display: flex;
   align-self: flex-end;
 }
-
 .benefits_list {
   display: flex;
   flex-wrap: wrap;
@@ -97,7 +91,6 @@
   font-size: 8px;
   line-height: 1;
 }
-
 .benefits_item_one {
   border-radius: 30px;
   padding: 9px 12px;
@@ -108,19 +101,16 @@
   align-items: center;
   gap: 2px;
 }
-
 .benefits_item_two {
   border-radius: 30px;
   padding: 9px 12px;
   background: #9be1a0;
 }
-
 .benefits_item_three {
   border-radius: 30px;
   padding: 9px 12px;
   background: #fff;
 }
-
 @media (min-width: 768px) {
   .container {
     background-image: image-set(
@@ -136,13 +126,11 @@
   .wrapper {
     row-gap: unset;
   }
-
   .container_customers {
     max-width: 237px;
     height: 66px;
     padding: 10px 20px;
   }
-
   .customers_img_first {
     content: image-set(
       url('../../../public/happy_images/happy_first_woman_tab_desk-min.png') 1x,
@@ -152,7 +140,6 @@
     width: 47px;
     height: 47px;
   }
-
   .customers_img_second {
     content: image-set(
       url('../../../public/happy_images/happy_second_boy_tab_desk-min.png') 1x,
@@ -163,7 +150,6 @@
     width: 47px;
     height: 47px;
   }
-
   .customers_img_third {
     content: image-set(
       url('../../../public/happy_images/happy_third_woman_tab_desk-min.png') 1x,
@@ -174,36 +160,29 @@
     width: 47px;
     height: 47px;
   }
-
   .customers_text {
     font-size: 15px;
     line-height: 1.49;
   }
-
   .container_benefits {
     margin-left: 0;
     width: 242px;
     height: 78px;
   }
-
   .benefits_list {
     gap: 10px;
     font-size: 12px;
   }
-
   .benefits_item_one {
     padding: 11px 16px;
   }
-
   .benefits_item_two {
     padding: 11px 16px;
   }
-
   .benefits_item_three {
     padding: 11px 16px;
   }
 }
-
 @media (min-width: 1440px) {
   .container {
     background-image: image-set(

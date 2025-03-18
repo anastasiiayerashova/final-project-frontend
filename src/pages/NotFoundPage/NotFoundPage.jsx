@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageButtons from '../../components/LanguageButtons/LanguageButtons';
 
 function NotFoundPage() {
-  const { t } = useTranslation()
-
+  const { t } = useTranslation();
   return (
     <div className={s.container}>
       <div className={s.logo_container}>
@@ -17,7 +16,10 @@ function NotFoundPage() {
         <h1 className={s.text_number}>404</h1>
         <h2 className={s.text_title_err}>{t('notFoundPage.not_found')}</h2>
         <p className={s.text_message}>{t('notFoundPage.sorry')}</p>
-        <Link to="/" className={s.link_home}>{t('notFoundPage.go_home')}</Link>
+
+        <Link to="/" className={s.link_home}>
+          {t('notFoundPage.go_home')}
+        </Link>
       </div>
     </div>
   );

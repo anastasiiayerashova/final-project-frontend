@@ -16,8 +16,11 @@ import { formattedErrorKey } from '../../i18n/utils/formattedErrorKey.js';
 
 const SignUpForm = () => {
   const { t } = useTranslation();
-  const schema = useValidationSchema('includeRepeatPassword',); /*Кастомний хук для створення схеми валідації*/
-  const { restoreFocus } = useLastFocusedField(); /*Кастомний хук для повернення фокусу в останній активний інпут*/
+  const schema = useValidationSchema(
+    'includeRepeatPassword',
+  ); /*Кастомний хук для створення схеми валідації*/
+  const { restoreFocus } =
+    useLastFocusedField(); /*Кастомний хук для повернення фокусу в останній активний інпут*/
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +33,8 @@ const SignUpForm = () => {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleRepeatPasswordVisibility = () => setShowRepeatPassword(!showRepeatPassword);
+  const toggleRepeatPasswordVisibility = () =>
+    setShowRepeatPassword(!showRepeatPassword);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -71,8 +75,8 @@ const SignUpForm = () => {
         navigate('/tracker');
       })
       .catch((e) => {
-
-        let errorMessage = t(`errors.${formattedErrorKey(e)}`) || t('errors.try_again');
+        let errorMessage =
+          t(`errors.${formattedErrorKey(e)}`) || t('errors.try_again');
 
         setIsSubmitting(false);
         toast.error(errorMessage, {
@@ -120,7 +124,6 @@ const SignUpForm = () => {
       keepValues: true,
       keepDirty: true,
     });
-
     restoreFocus();
   }, [schema, reset, getValues]);
 
@@ -158,7 +161,11 @@ const SignUpForm = () => {
               {errors.password && (
                 <p className={s.error}>{errors.password.message}</p>
               )}
-              <button type="button" className={s.eyeIcon} onClick={togglePasswordVisibility}>
+              <button
+                type="button"
+                className={s.eyeIcon}
+                onClick={togglePasswordVisibility}
+              >
                 {showPassword ? (
                   <svg width="20" height="20">
                     <use href="/sprite.svg#eye" />
@@ -173,7 +180,9 @@ const SignUpForm = () => {
           </div>
 
           <div className={s.inputGroup}>
-            <label htmlFor={repeatPwdId}>{t('common.repeat_password_label')}</label>
+            <label htmlFor={repeatPwdId}>
+              {t('common.repeat_password_label')}
+            </label>
             <div className={s.icon}>
               <input
                 id={repeatPwdId}
@@ -186,7 +195,11 @@ const SignUpForm = () => {
                 <p className={s.error}>{errors.repeatPassword.message}</p>
               )}
 
-              <button type="button" className={s.eyeIcon} onClick={toggleRepeatPasswordVisibility}>
+              <button
+                type="button"
+                className={s.eyeIcon}
+                onClick={toggleRepeatPasswordVisibility}
+              >
                 {showRepeatPassword ? (
                   <svg width="20" height="20">
                     <use href="/sprite.svg#eye" />
@@ -211,7 +224,9 @@ const SignUpForm = () => {
           <span className={s.account}>
             {t('signUpForm.with_account')}&nbsp;
           </span>
-          <a href="/signin" className={s.signup}>{t('common.sign_in')}</a>
+          <a href="/signin" className={s.signup}>
+            {t('common.sign_in')}
+          </a>
         </div>
       </div>
     </div>

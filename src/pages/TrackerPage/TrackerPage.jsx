@@ -1,6 +1,7 @@
 import s from './TrackerPage.module.css';
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo.jsx';
 import { useState, useEffect } from 'react';
+import { MODAL_NAME, TYPE } from '../../constants/index.js';
 import Modal from '../../components/Modal/Modal.jsx';
 import WaterModal from '../../components/WaterModal/WaterModal.jsx';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +15,10 @@ import Loader from '../../components/Loader/Loader.jsx';
 import TourSteps from '../../reactour/TourSteps.jsx';
 import { fetchWaterDaily } from '../../redux/water/operations.js';
 import { updateDate } from '../../redux/water/slice.js';
-import { selectDate, selectIsDaySelected } from '../../redux/water/selectors.js';
+import {
+  selectDate,
+  selectIsDaySelected,
+} from '../../redux/water/selectors.js';
 
 function TrackerPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,8 +37,7 @@ function TrackerPage() {
       try {
         await dispatch(getCurrentUserDataOperation()).unwrap();
         setIsLoading(false);
-      }
-      catch (e) {
+      } catch (e) {
         console.error(
           'Error in tracker page during getting current user data',
           e,
@@ -149,7 +152,10 @@ function TrackerPage() {
           <Modal isOpen={isWaterModal.isOpen} onClose={closeWaterModal}>
             <WaterModal type={isWaterModal.type} onClose={closeWaterModal} />
           </Modal>
-          <Modal isOpen={isDeleteWaterModalOpen} onClose={closeDeleteWaterModal}>
+          <Modal
+            isOpen={isDeleteWaterModalOpen}
+            onClose={closeDeleteWaterModal}
+          >
             <DeleteWaterModal onClose={closeDeleteWaterModal} />
           </Modal>
           <Modal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>

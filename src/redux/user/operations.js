@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api, setAuthHeader, clearAuthHeader } from '../../utils/axios.config.js';
+import {
+  api,
+  setAuthHeader,
+  clearAuthHeader,
+} from '../../utils/axios.config.js';
 
 export const registerUserOperation = createAsyncThunk(
   'user/register',

@@ -1,7 +1,11 @@
 import s from './Calendar.module.css';
 import CalendarItem from '../CalendarItem/CalendarItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoadingMonthly, selectMonth, selectMonthData } from '../../redux/water/selectors';
+import {
+  selectLoadingMonthly,
+  selectMonth,
+  selectMonthData,
+} from '../../redux/water/selectors';
 import { fetchWaterMonthly } from '../../redux/water/operations';
 import { useEffect } from 'react';
 
@@ -46,7 +50,8 @@ const Calendar = () => {
             <CalendarItem
               date={formattedDate}
               percentage={percentage}
-              loading={isLoading} />
+              loading={isLoading}
+            />
           </li>
         );
       })}
@@ -54,4 +59,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar
+export default Calendar;
