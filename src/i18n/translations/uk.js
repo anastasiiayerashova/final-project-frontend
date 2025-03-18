@@ -24,6 +24,7 @@ export const uk = {
       delete: 'Видалити',
       deleting: 'Видалення...',
       change_pwd: 'Змінити пароль',
+      help: 'Допомога',
     },
 
     advantagesSection: {

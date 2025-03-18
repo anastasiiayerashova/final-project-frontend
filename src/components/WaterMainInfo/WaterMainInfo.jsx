@@ -7,7 +7,7 @@ import { TYPE } from '../../constants/index.js';
 import LanguageButtons from '../LanguageButtons/LanguageButtons.jsx';
 import { useTranslation } from 'react-i18next';
 
-const WaterMainInfo = ({ openWaterModal }) => {
+const WaterMainInfo = ({ tourOn, openWaterModal }) => {
   const { t } = useTranslation();
   const handleOpenAddWaterModal = () => {
     openWaterModal({ isOpen: true, type: TYPE.ADD_WATER });
@@ -15,6 +15,9 @@ const WaterMainInfo = ({ openWaterModal }) => {
 
   return (
     <div className={s.waterContainer}>
+      <button className={s.tour_btn} onClick={tourOn}>
+            {t('common.help')}
+          </button>
       <div className={s.logo}>
         <Logo />
         <LanguageButtons />

@@ -107,6 +107,11 @@ function TrackerPage() {
     setIsTour(false)
   }
 
+  const handleSwitchTour = () => {
+    localStorage.setItem('tourFinished', 'false');
+    setIsTour(true);
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -116,6 +121,7 @@ function TrackerPage() {
             {isTour ? (
               <TourSteps onFinish={handleCloseTour}>
                 <WaterMainInfo
+            tourOn={handleSwitchTour}
             isWaterModal={isWaterModal}
             openWaterModal={openWaterModal}
           />
@@ -129,7 +135,8 @@ function TrackerPage() {
             ) :
               (
                 <>
-              <WaterMainInfo
+            <WaterMainInfo
+            tourOn={handleSwitchTour}
             isWaterModal={isWaterModal}
             openWaterModal={openWaterModal}
           />
