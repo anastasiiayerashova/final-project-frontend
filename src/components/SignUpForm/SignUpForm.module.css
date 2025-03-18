@@ -1,7 +1,7 @@
 .container {
   background-color: var(--grey);
   border-radius: 30px;
-  height: 100vh;
+  /* height: 100vh; */
   padding-top: 24px;
 }
 
@@ -165,7 +165,7 @@
   .container {
     max-width: 768px;
     padding-top: 32px;
-    height: 100vh;
+    /* height: 100vh; */
   }
 
   .logo_container {
