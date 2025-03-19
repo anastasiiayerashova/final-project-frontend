@@ -41,6 +41,10 @@ input[type='radio']:checked {
   align-items: center;
   row-gap: 10px;
   margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  cursor: pointer;
 }
 
 .avatarImage {
@@ -87,6 +91,13 @@ input[type='radio']:checked {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+input[type='file']::-webkit-file-upload-button {
+  display: none;
 }
 
 .formGroup {
