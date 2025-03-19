@@ -43,13 +43,13 @@ const Calendar = () => {
           (entry) => entry.date === formattedDate,
         );
 
-        const percentage = dayData ? dayData.percentage : 0;
+        const totalAmount = dayData ? dayData.totalAmount : 0;
 
         return (
           <li key={day} className={s.day}>
             <CalendarItem
               date={formattedDate}
-              percentage={percentage}
+              totalAmount={totalAmount}
               loading={isLoading}
             />
           </li>

@@ -2,10 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import s from './CalendarItem.module.css';
 import { setDate, setDaySelected } from '../../redux/water/slice';
 import { selectDate } from '../../redux/water/selectors';
+import { selectDailyWaterNorm } from '../../redux/user/selectors';
 
-const CalendarItem = ({ date, percentage, loading }) => {
+const CalendarItem = ({ date, totalAmount, loading }) => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectDate);
+  const dailyWaterNorm = useSelector(selectDailyWaterNorm);
 
   const today = new Date().toISOString().split('T')[0];
   const day = new Date(date).toISOString().split('T')[0];
@@ -16,6 +18,11 @@ const CalendarItem = ({ date, percentage, loading }) => {
     dispatch(setDaySelected(true));
     dispatch(setDate(fullDay));
   };
+
+  const percentage = Math.min(
+    100,
+    Math.round((totalAmount / dailyWaterNorm) * 100),
+  );
 
   return (
     <button
