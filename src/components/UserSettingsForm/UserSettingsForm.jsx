@@ -19,6 +19,8 @@ import {
 } from '../../redux/user/operations.js';
 import { useTranslation } from 'react-i18next';
 import { useUserValidationSchema } from '../../utils/hooks/useUserValidationSchema.js';
+import { fetchWaterMonthly } from '../../redux/water/operations.js';
+import { selectMonth } from '../../redux/water/selectors.js';
 
 const UserSettingsForm = ({ onClose }) => {
   const svgIcon = '/sprite.svg';
@@ -33,6 +35,8 @@ const UserSettingsForm = ({ onClose }) => {
   const weight = useSelector(selectWeight);
 
   const validationSchema = useUserValidationSchema(t);
+
+  const monthRedux = useSelector(selectMonth);
 
   const {
     register,
